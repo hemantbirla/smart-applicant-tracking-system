@@ -160,6 +160,19 @@ Authentication forms use:
 - Password confirmation validation
 - Minimal re-renders for better performance
 
+## API Configuration
+
+The project uses a centralized Axios instance.
+
+### Features
+
+- Base URL from environment variables
+- JSON request headers
+- Request interceptor for JWT authentication
+- Response interceptor for global error handling
+- Configurable timeout
+
+Environment variables are managed using Vite's `.env` files.
 
 ## Current Progress
 
@@ -172,3 +185,4 @@ Authentication forms use:
 - ✅ Create initial application pages
 - ✅ Develop authentication UI
 - ✅ Add form validation with React Hook Form and Yup
+- ✅ Configure Axios instance
