@@ -110,9 +110,18 @@ Used for authentication pages such as:
 
 This keeps authentication screens separate from the main application interface and promotes reusable layout components.
 
+## Pages
 
+The project includes the following route-level pages:
 
+- Login
+- Signup
+- Dashboard
+- Jobs
+- Profile
+- Not Found (404)
 
+Authentication pages use `AuthLayout`, while protected application pages use `MainLayout` to maintain a consistent user interface.
 
 ## Current Progress
 
@@ -121,4 +130,5 @@ This keeps authentication screens separate from the main application interface a
 - ✅ Cleaned Vite starter template
 - ✅ Created scalable folder structure
 - ✅ Configured React Router
-
+- ✅ Create application layouts
+- ✅ Create initial application pages
