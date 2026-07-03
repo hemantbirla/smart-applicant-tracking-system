@@ -14,3 +14,21 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the Oxlint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+
+
+
+| Folder       | Purpose                                       |
+| ------------ | --------------------------------------------- |
+| `api`        | Axios instance and API endpoint configuration |
+| `assets`     | Images, icons, fonts, SVGs                    |
+| `components` | Reusable UI components                        |
+| `config`     | Application configuration                     |
+| `constants`  | Application-wide constants                    |
+| `context`    | React Context providers                       |
+| `hooks`      | Custom React hooks                            |
+| `layouts`    | Shared layouts (Dashboard, Auth, etc.)        |
+| `pages`      | Route-level pages                             |
+| `routes`     | React Router configuration                    |
+| `services`   | Business logic and API service functions      |
+| `styles`     | Global CSS and styling files                  |
+| `utils`      | Utility/helper functions                      |
