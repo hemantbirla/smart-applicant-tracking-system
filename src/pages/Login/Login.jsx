@@ -33,7 +33,11 @@ const Login = () => {
 
       <div className="auth-container">
         <AuthCard title="Welcome Back" subtitle="Login to your account">
-          <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="auth-form"
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+          >
             <AuthInput
               label="Email"
               name="email"

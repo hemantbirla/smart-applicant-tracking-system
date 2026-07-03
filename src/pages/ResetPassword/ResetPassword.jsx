@@ -55,7 +55,9 @@ const ResetPassword = () => {
             error={errors.confirmPassword}
           />
 
-          <AuthButton type="submit">Reset Password</AuthButton>
+          <AuthButton type="submit">
+  Reset Password
+</AuthButton>
 
           <p className="auth-footer">
             Remember your password?{" "}

@@ -144,6 +144,23 @@ The application includes a complete authentication user interface built with reu
 Authentication logic and backend integration will be implemented in a later phase.
 
 
+## Form Validation
+
+Authentication forms use:
+
+- React Hook Form
+- Yup
+- @hookform/resolvers
+
+### Features
+
+- Reusable validation schemas
+- Client-side validation
+- Inline error messages
+- Password confirmation validation
+- Minimal re-renders for better performance
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -154,3 +171,4 @@ Authentication logic and backend integration will be implemented in a later phas
 - ✅ Create application layouts
 - ✅ Create initial application pages
 - ✅ Develop authentication UI
+- ✅ Add form validation with React Hook Form and Yup

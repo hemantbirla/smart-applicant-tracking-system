@@ -34,7 +34,11 @@ const ForgotPassword = () => {
           title="Forgot Password"
           subtitle="Enter your email to receive a password reset link."
         >
-          <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="auth-form"
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+          >
             <AuthInput
               label="Email"
               type="email"
