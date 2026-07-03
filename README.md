@@ -85,6 +85,33 @@ src/
 - Toast Notifications
 - Responsive UI
 
+## Application Layout
+
+The application uses two primary layouts:
+
+### MainLayout
+
+Used for authenticated pages.
+
+Includes:
+
+- Navbar
+- Sidebar
+- Main Content
+- Footer
+
+### AuthLayout
+
+Used for authentication pages such as:
+
+- Login
+- Register
+- Forgot Password
+
+This keeps authentication screens separate from the main application interface and promotes reusable layout components.
+
+
+
 
 
 ## Current Progress
