@@ -1,0 +1,303 @@
+/* ===========================
+   Global
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* ===========================
+   Authentication Container
+=========================== */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+/* ===========================
+   Authentication Card
+=========================== */
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #222;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.auth-card p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 15px;
+}
+
+/* ===========================
+   Form
+=========================== */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ===========================
+   Input Group
+=========================== */
+
+.auth-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 15px;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.auth-input::placeholder {
+  color: #999;
+}
+
+.auth-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===========================
+   Validation Error
+=========================== */
+
+.auth-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* ===========================
+   Remember Me
+=========================== */
+
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.auth-checkbox input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ===========================
+   Button
+=========================== */
+
+.auth-button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-button:hover {
+  background: #1d4ed8;
+}
+
+.auth-button:active {
+  transform: scale(0.98);
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Links
+=========================== */
+
+.auth-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ===========================
+   Forgot Password Link
+=========================== */
+
+.auth-forgot {
+  text-align: right;
+  font-size: 14px;
+}
+
+/* ===========================
+   Divider (Optional)
+=========================== */
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+.auth-divider span {
+  padding: 0 12px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* ===========================
+   Success Message
+=========================== */
+
+.auth-success {
+  color: #16a34a;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 30px;
+  }
+
+  .auth-card h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 20px;
+  }
+
+  .auth-card {
+    padding: 25px 20px;
+    border-radius: 10px;
+  }
+
+  .auth-card h2 {
+    font-size: 24px;
+  }
+
+  .auth-card p {
+    font-size: 14px;
+  }
+
+  .auth-input {
+    font-size: 14px;
+    padding: 11px 14px;
+  }
+
+  .auth-button {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .auth-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .auth-forgot {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  color: #666;
+  font-size: 15px;
+}
+
+.auth-body {
+  width: 100%;
+}

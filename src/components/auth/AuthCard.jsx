@@ -1,0 +1,22 @@
+import React from "react";
+import "../../styles/auth.css";
+
+const AuthCard = ({ title, subtitle, children }) => {
+  return (
+    <div className="auth-card">
+      <div className="auth-header">
+        <h2 className="auth-title">{title}</h2>
+
+        {subtitle && (
+          <p className="auth-subtitle">{subtitle}</p>
+        )}
+      </div>
+
+      <div className="auth-body">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default AuthCard;

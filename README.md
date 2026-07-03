@@ -123,6 +123,27 @@ The project includes the following route-level pages:
 
 Authentication pages use `AuthLayout`, while protected application pages use `MainLayout` to maintain a consistent user interface.
 
+
+## Authentication Module
+
+The application includes a complete authentication user interface built with reusable components.
+
+### Screens
+
+- Login
+- Signup
+- Forgot Password
+- Reset Password
+
+### Technologies
+
+- React Hook Form
+- Yup Validation
+- React Toastify (prepared for notifications)
+
+Authentication logic and backend integration will be implemented in a later phase.
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -132,3 +153,4 @@ Authentication pages use `AuthLayout`, while protected application pages use `Ma
 - ✅ Configured React Router
 - ✅ Create application layouts
 - ✅ Create initial application pages
+- ✅ Develop authentication UI
