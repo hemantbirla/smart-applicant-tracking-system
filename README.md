@@ -224,6 +224,26 @@ AppProvider
 
 Custom hooks (`useAuth`, `useTheme`, `useUser`) are used to simplify context consumption throughout the application.
 
+## Routing & Authorization
+
+The application uses React Router with route guards.
+
+### Features
+
+- Protected Routes
+- Public Routes
+- JWT Authentication
+- Role-Based Authorization
+- Unauthorized (403) Page
+- Automatic Redirect After Login
+
+### Supported Roles
+
+- Admin
+- Recruiter
+- Candidate
+
+
 
 ## Current Progress
 
@@ -238,3 +258,4 @@ Custom hooks (`useAuth`, `useTheme`, `useUser`) are used to simplify context con
 - ✅ Add form validation with React Hook Form and Yup
 - ✅ Configure Axios instance
 - ✅ Integrate authentication APIs
+- ✅ Implement protected and role-based routes

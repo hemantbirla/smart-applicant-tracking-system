@@ -1,12 +1,18 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-const isAuthenticated = false;
+const ProtectedRoute = () => {
+  const { isAuthenticated, loading } = useAuth();
 
-const ProtectedRoute = ({ children }) => {
-  return isAuthenticated ? children : <Navigate to="/" replace />;
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  return isAuthenticated ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" replace />
+  );
 };
 
 export default ProtectedRoute;
-
-
-// Note: Will replace the hardcoded isAuthenticated value with actual authentication logic when implement login.

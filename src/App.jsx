@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -20,11 +21,11 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
-        {/* 404 Fallback */}
+        {/* 404 */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
 
-      {/* Toast Notifications */}
+      {/* Global Toast */}
       <ToastContainer
         position="top-right"
         autoClose={3000}

@@ -1,7 +1,14 @@
-const PublicRoute = ({ children }) => {
-  return children;
+import { Navigate, Outlet } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
+const PublicRoute = () => {
+  const { isAuthenticated } = useAuth();
+
+  return isAuthenticated ? (
+    <Navigate to="/dashboard" replace />
+  ) : (
+    <Outlet />
+  );
 };
 
 export default PublicRoute;
-
-// Note: This is a placeholder and will later redirect authenticated users away from login/register pages.

@@ -44,13 +44,25 @@ export const AuthProvider = ({ children }) => {
   /**
    * Login
    */
-  const login = (token) => {
-    localStorage.setItem("accessToken", token);
+  const login = (accessToken) => {
+  if (!accessToken) return;
 
-    setAccessToken(token);
-    setUser(getUserFromToken(token));
-    setIsAuthenticated(true);
-  };
+  // Store token
+  localStorage.setItem("accessToken", accessToken);
+
+  // Decode JWT
+  const decodedToken = decodeToken(accessToken);
+
+  // Extract user
+  const user = getUserFromToken(accessToken);
+
+  // Save state
+  setAccessToken(accessToken);
+  setUser(user);
+  setIsAuthenticated(true);
+
+  return decodedToken;
+};
 
   /**
    * Logout
