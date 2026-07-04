@@ -174,6 +174,35 @@ The project uses a centralized Axios instance.
 
 Environment variables are managed using Vite's `.env` files.
 
+
+## Authentication
+
+Authentication is implemented using a dedicated service layer and centralized state management.
+
+### Features
+
+- Login
+- Signup
+- Logout
+- Refresh Token support
+- JWT decoding
+- Persistent authentication state
+- Axios request/response interceptors
+
+### Architecture
+
+```
+UI
+   ↓
+Auth Context
+   ↓
+Auth Service
+   ↓
+Axios Instance
+   ↓
+REST API
+```
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -186,3 +215,4 @@ Environment variables are managed using Vite's `.env` files.
 - ✅ Develop authentication UI
 - ✅ Add form validation with React Hook Form and Yup
 - ✅ Configure Axios instance
+- ✅ Integrate authentication APIs
