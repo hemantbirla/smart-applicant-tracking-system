@@ -203,6 +203,28 @@ Axios Instance
 REST API
 ```
 
+## Global State Management
+
+The application uses React Context API for global state management.
+
+### Contexts
+
+- **AuthContext** – Authentication and session management
+- **ThemeContext** – Light/Dark mode
+- **UserContext** – User profile and preferences
+
+### Architecture
+
+```
+AppProvider
+├── AuthProvider
+├── ThemeProvider
+└── UserProvider
+```
+
+Custom hooks (`useAuth`, `useTheme`, `useUser`) are used to simplify context consumption throughout the application.
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite

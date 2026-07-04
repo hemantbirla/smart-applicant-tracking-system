@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -9,7 +9,7 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         {/* Redirect root to login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
@@ -35,7 +35,7 @@ function App() {
         draggable
         theme="light"
       />
-    </BrowserRouter>
+    </>
   );
 }
 
