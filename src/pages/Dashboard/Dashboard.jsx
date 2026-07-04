@@ -1,10 +1,29 @@
-import MainLayout from "../../layouts/MainLayout";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
+import DashboardHeader from "../../components/dashboard/DashboardHeader";
+import StatisticsSection from "../../components/dashboard/StatisticsSection";
+import RecentApplications from "../../components/dashboard/RecentApplications";
+import ProfileSummary from "../../components/profile/ProfileSummary";
+
+import "../../styles/dashboard.css";
 
 const Dashboard = () => {
   return (
-    <MainLayout>
-      <h1>Dashboard</h1>
-    </MainLayout>
+    <div className="dashboard-layout">
+      <Sidebar />
+
+      <div className="dashboard-content">
+        <Navbar />
+
+        <DashboardHeader />
+
+        <StatisticsSection />
+
+        <RecentApplications />
+
+        <ProfileSummary />
+      </div>
+    </div>
   );
 };
 

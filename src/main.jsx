@@ -6,6 +6,7 @@ import App from "./App";
 import AppProvider from "./context/AppProvider";
 
 import "./styles/auth.css";
+import "./styles/dashboard.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

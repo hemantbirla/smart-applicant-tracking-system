@@ -1,8 +1,14 @@
-const Navbar = () => {
+import "../../styles/dashboard.css";
+
+const Navbar = ({ onMenuClick }) => {
   return (
-    <nav>
-      <h2>Smart ATS</h2>
-    </nav>
+    <header className="navbar">
+      <button className="menu-btn" onClick={onMenuClick}>
+        ☰
+      </button>
+
+      <h2>Candidate Dashboard</h2>
+    </header>
   );
 };
 

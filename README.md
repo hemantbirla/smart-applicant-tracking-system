@@ -243,7 +243,30 @@ The application uses React Router with route guards.
 - Recruiter
 - Candidate
 
+## Candidate Dashboard
 
+The Candidate Dashboard is built using reusable React components.
+
+### Features
+
+- Sidebar Navigation
+- Dashboard Statistics Cards
+- Recent Applications
+- Profile Summary
+- Responsive Layout
+
+### Component Architecture
+
+```
+Dashboard
+├── DashboardHeader
+├── StatisticsSection
+│   └── DashboardCard
+├── RecentApplications
+└── ProfileSummary
+```
+
+Statistics are currently rendered from local constants and are designed to be replaced by API responses in future iterations.
 
 ## Current Progress
 
@@ -259,3 +282,4 @@ The application uses React Router with route guards.
 - ✅ Configure Axios instance
 - ✅ Integrate authentication APIs
 - ✅ Implement protected and role-based routes
+- ✅ Develop candidate dashboard

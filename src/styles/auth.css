@@ -1,6 +1,6 @@
-/* ===========================
+/* ==========================================
    Global
-=========================== */
+========================================== */
 
 * {
   margin: 0;
@@ -11,12 +11,12 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f6f9;
-  color: #333;
+  color: #111827;
 }
 
-/* ===========================
-   Authentication Container
-=========================== */
+/* ==========================================
+   Authentication Layout
+========================================== */
 
 .auth-container {
   min-height: 100vh;
@@ -26,37 +26,43 @@ body {
   padding: 30px 15px;
 }
 
-/* ===========================
-   Authentication Card
-=========================== */
-
 .auth-card {
   width: 100%;
-  max-width: 450px;
+  max-width: 460px;
   background: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
 }
 
-.auth-card h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  color: #222;
-  font-size: 30px;
-  font-weight: 700;
-}
+/* ==========================================
+   Header
+========================================== */
 
-.auth-card p {
+.auth-header {
   text-align: center;
   margin-bottom: 30px;
-  color: #666;
+}
+
+.auth-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.auth-subtitle {
+  margin-top: 8px;
+  color: #6b7280;
   font-size: 15px;
 }
 
-/* ===========================
+.auth-body {
+  width: 100%;
+}
+
+/* ==========================================
    Form
-=========================== */
+========================================== */
 
 .auth-form {
   display: flex;
@@ -64,9 +70,9 @@ body {
   gap: 18px;
 }
 
-/* ===========================
-   Input Group
-=========================== */
+/* ==========================================
+   Input
+========================================== */
 
 .auth-input-group {
   display: flex;
@@ -77,41 +83,41 @@ body {
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #444;
+  color: #374151;
 }
 
 .auth-input {
   width: 100%;
-  padding: 12px 15px;
-  font-size: 15px;
-  border: 1px solid #d8d8d8;
+  padding: 13px 15px;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
+  font-size: 15px;
   outline: none;
-  transition: all 0.3s ease;
-}
-
-.auth-input::placeholder {
-  color: #999;
+  transition: .25s;
 }
 
 .auth-input:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.12);
 }
 
-/* ===========================
-   Validation Error
-=========================== */
+.auth-input::placeholder {
+  color: #9ca3af;
+}
+
+/* ==========================================
+   Error
+========================================== */
 
 .auth-error {
-  color: #dc2626;
+  margin-top: 6px;
   font-size: 13px;
-  margin-top: 5px;
+  color: #dc2626;
 }
 
-/* ===========================
+/* ==========================================
    Remember Me
-=========================== */
+========================================== */
 
 .auth-options {
   display: flex;
@@ -119,261 +125,89 @@ body {
   align-items: center;
 }
 
-.auth-checkbox {
+.remember-me {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
 }
 
-.auth-checkbox input {
-  width: 16px;
-  height: 16px;
+.remember-me input {
   cursor: pointer;
 }
 
-/* ===========================
+/* ==========================================
    Button
-=========================== */
+========================================== */
 
 .auth-button {
   width: 100%;
-  padding: 13px;
+  padding: 14px;
   border: none;
   border-radius: 8px;
   background: #2563eb;
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: .25s;
 }
 
 .auth-button:hover {
   background: #1d4ed8;
 }
 
-.auth-button:active {
-  transform: scale(0.98);
-}
-
 .auth-button:disabled {
-  opacity: 0.7;
+  opacity: .6;
   cursor: not-allowed;
 }
 
-/* ===========================
+/* ==========================================
    Links
-=========================== */
+========================================== */
 
 .auth-link {
   color: #2563eb;
   text-decoration: none;
   font-weight: 500;
-  transition: 0.3s;
 }
 
 .auth-link:hover {
   text-decoration: underline;
 }
 
-.auth-footer {
-  margin-top: 20px;
+.auth-footer,
+.auth-footer-text {
+  margin-top: 22px;
   text-align: center;
-  font-size: 14px;
-  color: #555;
-}
-
-/* ===========================
-   Forgot Password Link
-=========================== */
-
-.auth-forgot {
-  text-align: right;
-  font-size: 14px;
-}
-
-/* ===========================
-   Divider (Optional)
-=========================== */
-
-.auth-divider {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-}
-
-.auth-divider::before,
-.auth-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #ddd;
-}
-
-.auth-divider span {
-  padding: 0 12px;
-  color: #888;
-  font-size: 14px;
-}
-
-/* ===========================
-   Success Message
-=========================== */
-
-.auth-success {
-  color: #16a34a;
-  font-size: 14px;
-  text-align: center;
-}
-
-/* ===========================
-   Responsive
-=========================== */
-
-@media (max-width: 768px) {
-  .auth-card {
-    padding: 30px;
-  }
-
-  .auth-card h2 {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 480px) {
-  .auth-container {
-    padding: 20px;
-  }
-
-  .auth-card {
-    padding: 25px 20px;
-    border-radius: 10px;
-  }
-
-  .auth-card h2 {
-    font-size: 24px;
-  }
-
-  .auth-card p {
-    font-size: 14px;
-  }
-
-  .auth-input {
-    font-size: 14px;
-    padding: 11px 14px;
-  }
-
-  .auth-button {
-    font-size: 15px;
-    padding: 12px;
-  }
-
-  .auth-options {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .auth-forgot {
-    width: 100%;
-    text-align: left;
-  }
-}
-
-.auth-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.auth-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 8px;
-}
-
-.auth-subtitle {
-  color: #666;
+  color: #6b7280;
   font-size: 15px;
 }
 
-.auth-body {
-  width: 100%;
-}
-
-/* ===========================
-   Theme
-=========================== */
-/* Default Theme */
-
-body {
-  background-color: #f4f6f9;
-  color: #222;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Dark Theme */
-
-body[data-theme="dark"] {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-/* Optional: Authentication Card */
-
-body[data-theme="dark"] .auth-card {
-  background-color: #1e1e1e;
-  color: #ffffff;
-}
-
-body[data-theme="dark"] .auth-input {
-  background-color: #2b2b2b;
-  color: #ffffff;
-  border-color: #555;
-}
-
-body[data-theme="dark"] .auth-input::placeholder {
-  color: #aaa;
-}
-
-body[data-theme="dark"] .auth-label,
-body[data-theme="dark"] .auth-title,
-body[data-theme="dark"] .auth-subtitle,
-body[data-theme="dark"] .auth-footer {
-  color: #f5f5f5;
-}
-
-body[data-theme="dark"] .auth-link {
-  color: #60a5fa;
-}
-
-/* ===========================
+/* ==========================================
    Unauthorized Page
-=========================== */
+========================================== */
 
 .unauthorized-card {
   text-align: center;
 }
 
 .unauthorized-code {
-  font-size: 80px;
-  font-weight: 700;
+  font-size: 90px;
   color: #dc2626;
-  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .unauthorized-title {
-  font-size: 30px;
-  color: #222;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  font-size: 34px;
+  color: #111827;
 }
 
 .unauthorized-message {
-  color: #666;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 30px;
+  margin: 18px 0 28px;
+  color: #6b7280;
+  line-height: 1.7;
 }
 
 .unauthorized-btn {
@@ -382,5 +216,77 @@ body[data-theme="dark"] .auth-link {
   align-items: center;
   text-decoration: none;
   max-width: 220px;
-  margin: 0 auto;
+}
+
+/* ==========================================
+   Dark Theme
+========================================== */
+
+body[data-theme="dark"] {
+  background: #111827;
+}
+
+body[data-theme="dark"] .auth-card {
+  background: #1f2937;
+}
+
+body[data-theme="dark"] .auth-title,
+body[data-theme="dark"] .auth-label,
+body[data-theme="dark"] .auth-footer,
+body[data-theme="dark"] .auth-footer-text {
+  color: #f9fafb;
+}
+
+body[data-theme="dark"] .auth-subtitle {
+  color: #d1d5db;
+}
+
+body[data-theme="dark"] .auth-input {
+  background: #374151;
+  color: white;
+  border-color: #4b5563;
+}
+
+body[data-theme="dark"] .auth-input::placeholder {
+  color: #9ca3af;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width:768px) {
+
+  .auth-card {
+    padding: 30px;
+  }
+
+  .auth-title {
+    font-size: 28px;
+  }
+
+  .auth-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width:480px) {
+
+  .auth-container {
+    padding: 20px;
+  }
+
+  .auth-card {
+    padding: 24px;
+  }
+
+  .auth-title {
+    font-size: 24px;
+  }
+
+  .auth-button {
+    padding: 13px;
+  }
 }
