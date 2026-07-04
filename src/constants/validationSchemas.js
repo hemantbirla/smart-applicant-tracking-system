@@ -1,7 +1,10 @@
 import * as yup from "yup";
 import { validationMessages } from "./validationMessages";
 
+// ==============================
 // Login Schema
+// ==============================
+
 export const loginSchema = yup.object({
   email: yup
     .string()
@@ -16,7 +19,10 @@ export const loginSchema = yup.object({
     .min(8, validationMessages.password.min),
 });
 
+// ==============================
 // Signup Schema
+// ==============================
+
 export const signupSchema = yup.object({
   fullName: yup
     .string()
@@ -45,7 +51,10 @@ export const signupSchema = yup.object({
     ),
 });
 
+// ==============================
 // Forgot Password Schema
+// ==============================
+
 export const forgotPasswordSchema = yup.object({
   email: yup
     .string()
@@ -54,7 +63,10 @@ export const forgotPasswordSchema = yup.object({
     .email(validationMessages.email.invalid),
 });
 
+// ==============================
 // Reset Password Schema
+// ==============================
+
 export const resetPasswordSchema = yup.object({
   password: yup
     .string()
@@ -68,5 +80,63 @@ export const resetPasswordSchema = yup.object({
     .required(validationMessages.confirmPassword.required)
     .oneOf(
       [yup.ref("password")],
-      validationMessages.confirmPassword.match),
+      validationMessages.confirmPassword.match
+    ),
+});
+
+// ==============================
+// Personal Information Schema
+// ==============================
+
+export const personalInfoSchema = yup.object({
+  firstName: yup
+    .string()
+    .trim()
+    .required(validationMessages.personalInfo.firstNameRequired),
+
+  lastName: yup
+    .string()
+    .trim()
+    .required(validationMessages.personalInfo.lastNameRequired),
+
+  email: yup
+    .string()
+    .trim()
+    .required(validationMessages.email.required)
+    .email(validationMessages.email.invalid),
+
+  phone: yup
+    .string()
+    .trim()
+    .required(validationMessages.personalInfo.phoneRequired),
+
+  dob: yup
+    .string()
+    .required(validationMessages.personalInfo.dobRequired),
+
+  address: yup
+    .string()
+    .trim()
+    .required(validationMessages.personalInfo.addressRequired),
+
+  linkedin: yup
+    .string()
+    .trim()
+    .url(validationMessages.personalInfo.invalidUrl)
+    .nullable()
+    .transform((value) => (value === "" ? null : value)),
+
+  github: yup
+    .string()
+    .trim()
+    .url(validationMessages.personalInfo.invalidUrl)
+    .nullable()
+    .transform((value) => (value === "" ? null : value)),
+
+  portfolio: yup
+    .string()
+    .trim()
+    .url(validationMessages.personalInfo.invalidUrl)
+    .nullable()
+    .transform((value) => (value === "" ? null : value)),
 });

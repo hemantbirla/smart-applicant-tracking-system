@@ -268,6 +268,34 @@ Dashboard
 
 Statistics are currently rendered from local constants and are designed to be replaced by API responses in future iterations.
 
+## Candidate Profile Management
+
+The application includes a modular candidate profile management system.
+
+### Features
+
+- Profile Overview
+- Personal Information
+- Skills
+- Experience
+- Education
+- Edit Profile
+- Profile Completion Indicator
+
+### Component Structure
+
+```
+Profile
+├── ProfileHeader
+├── PersonalInfo
+├── SkillsSection
+├── ExperienceSection
+├── EducationSection
+└── EditProfileModal
+```
+
+The module is designed for easy integration with backend profile APIs.
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -283,3 +311,4 @@ Statistics are currently rendered from local constants and are designed to be re
 - ✅ Integrate authentication APIs
 - ✅ Implement protected and role-based routes
 - ✅ Develop candidate dashboard
+- ✅ Develop candidate profile management

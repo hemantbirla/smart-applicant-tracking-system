@@ -1,4 +1,7 @@
 export const validationMessages = {
+  // ==============================
+  // Authentication
+  // ==============================
   fullName: {
     required: "Full name is required",
   },
@@ -16,5 +19,17 @@ export const validationMessages = {
   confirmPassword: {
     required: "Confirm password is required",
     match: "Passwords must match",
+  },
+
+  // ==============================
+  // Personal Information
+  // ==============================
+  personalInfo: {
+    firstNameRequired: "First name is required",
+    lastNameRequired: "Last name is required",
+    phoneRequired: "Phone number is required",
+    dobRequired: "Date of birth is required",
+    addressRequired: "Address is required",
+    invalidUrl: "Enter a valid URL",
   },
 };

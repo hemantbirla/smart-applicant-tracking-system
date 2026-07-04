@@ -3,14 +3,18 @@ import { createContext, useContext, useState } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  // User State
   const [profile, setProfileState] = useState(null);
   const [role, setRole] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [preferences, setPreferences] = useState({});
   const [permissions, setPermissions] = useState([]);
 
+  // Loading State
+  const [loading, setLoading] = useState(false);
+
   /**
-   * Set complete profile
+   * Set complete user profile
    */
   const setProfile = (userData) => {
     if (!userData) return;
@@ -27,6 +31,8 @@ export const UserProvider = ({ children }) => {
    */
   const updateProfile = (updatedData) => {
     setProfileState((prev) => {
+      if (!prev) return updatedData;
+
       const updatedProfile = {
         ...prev,
         ...updatedData,
@@ -50,25 +56,43 @@ export const UserProvider = ({ children }) => {
     setAvatar(null);
     setPreferences({});
     setPermissions([]);
+    setLoading(false);
   };
 
   return (
     <UserContext.Provider
       value={{
+        // State
         profile,
         role,
         avatar,
         preferences,
         permissions,
+        loading,
 
+        // Actions
         setProfile,
         updateProfile,
         clearProfile,
+        setLoading,
       }}
     >
       {children}
     </UserContext.Provider>
   );
+};
+
+/**
+ * Custom Hook
+ */
+export const useUser = () => {
+  const context = useContext(UserContext);
+
+  if (!context) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+
+  return context;
 };
 
 export default UserContext;

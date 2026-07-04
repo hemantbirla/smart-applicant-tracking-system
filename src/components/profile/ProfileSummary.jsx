@@ -1,7 +1,11 @@
 import profileData from "../../constants/profileData";
+import { calculateProfileCompletion } from "../../utils/profileCompletion";
+
 import "../../styles/dashboard.css";
 
 const ProfileSummary = ({ profile = profileData }) => {
+  const completion = calculateProfileCompletion(profile);
+
   return (
     <section className="profile-summary">
       <h2 className="section-title">Profile Summary</h2>
@@ -10,12 +14,12 @@ const ProfileSummary = ({ profile = profileData }) => {
         <div className="profile-header">
           <img
             src={profile.profileImage}
-            alt={profile.name}
+            alt={profile.fullName}
             className="profile-image"
           />
 
           <div>
-            <h3>{profile.name}</h3>
+            <h3>{profile.fullName}</h3>
             <p>{profile.email}</p>
           </div>
         </div>
@@ -23,17 +27,42 @@ const ProfileSummary = ({ profile = profileData }) => {
         <div className="profile-details">
           <div className="profile-item">
             <strong>Phone</strong>
-            <span>{profile.phone}</span>
+            <span>{profile.phone || "-"}</span>
           </div>
 
           <div className="profile-item">
             <strong>Experience</strong>
-            <span>{profile.experience}</span>
+
+            <span>
+              {profile.experiences?.length
+                ? profile.experiences[0].role
+                : "Not Added"}
+            </span>
+          </div>
+
+          <div className="profile-item">
+            <strong>Education</strong>
+
+            <span>
+              {profile.education?.length
+                ? profile.education
+                    .map(
+                      (edu) =>
+                        `${edu.degree} - ${edu.college} (${edu.year})`
+                    )
+                    .join(", ")
+                : "Not Added"}
+            </span>
           </div>
 
           <div className="profile-item">
             <strong>Resume</strong>
-            <span>{profile.resumeUploaded ? "Uploaded" : "Not Uploaded"}</span>
+
+            <span>
+              {profile.resumeUploaded
+                ? "Uploaded"
+                : "Not Uploaded"}
+            </span>
           </div>
         </div>
 
@@ -41,8 +70,11 @@ const ProfileSummary = ({ profile = profileData }) => {
           <strong>Skills</strong>
 
           <div className="skills-list">
-            {profile.skills.map((skill) => (
-              <span key={skill} className="skill-badge">
+            {profile.skills?.map((skill) => (
+              <span
+                key={skill}
+                className="skill-badge"
+              >
                 {skill}
               </span>
             ))}
@@ -53,16 +85,16 @@ const ProfileSummary = ({ profile = profileData }) => {
           <div className="completion-header">
             <span>Profile Completion</span>
 
-            <span>{profile.profileCompletion}%</span>
+            <span>{completion}%</span>
           </div>
 
           <div className="progress-bar">
             <div
               className="progress-fill"
               style={{
-                width: `${profile.profileCompletion}%`,
+                width: `${completion}%`,
               }}
-            ></div>
+            />
           </div>
         </div>
       </div>

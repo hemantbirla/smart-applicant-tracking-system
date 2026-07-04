@@ -1,10 +1,44 @@
-import MainLayout from "../../layouts/MainLayout";
+import { useState } from "react";
+
+import DashboardLayout from "../../layouts/DashboardLayout";
+
+import ProfileHeader from "../../components/profile/ProfileHeader";
+import PersonalInfo from "../../components/profile/PersonalInfo";
+import SkillsSection from "../../components/profile/SkillsSection";
+import ExperienceSection from "../../components/profile/ExperienceSection";
+import EducationSection from "../../components/profile/EducationSection";
+import EditProfileModal from "../../components/profile/EditProfileModal";
 
 const Profile = () => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   return (
-    <MainLayout>
-      <h1>Profile</h1>
-    </MainLayout>
+    <DashboardLayout>
+      <div className="container py-4">
+        <ProfileHeader onEdit={() => setIsEditModalOpen(true)} />
+
+        <div className="mt-4">
+          <PersonalInfo />
+        </div>
+
+        <div className="mt-4">
+          <SkillsSection />
+        </div>
+
+        <div className="mt-4">
+          <ExperienceSection />
+        </div>
+
+        <div className="mt-4">
+          <EducationSection />
+        </div>
+
+        <EditProfileModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+        />
+      </div>
+    </DashboardLayout>
   );
 };
 
