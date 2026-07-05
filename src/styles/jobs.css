@@ -356,3 +356,62 @@
     transform:translateY(-6px);
     box-shadow:0 18px 40px rgba(0,0,0,.25);
 }
+
+.jobs-container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.job-details-card,
+.company-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+
+.job-section {
+  margin-top: 25px;
+}
+
+.job-section h2 {
+  margin-bottom: 10px;
+}
+
+.job-section ul {
+  padding-left: 20px;
+}
+
+.company-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.apply-wrapper {
+  text-align: center;
+}
+
+.apply-btn {
+  padding: 14px 34px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.job-details-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+}
