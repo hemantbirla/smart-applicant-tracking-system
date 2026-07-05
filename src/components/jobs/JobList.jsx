@@ -1,11 +1,14 @@
 import JobCard from "./JobCard";
 
-const JobList = ({ jobs }) => {
-  if (!jobs || jobs.length === 0) {
+const JobList = ({ jobs = [] }) => {
+  if (!jobs.length) {
     return (
-      <div className="empty-jobs">
-        <h3>No Jobs Found</h3>
-        <p>Please check again later.</p>
+      <div className="jobs-empty">
+        <h3>No jobs found</h3>
+
+        <p>
+          Try changing your search or filter criteria.
+        </p>
       </div>
     );
   }
