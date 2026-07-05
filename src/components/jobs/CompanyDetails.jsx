@@ -1,9 +1,18 @@
-import "../../styles/jobs.css";
+import {
+  FiBriefcase,
+  FiUsers,
+  FiGlobe,
+  FiMapPin,
+} from "react-icons/fi";
 
 const CompanyDetails = ({ job }) => {
+  if (!job) return null;
+
   return (
-    <div className="company-card">
-      <h2>About Company</h2>
+    <section className="company-card">
+      <h2 className="section-title">
+        Company Details
+      </h2>
 
       <div className="company-header">
         <img
@@ -14,39 +23,45 @@ const CompanyDetails = ({ job }) => {
 
         <div>
           <h3>{job.company}</h3>
+
           <p>{job.industry}</p>
         </div>
       </div>
 
       <div className="company-info">
-        <p>
-          <strong>Industry:</strong> {job.industry}
-        </p>
+        <div className="company-item">
+          <FiBriefcase />
+          <span>{job.industry}</span>
+        </div>
 
-        <p>
-          <strong>Employees:</strong> {job.employees}
-        </p>
+        <div className="company-item">
+          <FiUsers />
+          <span>{job.employees}</span>
+        </div>
 
-        <p>
-          <strong>Location:</strong> {job.location}
-        </p>
+        <div className="company-item">
+          <FiMapPin />
+          <span>{job.location}</span>
+        </div>
 
-        <p>
-          <strong>Website:</strong>{" "}
+        <div className="company-item">
+          <FiGlobe />
           <a
             href={job.website}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
           >
             {job.website}
           </a>
-        </p>
-
-        <p>
-          <strong>About:</strong> {job.companyDescription}
-        </p>
+        </div>
       </div>
-    </div>
+
+      <div className="company-description">
+        <h4>About Company</h4>
+
+        <p>{job.companyDescription}</p>
+      </div>
+    </section>
   );
 };
 
