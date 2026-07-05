@@ -1,0 +1,72 @@
+/* ==============================
+   Drop Zone
+============================== */
+
+.drop-zone {
+  width: 100%;
+  min-height: 240px;
+
+  border: 2px dashed #2563eb;
+  border-radius: 12px;
+
+  background: #f8fbff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.drop-zone:hover {
+  background: #eef5ff;
+}
+
+.drop-zone.dragging {
+  background: #dbeafe;
+  border-color: #1d4ed8;
+  transform: scale(1.01);
+}
+
+.drop-zone-icon {
+  font-size: 55px;
+}
+
+.drop-zone h3 {
+  font-size: 22px;
+  color: #111827;
+}
+
+.drop-zone p {
+  color: #6b7280;
+}
+
+.drop-zone small {
+  color: #6b7280;
+}
+
+.browse-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+
+  padding: 12px 22px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.browse-btn:hover {
+  background: #1d4ed8;
+}
