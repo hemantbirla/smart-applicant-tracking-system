@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Profile from "./pages/Profile/Profile";
 
 import "react-toastify/dist/ReactToastify.css";
+import Jobs from "./pages/Jobs/Jobs";
 
 function App() {
   return (
@@ -36,10 +37,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
 
         {/* Temporary Routes */}
-        <Route
-          path="/jobs"
-          element={<h2 style={{ padding: 30 }}>Jobs Page</h2>}
-        />
+        <Route path="/jobs" element={ <Jobs />} />
 
         <Route
           path="/applications"
