@@ -1,4 +1,5 @@
 import JobCard from "./JobCard";
+import InfiniteLoader from "./InfiniteLoader";
 
 const JobList = ({ jobs = [], onSave }) => {
   if (!jobs.length) {
@@ -20,6 +21,7 @@ const JobList = ({ jobs = [], onSave }) => {
           onSave={onSave}
         />
       ))}
+      <InfiniteLoader />
     </div>
   );
 };
