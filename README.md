@@ -350,6 +350,33 @@ Jobs
 
 Mock data is currently used and will be replaced with backend API integration in later phases.
 
+## Job Search & Filtering
+
+The Jobs module includes advanced client-side filtering and sorting.
+
+### Features
+
+- Keyword Search
+- Filter by Location
+- Filter by Job Type
+- Filter by Experience
+- Filter by Salary Range
+- Sort Jobs
+- Active Filter Chips
+- Clear All Filters
+
+### Architecture
+
+```
+Jobs
+├── SearchBar
+├── FilterPanel
+├── SortDropdown
+├── ActiveFilters
+└── JobList
+```
+
+Filtering and sorting logic is encapsulated in a reusable custom hook and utility functions for maintainability and future API integration.
 
 ## Current Progress
 
@@ -369,3 +396,6 @@ Mock data is currently used and will be replaced with backend API integration in
 - ✅ Develop candidate profile management
 - ✅ Add resume upload functionality
 - ✅ Build job listing module
+- ✅ Implement job search filters and sorting
+
+

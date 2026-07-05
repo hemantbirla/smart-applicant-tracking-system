@@ -1,14 +1,12 @@
 import JobCard from "./JobCard";
 
-const JobList = ({ jobs = [] }) => {
+const JobList = ({ jobs = [], onSave }) => {
   if (!jobs.length) {
     return (
       <div className="jobs-empty">
         <h3>No jobs found</h3>
 
-        <p>
-          Try changing your search or filter criteria.
-        </p>
+        <p>Try changing your search or filter criteria.</p>
       </div>
     );
   }
@@ -19,6 +17,7 @@ const JobList = ({ jobs = [] }) => {
         <JobCard
           key={job.id}
           job={job}
+          onSave={onSave}
         />
       ))}
     </div>

@@ -26,9 +26,16 @@
 ===================================================== */
 
 .job-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 24px;
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .job-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* =====================================================
@@ -321,6 +328,32 @@
     }
 
 }
+
+/* =====================================================
+   SAVE BUTTON
+===================================================== */
+
+.save-btn {
+    padding: 10px 18px;
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.save-btn:hover {
+    background: #eff6ff;
+}
+
+.save-btn.active {
+    background: #2563eb;
+    color: #ffffff;
+}
+
 
 /* =====================================================
    JOB DETAILS PAGE
@@ -764,4 +797,61 @@
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================
+   Active Filter
+========================== */
+
+.active-filters {
+  margin: 15px 0;
+}
+
+.active-filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.active-filters-header h4 {
+  color: #fff;
+}
+
+.clear-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: #333;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  background: #2563eb;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
 }

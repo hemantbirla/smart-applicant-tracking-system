@@ -16,9 +16,7 @@ import "../../styles/jobs.css";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
-
   const [loading, setLoading] = useState(true);
-
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -28,19 +26,34 @@ const Jobs = () => {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-
       setError("");
 
-      const response = await getJobs();
+      const data = await getJobs();
 
-      setJobs(response);
+      // Add saved property if API doesn't provide it
+      const jobsWithSaved = data.map((job) => ({
+        ...job,
+        saved: job.saved ?? false,
+      }));
+
+      setJobs(jobsWithSaved);
     } catch (err) {
-      setError("Unable to load jobs.");
-
       console.error(err);
+      setError("Unable to load jobs.");
     } finally {
       setLoading(false);
     }
+  };
+
+  // Toggle Save
+  const handleSave = (id) => {
+    setJobs((prevJobs) =>
+      prevJobs.map((job) =>
+        job.id === id
+          ? { ...job, saved: !job.saved }
+          : job
+      )
+    );
   };
 
   const {
@@ -87,6 +100,11 @@ const Jobs = () => {
               filters={filters}
               clearFilters={clearFilters}
             />
+
+            <JobList
+              jobs={filteredJobs}
+              onSave={handleSave}
+            />
           </>
         )}
 
@@ -101,20 +119,6 @@ const Jobs = () => {
             {error}
           </div>
         )}
-
-        {!loading &&
-          !error &&
-          filteredJobs.length === 0 && (
-            <div className="jobs-empty">
-              No matching jobs found.
-            </div>
-          )}
-
-        {!loading &&
-          !error &&
-          filteredJobs.length > 0 && (
-            <JobList jobs={filteredJobs} />
-          )}
       </div>
     </DashboardLayout>
   );
