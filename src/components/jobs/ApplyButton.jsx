@@ -1,9 +1,10 @@
-const ApplyButton = ({ onApply }) => {
+const ApplyButton = ({ jobId }) => {
+  const handleApply = () => {
+    alert(`Applied to job ID: ${jobId}`);
+  };
+
   return (
-    <button
-      className="apply-btn"
-      onClick={onApply}
-    >
+    <button className="apply-btn" onClick={handleApply}>
       Apply Now
     </button>
   );

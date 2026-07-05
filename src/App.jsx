@@ -11,6 +11,7 @@ import Profile from "./pages/Profile/Profile";
 
 import "react-toastify/dist/ReactToastify.css";
 import Jobs from "./pages/Jobs/Jobs";
+import JobDetails from "./pages/JobDetails/JobDetails";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
 
         {/* Temporary Routes */}
         <Route path="/jobs" element={ <Jobs />} />
+
+        <Route path="/jobs/:jobId" element={<JobDetails />} />
 
         <Route
           path="/applications"
