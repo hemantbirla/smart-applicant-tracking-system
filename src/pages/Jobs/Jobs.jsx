@@ -18,6 +18,7 @@ const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetchJobs();
@@ -28,15 +29,17 @@ const Jobs = () => {
       setLoading(true);
       setError("");
 
-      const data = await getJobs();
+      const response = await getJobs({
+        page,
+        limit: 10,
+      });
 
-      // Add saved property if API doesn't provide it
-      const jobsWithSaved = data.map((job) => ({
-        ...job,
-        saved: job.saved ?? false,
-      }));
-
-      setJobs(jobsWithSaved);
+      setJobs(
+        response.jobs.map((job) => ({
+          ...job,
+          saved: job.saved ?? false,
+        })),
+      );
     } catch (err) {
       console.error(err);
       setError("Unable to load jobs.");
@@ -45,14 +48,16 @@ const Jobs = () => {
     }
   };
 
+  useEffect(() => {
+    fetchJobs();
+  }, [page]);
+
   // Toggle Save
   const handleSave = (id) => {
     setJobs((prevJobs) =>
       prevJobs.map((job) =>
-        job.id === id
-          ? { ...job, saved: !job.saved }
-          : job
-      )
+        job.id === id ? { ...job, saved: !job.saved } : job,
+      ),
     );
   };
 
@@ -70,9 +75,7 @@ const Jobs = () => {
   return (
     <DashboardLayout>
       <div className="jobs-page">
-        <h1 className="jobs-heading">
-          Find Your Dream Job
-        </h1>
+        <h1 className="jobs-heading">Find Your Dream Job</h1>
 
         <p className="jobs-subtitle">
           Browse the latest opportunities from top companies.
@@ -80,20 +83,11 @@ const Jobs = () => {
 
         {!loading && !error && (
           <>
-            <SearchBar
-              value={searchTerm}
-              onChange={setSearchTerm}
-            />
+            <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
-            <FilterPanel
-              filters={filters}
-              onChange={updateFilter}
-            />
+            <FilterPanel filters={filters} onChange={updateFilter} />
 
-            <SortDropdown
-              value={sortBy}
-              onChange={setSortBy}
-            />
+            <SortDropdown value={sortBy} onChange={setSortBy} />
 
             <ActiveFilters
               searchTerm={searchTerm}
@@ -101,24 +95,13 @@ const Jobs = () => {
               clearFilters={clearFilters}
             />
 
-            <JobList
-              jobs={filteredJobs}
-              onSave={handleSave}
-            />
+            <JobList jobs={filteredJobs} onSave={handleSave} />
           </>
         )}
 
-        {loading && (
-          <div className="jobs-loading">
-            Loading jobs...
-          </div>
-        )}
+        {loading && <div className="jobs-loading">Loading jobs...</div>}
 
-        {!loading && error && (
-          <div className="jobs-error">
-            {error}
-          </div>
-        )}
+        {!loading && error && <div className="jobs-error">{error}</div>}
       </div>
     </DashboardLayout>
   );
