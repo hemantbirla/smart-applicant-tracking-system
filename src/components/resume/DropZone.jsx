@@ -1,67 +1,30 @@
 import { useRef } from "react";
 
-import { validateResumeFile } from "../../utils/fileValidation";
-
 import "../../styles/resume.css";
 
 const DropZone = ({
-  onFileSelect,
-  setError,
-  isDragging,
-  setIsDragging,
+  dragActive,
+  onFileChange,
+  onDragEnter,
+  onDragLeave,
+  onDragOver,
+  onDrop,
 }) => {
-  const fileInputRef = useRef(null);
-
-  const handleFile = (file) => {
-    if (!file) return;
-
-    const validation = validateResumeFile(file);
-
-    if (!validation.valid) {
-      setError(validation.message);
-      return;
-    }
-
-    setError("");
-    onFileSelect(file);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-
-    setIsDragging(false);
-
-    const file = e.dataTransfer.files[0];
-
-    handleFile(file);
-  };
-
-  const handleBrowse = (e) => {
-    const file = e.target.files[0];
-
-    handleFile(file);
-  };
+  const inputRef = useRef(null);
 
   return (
     <>
       <div
         className={`drop-zone ${
-          isDragging ? "dragging" : ""
+          dragActive ? "dragging" : ""
         }`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        onClick={() => fileInputRef.current.click()}
+        onDragEnter={onDragEnter}
+        onDragLeave={onDragLeave}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+        onClick={() =>
+          inputRef.current.click()
+        }
       >
         <div className="drop-zone-icon">
           📄
@@ -82,16 +45,14 @@ const DropZone = ({
           PDF • DOC • DOCX
         </small>
 
-        <small>
-          Maximum File Size: 5 MB
-        </small>
+        <small>Maximum 5 MB</small>
 
         <input
-          ref={fileInputRef}
-          type="file"
+          ref={inputRef}
           hidden
+          type="file"
           accept=".pdf,.doc,.docx"
-          onChange={handleBrowse}
+          onChange={onFileChange}
         />
       </div>
     </>

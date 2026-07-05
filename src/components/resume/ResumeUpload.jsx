@@ -1,37 +1,76 @@
-import { useResumeUpload } from "../../hooks/useResumeUpload";
+import { toast } from "react-toastify";
+
 import DropZone from "./DropZone";
+import ResumePreview from "./ResumePreview";
+import UploadProgress from "./UploadProgress";
+import ResumeActions from "./ResumeActions";
+
+import useResumeUpload from "../../hooks/useResumeUpload";
+
+import "../../styles/resume.css";
 
 const ResumeUpload = () => {
   const {
     file,
-    setFile,
     error,
-    setError,
-    isDragging,
-    setIsDragging,
+    dragActive,
+    progress,
+    uploading,
+    handleFileChange,
+    handleDragEnter,
+    handleDragLeave,
+    handleDragOver,
+    handleDrop,
+    removeFile,
+    uploadFile,
   } = useResumeUpload();
 
+  const handleUpload = async () => {
+    try {
+      await uploadFile();
+      toast.success("Resume uploaded successfully.");
+    } catch {
+      toast.error("Resume upload failed.");
+    }
+  };
+
   return (
-    <>
+    <div className="resume-upload-card">
+      <h2 className="resume-title">Resume Upload</h2>
+
       <DropZone
-        onFileSelect={setFile}
-        setError={setError}
-        isDragging={isDragging}
-        setIsDragging={setIsDragging}
+        dragActive={dragActive}
+        onFileChange={handleFileChange}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
       />
 
-      {error && (
-        <p style={{ color: "red", marginTop: "10px" }}>
-          {error}
-        </p>
-      )}
+      {error && <p className="resume-error">{error}</p>}
 
       {file && (
-        <p style={{ marginTop: "10px" }}>
-          Selected: {file.name}
-        </p>
+        <>
+          <ResumePreview
+            file={file}
+            onRemove={removeFile}
+          />
+
+          <UploadProgress
+            progress={progress}
+            uploading={uploading}
+          />
+        </>
       )}
-    </>
+
+      <ResumeActions
+        file={file}
+        uploading={uploading}
+        onUpload={handleUpload}
+        onReplace={removeFile}
+        onRemove={removeFile}
+      />
+    </div>
   );
 };
 

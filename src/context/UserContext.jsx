@@ -4,7 +4,47 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   // User State
-  const [profile, setProfileState] = useState(null);
+  // const [profile, setProfileState] = useState(null);
+  // Mock Data
+  const [profile, setProfileState] = useState({
+    firstName: "Hemant",
+    lastName: "Birla",
+    title: "React Developer",
+    email: "hemant@example.com",
+    phone: "+91 9876543210",
+    dob: "1998-05-15",
+    location: "Pune, India",
+    linkedin: "https://linkedin.com/in/hemantbirla",
+    github: "https://github.com/hemantbirla",
+    portfolio: "https://hemantbirla.dev",
+
+    skills: ["React", "JavaScript", "HTML", "CSS", "Bootstrap", "Node.js"],
+
+    experience: [
+      {
+        company: "Samsung SDS",
+        designation: "Software Engineer",
+        duration: "Jul 2022 - Present",
+      },
+    ],
+
+    education: [
+      {
+        degree: "B.E. Computer Engineering",
+        college: "XYZ University",
+        year: "2022",
+      },
+    ],
+
+    avatar:
+      "https://ui-avatars.com/api/?name=Hemant+Birla&background=2563eb&color=fff",
+
+    role: "candidate",
+
+    preferences: {},
+
+    permissions: [],
+  });
   const [role, setRole] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [preferences, setPreferences] = useState({});

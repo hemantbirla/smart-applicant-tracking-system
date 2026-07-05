@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-import { validateFile } from "../utils/fileValidation";
+import { validateResumeFile } from "../utils/fileValidation";
+import { uploadResume, deleteResume } from "../services/resumeService";
+
+const USE_MOCK_UPLOAD = true;
 
 const useResumeUpload = () => {
   const [file, setFile] = useState(null);
@@ -9,14 +12,13 @@ const useResumeUpload = () => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
-  // Select File
   const selectFile = (selectedFile) => {
     if (!selectedFile) return;
 
-    const validationError = validateFile(selectedFile);
+    const { valid, message } = validateResumeFile(selectedFile);
 
-    if (validationError) {
-      setError(validationError);
+    if (!valid) {
+      setError(message);
       setFile(null);
       return;
     }
@@ -25,109 +27,103 @@ const useResumeUpload = () => {
     setFile(selectedFile);
   };
 
-  // Browse File
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-
-    selectFile(selectedFile);
+    selectFile(event.target.files[0]);
   };
 
-  // Drag Events
   const handleDragEnter = (event) => {
     event.preventDefault();
-    event.stopPropagation();
-
     setDragActive(true);
   };
 
   const handleDragLeave = (event) => {
     event.preventDefault();
-    event.stopPropagation();
-
     setDragActive(false);
   };
 
   const handleDragOver = (event) => {
     event.preventDefault();
-    event.stopPropagation();
-
     setDragActive(true);
   };
 
   const handleDrop = (event) => {
     event.preventDefault();
-    event.stopPropagation();
-
     setDragActive(false);
 
-    const droppedFile = event.dataTransfer.files[0];
-
-    selectFile(droppedFile);
+    if (event.dataTransfer.files.length > 0) {
+      selectFile(event.dataTransfer.files[0]);
+    }
   };
 
-  // Remove Resume
-  const removeFile = () => {
+  const removeFile = async () => {
+    try {
+      if (!USE_MOCK_UPLOAD) {
+        await deleteResume();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
     setFile(null);
     setProgress(0);
     setUploading(false);
     setError("");
   };
 
-  /*
-    Placeholder Upload
-
-    Will be replaced with:
-
-    await resumeService.uploadResume(file);
-
-    during API Integration.
-  */
-
   const uploadFile = async () => {
     if (!file) return;
 
     setUploading(true);
-
     setProgress(0);
 
-    const timer = setInterval(() => {
-      setProgress((previous) => {
-        if (previous >= 100) {
-          clearInterval(timer);
+    // ---------- Mock Upload ----------
+    if (USE_MOCK_UPLOAD) {
+      return new Promise((resolve) => {
+        let value = 0;
 
-          setUploading(false);
+        const timer = setInterval(() => {
+          value += 10;
 
-          return 100;
-        }
+          setProgress(value);
 
-        return previous + 10;
+          if (value >= 100) {
+            clearInterval(timer);
+            setUploading(false);
+
+            resolve({
+              success: true,
+            });
+          }
+        }, 200);
       });
-    }, 200);
+    }
+
+    // ---------- Real API ----------
+    try {
+      await uploadResume(file, (event) => {
+        const percent = Math.round(
+          (event.loaded * 100) / event.total
+        );
+
+        setProgress(percent);
+      });
+    } finally {
+      setUploading(false);
+    }
   };
 
   return {
     file,
-
     error,
-
     dragActive,
-
     progress,
-
     uploading,
-
     handleFileChange,
-
     handleDragEnter,
-
     handleDragLeave,
-
     handleDragOver,
-
     handleDrop,
-
     removeFile,
-
     uploadFile,
   };
 };

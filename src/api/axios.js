@@ -1,11 +1,9 @@
 import axios from "axios";
+
 import env from "../config/env";
 
 const axiosInstance = axios.create({
   baseURL: env.API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
   timeout: 10000,
 });
 
@@ -25,8 +23,13 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const status = error.response?.status;
+
+    if (status === 401) {
       localStorage.removeItem("accessToken");
+
+      // Refresh token flow will be implemented later
+      // window.location.href = "/login";
     }
 
     return Promise.reject(error);

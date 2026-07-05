@@ -6,8 +6,8 @@ import Signup from "./pages/Signup/Signup";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
-// Dashboard (create this page if not already created)
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Profile from "./pages/Profile/Profile";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,19 +15,50 @@ function App() {
   return (
     <>
       <Routes>
-        {/* Redirect Root */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/* Authentication */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        />
+        <Route
+          path="/reset-password"
+          element={<ResetPassword />}
+        />
 
         {/* Dashboard */}
         <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* 404 */}
+        {/* Candidate */}
+        <Route path="/profile" element={<Profile />} />
+
+        {/* Temporary Routes */}
+        <Route
+          path="/jobs"
+          element={<h2 style={{ padding: 30 }}>Jobs Page</h2>}
+        />
+
+        <Route
+          path="/applications"
+          element={
+            <h2 style={{ padding: 30 }}>
+              Applications Page
+            </h2>
+          }
+        />
+
+        <Route
+          path="/saved-jobs"
+          element={
+            <h2 style={{ padding: 30 }}>
+              Saved Jobs Page
+            </h2>
+          }
+        />
+
         <Route
           path="*"
           element={
@@ -37,7 +68,6 @@ function App() {
                 placeItems: "center",
                 height: "100vh",
                 fontSize: "2rem",
-                fontWeight: "600",
               }}
             >
               404 - Page Not Found
@@ -46,16 +76,9 @@ function App() {
         />
       </Routes>
 
-      {/* Global Toast Notifications */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="light"
       />
     </>
   );

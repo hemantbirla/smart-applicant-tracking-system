@@ -296,6 +296,35 @@ Profile
 
 The module is designed for easy integration with backend profile APIs.
 
+
+## Resume Upload
+
+Candidates can upload and manage their resumes through a reusable upload module.
+
+### Features
+
+- Drag & Drop Upload
+- Browse File Upload
+- PDF, DOC, DOCX Support
+- File Validation
+- Resume Preview
+- Upload Progress
+- Replace and Remove Resume
+
+### Architecture
+
+```
+Profile
+└── ResumeUpload
+    ├── DropZone
+    ├── ResumePreview
+    ├── UploadProgress
+    └── ResumeActions
+```
+
+The upload module is built using reusable components and is ready for backend integration using `multipart/form-data`.
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -312,3 +341,4 @@ The module is designed for easy integration with backend profile APIs.
 - ✅ Implement protected and role-based routes
 - ✅ Develop candidate dashboard
 - ✅ Develop candidate profile management
+- ✅ Add resume upload functionality

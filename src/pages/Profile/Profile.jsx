@@ -9,13 +9,20 @@ import ExperienceSection from "../../components/profile/ExperienceSection";
 import EducationSection from "../../components/profile/EducationSection";
 import EditProfileModal from "../../components/profile/EditProfileModal";
 
+import ResumeUpload from "../../components/resume/ResumeUpload";
+
 const Profile = () => {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] =
+    useState(false);
 
   return (
     <DashboardLayout>
       <div className="container py-4">
-        <ProfileHeader onEdit={() => setIsEditModalOpen(true)} />
+        <ProfileHeader
+          onEdit={() =>
+            setIsEditModalOpen(true)
+          }
+        />
 
         <div className="mt-4">
           <PersonalInfo />
@@ -33,9 +40,15 @@ const Profile = () => {
           <EducationSection />
         </div>
 
+        <div className="mt-4">
+          <ResumeUpload />
+        </div>
+
         <EditProfileModal
           isOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
+          onClose={() =>
+            setIsEditModalOpen(false)
+          }
         />
       </div>
     </DashboardLayout>

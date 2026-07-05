@@ -1,6 +1,19 @@
-import AuthInput from "../auth/AuthInput";
+import "../../styles/profile.css";
 
-const PersonalInfo = ({ register, errors }) => {
+const profile = {
+  firstName: "Hemant",
+  lastName: "Birla",
+  title: "Frontend React Developer",
+  email: "hemant@example.com",
+  phone: "+91 9876543210",
+  dob: "12 Mar 1999",
+  location: "Pune, Maharashtra",
+  linkedin: "linkedin.com/in/hemantbirla",
+  github: "github.com/hemantbirla",
+  portfolio: "hemantbirla.dev",
+};
+
+const PersonalInfo = () => {
   return (
     <section className="profile-section">
       <h2 className="profile-section-title">
@@ -8,92 +21,75 @@ const PersonalInfo = ({ register, errors }) => {
       </h2>
 
       <div className="profile-grid">
-        <AuthInput
-          label="First Name"
-          name="firstName"
-          placeholder="Enter first name"
-          register={register}
-          error={errors.firstName}
-        />
 
-        <AuthInput
-          label="Last Name"
-          name="lastName"
-          placeholder="Enter last name"
-          register={register}
-          error={errors.lastName}
-        />
-
-        <AuthInput
-          label="Job Title"
-          name="title"
-          placeholder="e.g. Frontend Developer"
-          register={register}
-          error={errors.title}
-        />
-
-        <AuthInput
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Enter email"
-          register={register}
-          error={errors.email}
-        />
-
-        <AuthInput
-          label="Phone"
-          name="phone"
-          type="tel"
-          placeholder="Enter phone number"
-          register={register}
-          error={errors.phone}
-        />
-
-        <AuthInput
-          label="Date of Birth"
-          name="dob"
-          type="date"
-          register={register}
-          error={errors.dob}
-        />
-
-        <AuthInput
-          label="Location"
-          name="location"
-          placeholder="Enter your location"
-          register={register}
-          error={errors.location}
-        />
-
-        <AuthInput
-          label="LinkedIn"
-          name="linkedin"
-          type="url"
-          placeholder="https://linkedin.com/in/username"
-          register={register}
-          error={errors.linkedin}
-        />
-
-        <AuthInput
-          label="GitHub"
-          name="github"
-          type="url"
-          placeholder="https://github.com/username"
-          register={register}
-          error={errors.github}
-        />
-
-        <div className="profile-full-width">
-          <AuthInput
-            label="Portfolio"
-            name="portfolio"
-            type="url"
-            placeholder="https://yourportfolio.com"
-            register={register}
-            error={errors.portfolio}
-          />
+        <div className="profile-item">
+          <label>First Name</label>
+          <p>{profile.firstName}</p>
         </div>
+
+        <div className="profile-item">
+          <label>Last Name</label>
+          <p>{profile.lastName}</p>
+        </div>
+
+        <div className="profile-item">
+          <label>Job Title</label>
+          <p>{profile.title}</p>
+        </div>
+
+        <div className="profile-item">
+          <label>Email</label>
+          <p>{profile.email}</p>
+        </div>
+
+        <div className="profile-item">
+          <label>Phone</label>
+          <p>{profile.phone}</p>
+        </div>
+
+        <div className="profile-item">
+          <label>Date of Birth</label>
+          <p>{profile.dob}</p>
+        </div>
+
+        <div className="profile-item">
+          <label>Location</label>
+          <p>{profile.location}</p>
+        </div>
+
+        <div className="profile-item">
+          <label>LinkedIn</label>
+          <a
+            href={`https://${profile.linkedin}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {profile.linkedin}
+          </a>
+        </div>
+
+        <div className="profile-item">
+          <label>GitHub</label>
+          <a
+            href={`https://${profile.github}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {profile.github}
+          </a>
+        </div>
+
+        <div className="profile-item profile-full-width">
+          <label>Portfolio</label>
+          <a
+            href={`https://${profile.portfolio}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {profile.portfolio}
+          </a>
+        </div>
+
       </div>
     </section>
   );

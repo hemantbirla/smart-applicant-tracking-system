@@ -9,44 +9,34 @@ const ResumeActions = ({
 }) => {
   return (
     <div className="resume-actions">
-      {!file ? (
-        <button
-          type="button"
-          className="resume-btn primary"
-          disabled
-        >
-          Upload Resume
-        </button>
-      ) : (
-        <>
-          <button
-            type="button"
-            className="resume-btn primary"
-            onClick={onUpload}
-            disabled={uploading}
-          >
-            {uploading ? "Uploading..." : "Upload Resume"}
-          </button>
 
-          <button
-            type="button"
-            className="resume-btn secondary"
-            onClick={onReplace}
-            disabled={uploading}
-          >
-            Replace Resume
-          </button>
+      <button
+        type="button"
+        className="resume-btn primary"
+        onClick={onUpload}
+        disabled={!file || uploading}
+      >
+        {uploading ? "Uploading..." : "Upload Resume"}
+      </button>
 
-          <button
-            type="button"
-            className="resume-btn danger"
-            onClick={onRemove}
-            disabled={uploading}
-          >
-            Remove Resume
-          </button>
-        </>
-      )}
+      <button
+        type="button"
+        className="resume-btn secondary"
+        onClick={onReplace}
+        disabled={!file || uploading}
+      >
+        Replace Resume
+      </button>
+
+      <button
+        type="button"
+        className="resume-btn danger"
+        onClick={onRemove}
+        disabled={!file || uploading}
+      >
+        Remove Resume
+      </button>
+
     </div>
   );
 };
