@@ -631,3 +631,53 @@
     }
 
 }
+
+/* ==========================
+   Search Bar
+========================== */
+
+.job-search {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.job-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  font-size: 20px;
+}
+
+.job-search-input {
+  width: 100%;
+  height: 54px;
+  padding: 0 20px 0 52px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.25s;
+  background: #ffffff;
+}
+
+.job-search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.job-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.dark .job-search-input {
+  background: #1f2937;
+  color: #ffffff;
+  border-color: #374151;
+}
+
+.dark .job-search-input::placeholder {
+  color: #9ca3af;
+}

@@ -1,4 +1,4 @@
-import jobData from "../data/jobData";
+import jobData from "../constants/jobData";
 
 const delay = (ms = 600) =>
   new Promise((resolve) => setTimeout(resolve, ms));
