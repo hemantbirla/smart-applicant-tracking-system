@@ -1,125 +1,134 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
-import { validateResumeFile } from "../utils/fileValidation";
+import { validateFile } from "../utils/fileValidation";
 
 const useResumeUpload = () => {
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
-  /**
-   * Validate and store selected file
-   */
-  const handleFileSelect = useCallback((selectedFile) => {
-    if (!selectedFile) return false;
+  // Select File
+  const selectFile = (selectedFile) => {
+    if (!selectedFile) return;
 
-    const validation = validateResumeFile(selectedFile);
+    const validationError = validateFile(selectedFile);
 
-    if (!validation.isValid) {
-      setError(validation.message);
+    if (validationError) {
+      setError(validationError);
       setFile(null);
-      return false;
+      return;
     }
 
     setError("");
     setFile(selectedFile);
+  };
 
-    return true;
-  }, []);
+  // Browse File
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
 
-  /**
-   * Remove current resume
-   */
-  const removeFile = useCallback(() => {
-    setFile(null);
-    setError("");
-    setProgress(0);
-    setUploading(false);
-  }, []);
+    selectFile(selectedFile);
+  };
 
-  /**
-   * Drag Events
-   */
-
-  const handleDragEnter = useCallback((event) => {
+  // Drag Events
+  const handleDragEnter = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     setDragActive(true);
-  }, []);
+  };
 
-  const handleDragLeave = useCallback((event) => {
+  const handleDragLeave = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     setDragActive(false);
-  }, []);
+  };
 
-  const handleDragOver = useCallback((event) => {
+  const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     setDragActive(true);
-  }, []);
+  };
 
-  const handleDrop = useCallback(
-    (event) => {
-      event.preventDefault();
-      event.stopPropagation();
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
-      setDragActive(false);
+    setDragActive(false);
 
-      const droppedFile = event.dataTransfer.files[0];
+    const droppedFile = event.dataTransfer.files[0];
 
-      handleFileSelect(droppedFile);
-    },
-    [handleFileSelect]
-  );
+    selectFile(droppedFile);
+  };
 
-  /**
-   * Upload State Helpers
-   */
-
-  const startUpload = () => {
-    setUploading(true);
+  // Remove Resume
+  const removeFile = () => {
+    setFile(null);
     setProgress(0);
-  };
-
-  const updateProgress = (value) => {
-    setProgress(value);
-  };
-
-  const finishUpload = () => {
     setUploading(false);
-    setProgress(100);
+    setError("");
   };
 
-  const failUpload = (message) => {
-    setUploading(false);
-    setError(message);
+  /*
+    Placeholder Upload
+
+    Will be replaced with:
+
+    await resumeService.uploadResume(file);
+
+    during API Integration.
+  */
+
+  const uploadFile = async () => {
+    if (!file) return;
+
+    setUploading(true);
+
+    setProgress(0);
+
+    const timer = setInterval(() => {
+      setProgress((previous) => {
+        if (previous >= 100) {
+          clearInterval(timer);
+
+          setUploading(false);
+
+          return 100;
+        }
+
+        return previous + 10;
+      });
+    }, 200);
   };
 
   return {
     file,
-    dragActive,
-    uploading,
-    progress,
+
     error,
 
-    handleFileSelect,
-    removeFile,
+    dragActive,
+
+    progress,
+
+    uploading,
+
+    handleFileChange,
 
     handleDragEnter,
+
     handleDragLeave,
+
     handleDragOver,
+
     handleDrop,
 
-    startUpload,
-    updateProgress,
-    finishUpload,
-    failUpload,
+    removeFile,
+
+    uploadFile,
   };
 };
 
