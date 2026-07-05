@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
 
 import SearchBar from "../../components/jobs/SearchBar";
-// import FilterPanel from "../../components/jobs/FilterPanel";
-// import SortDropdown from "../../components/jobs/SortDropdown";
+import FilterPanel from "../../components/jobs/FilterPanel";
+import SortDropdown from "../../components/jobs/SortDropdown";
 import ActiveFilters from "../../components/jobs/ActiveFilters";
 import JobList from "../../components/jobs/JobList";
 
@@ -72,15 +72,15 @@ const Jobs = () => {
               onChange={setSearchTerm}
             />
 
-            {/* <FilterPanel
+            <FilterPanel
               filters={filters}
               onChange={updateFilter}
-            /> */}
+            />
 
-            {/* <SortDropdown
+            <SortDropdown
               value={sortBy}
               onChange={setSortBy}
-            /> */}
+            />
 
             <ActiveFilters
               searchTerm={searchTerm}

@@ -3,44 +3,13 @@ const jobData = [
     id: 1,
     title: "React Developer",
     company: "Google",
-    companyLogo:
-      "https://logo.clearbit.com/google.com",
-    industry: "Internet",
-    employees: "180,000+",
-    website: "https://google.com",
-    companyDescription:
-      "Google builds products that organize the world's information and make it universally accessible.",
+    companyLogo: "https://logo.clearbit.com/google.com",
 
-    location: "Bengaluru, India",
-    employmentType: "Full Time",
-    experience: "3-5 Years",
-    salary: "₹18 LPA - ₹24 LPA",
-
-    description:
-      "We are looking for a React Developer to build scalable web applications using React.js, JavaScript, Redux, and REST APIs.",
-
-    responsibilities: [
-      "Develop reusable React components",
-      "Integrate REST APIs",
-      "Collaborate with UI/UX designers",
-      "Optimize application performance",
-      "Write clean and maintainable code",
-    ],
-
-    requirements: [
-      "3+ years of React experience",
-      "Strong JavaScript knowledge",
-      "Redux",
-      "Git",
-      "REST APIs",
-    ],
-
-    benefits: [
-      "Health Insurance",
-      "Performance Bonus",
-      "Flexible Working Hours",
-      "Work From Home",
-    ],
+    location: "Bangalore",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    experience: "3-5",
+    salary: 24,
 
     skills: [
       "React",
@@ -51,48 +20,23 @@ const jobData = [
       "Git",
     ],
 
-    postedAt: "2 days ago",
+    postedDate: "2026-07-01",
+
+    description:
+      "We are looking for a React Developer to build scalable web applications using React.js.",
   },
 
   {
     id: 2,
     title: "Frontend Engineer",
     company: "Amazon",
-    companyLogo:
-      "https://logo.clearbit.com/amazon.com",
-    industry: "E-Commerce",
-    employees: "1.5 Million+",
-    website: "https://amazon.com",
-    companyDescription:
-      "Amazon builds customer-centric products at global scale.",
+    companyLogo: "https://logo.clearbit.com/amazon.com",
 
-    location: "Hyderabad, India",
-    employmentType: "Full Time",
-    experience: "4+ Years",
-    salary: "₹22 LPA - ₹30 LPA",
-
-    description:
-      "Join Amazon to build highly scalable frontend applications using React and TypeScript.",
-
-    responsibilities: [
-      "Build reusable UI components",
-      "Improve application performance",
-      "Work with backend teams",
-      "Participate in code reviews",
-    ],
-
-    requirements: [
-      "React",
-      "TypeScript",
-      "REST APIs",
-      "Git",
-    ],
-
-    benefits: [
-      "Medical Insurance",
-      "Stock Options",
-      "Annual Bonus",
-    ],
+    location: "Hyderabad",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    experience: "3-5",
+    salary: 30,
 
     skills: [
       "React",
@@ -102,47 +46,23 @@ const jobData = [
       "CSS",
     ],
 
-    postedAt: "Yesterday",
+    postedDate: "2026-07-02",
+
+    description:
+      "Join Amazon to build scalable frontend applications.",
   },
 
   {
     id: 3,
     title: "MERN Stack Developer",
     company: "Microsoft",
-    companyLogo:
-      "https://logo.clearbit.com/microsoft.com",
-    industry: "Software",
-    employees: "220,000+",
-    website: "https://microsoft.com",
-    companyDescription:
-      "Microsoft empowers every person and organization on the planet to achieve more.",
+    companyLogo: "https://logo.clearbit.com/microsoft.com",
 
-    location: "Pune, India",
-    employmentType: "Hybrid",
-    experience: "3-6 Years",
-    salary: "₹20 LPA - ₹28 LPA",
-
-    description:
-      "Work on enterprise web applications using React, Node.js, Express, and MongoDB.",
-
-    responsibilities: [
-      "Develop frontend and backend modules",
-      "Consume REST APIs",
-      "Write reusable code",
-    ],
-
-    requirements: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "Express",
-    ],
-
-    benefits: [
-      "Health Insurance",
-      "Remote Work",
-      "Learning Budget",
-    ],
+    location: "Pune",
+    jobType: "Full Time",
+    workMode: "Hybrid",
+    experience: "3-5",
+    salary: 28,
 
     skills: [
       "React",
@@ -152,47 +72,23 @@ const jobData = [
       "JavaScript",
     ],
 
-    postedAt: "3 days ago",
+    postedDate: "2026-06-30",
+
+    description:
+      "Work on enterprise MERN applications.",
   },
 
   {
     id: 4,
     title: "UI Developer",
     company: "Adobe",
-    companyLogo:
-      "https://logo.clearbit.com/adobe.com",
-    industry: "Software",
-    employees: "29,000+",
-    website: "https://adobe.com",
-    companyDescription:
-      "Adobe creates digital experiences through innovative products.",
+    companyLogo: "https://logo.clearbit.com/adobe.com",
 
-    location: "Noida, India",
-    employmentType: "Remote",
-    experience: "2-4 Years",
-    salary: "₹16 LPA - ₹22 LPA",
-
-    description:
-      "Looking for a UI Developer with React and modern CSS expertise.",
-
-    responsibilities: [
-      "Build responsive UI",
-      "Implement pixel-perfect designs",
-      "Maintain reusable components",
-    ],
-
-    requirements: [
-      "React",
-      "CSS",
-      "Bootstrap",
-      "Git",
-    ],
-
-    benefits: [
-      "WFH",
-      "Medical Insurance",
-      "Flexible Hours",
-    ],
+    location: "Noida",
+    jobType: "Full Time",
+    workMode: "Remote",
+    experience: "1-3",
+    salary: 22,
 
     skills: [
       "React",
@@ -201,48 +97,23 @@ const jobData = [
       "JavaScript",
     ],
 
-    postedAt: "Today",
+    postedDate: "2026-07-03",
+
+    description:
+      "Looking for a UI Developer with React experience.",
   },
 
   {
     id: 5,
     title: "Senior React Developer",
     company: "Infosys",
-    companyLogo:
-      "https://logo.clearbit.com/infosys.com",
-    industry: "IT Services",
-    employees: "340,000+",
-    website: "https://infosys.com",
-    companyDescription:
-      "Infosys provides digital transformation and consulting services worldwide.",
+    companyLogo: "https://logo.clearbit.com/infosys.com",
 
-    location: "Chennai, India",
-    employmentType: "Full Time",
-    experience: "5+ Years",
-    salary: "₹24 LPA - ₹35 LPA",
-
-    description:
-      "Lead React projects and mentor junior developers.",
-
-    responsibilities: [
-      "Architect frontend applications",
-      "Mentor team members",
-      "Review code",
-      "Optimize performance",
-    ],
-
-    requirements: [
-      "React",
-      "Redux",
-      "TypeScript",
-      "Leadership",
-    ],
-
-    benefits: [
-      "Bonus",
-      "Health Insurance",
-      "Paid Leaves",
-    ],
+    location: "Chennai",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    experience: "5-8",
+    salary: 35,
 
     skills: [
       "React",
@@ -251,10 +122,11 @@ const jobData = [
       "JavaScript",
     ],
 
-    postedAt: "5 days ago",
+    postedDate: "2026-06-28",
+
+    description:
+      "Lead React projects and mentor developers.",
   },
 ];
-
-
 
 export default jobData;
