@@ -1,13 +1,17 @@
 import { SORT_OPTIONS } from "../../constants/jobFilters";
 
-const SortDropdown = ({ sortBy, setSortBy }) => {
+const SortDropdown = ({ value, onChange }) => {
   return (
     <div className="sort-dropdown">
-      <label>Sort By</label>
+      <label htmlFor="sort-select" className="sort-label">
+        Sort By
+      </label>
 
       <select
-        value={sortBy}
-        onChange={(e) => setSortBy(e.target.value)}
+        id="sort-select"
+        className="sort-select"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
       >
         {SORT_OPTIONS.map((option) => (
           <option
