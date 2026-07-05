@@ -378,6 +378,34 @@ Jobs
 
 Filtering and sorting logic is encapsulated in a reusable custom hook and utility functions for maintainability and future API integration.
 
+
+## Pagination & Infinite Scrolling
+
+The Jobs module supports scalable data loading.
+
+### Features
+
+- Reusable Pagination Component
+- Infinite Scroll using Intersection Observer
+- Generic Pagination Hook
+- Server-side Pagination Ready
+- Empty State Handling
+- Loading Indicators
+
+### Architecture
+
+```
+Jobs
+├── Search
+├── Filters
+├── Sorting
+├── JobList
+│   ├── JobCard
+│   ├── Pagination
+│   └── InfiniteLoader
+```
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -397,5 +425,4 @@ Filtering and sorting logic is encapsulated in a reusable custom hook and utilit
 - ✅ Add resume upload functionality
 - ✅ Build job listing module
 - ✅ Implement job search filters and sorting
-
-
+- ✅ Add pagination and infinite scrolling

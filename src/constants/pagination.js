@@ -6,7 +6,7 @@
 export const DEFAULT_PAGE = 1;
 
 // Default number of records per page
-export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGE_SIZE = 3;
 
 // Page size options (for future dropdown)
 export const PAGE_SIZE_OPTIONS = [

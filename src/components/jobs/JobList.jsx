@@ -1,28 +1,78 @@
 import JobCard from "./JobCard";
+import Pagination from "./Pagination";
 import InfiniteLoader from "./InfiniteLoader";
+import EmptyState from "./EmptyState";
 
-const JobList = ({ jobs = [], onSave }) => {
-  if (!jobs.length) {
-    return (
-      <div className="jobs-empty">
-        <h3>No jobs found</h3>
+const JobList = ({
+  jobs = [],
+  onSave,
 
-        <p>Try changing your search or filter criteria.</p>
-      </div>
-    );
+  // Pagination
+  currentPage = 1,
+  totalPages = 1,
+  onPageChange,
+
+  // Infinite Scroll
+  useInfiniteScroll = false,
+  lastElementRef,
+  hasMore = false,
+
+  // Loading
+  loading = false,
+}) => {
+  // Initial Loading
+  if (loading && jobs.length === 0) {
+    return <InfiniteLoader />;
+  }
+
+  // Empty State
+  if (!loading && jobs.length === 0) {
+    return <EmptyState />;
   }
 
   return (
-    <div className="job-list">
-      {jobs.map((job) => (
-        <JobCard
-          key={job.id}
-          job={job}
-          onSave={onSave}
-        />
-      ))}
-      <InfiniteLoader />
-    </div>
+    <>
+      <div className="job-list">
+        {jobs.map((job, index) => {
+          const isLastItem = index === jobs.length - 1;
+
+          return (
+            <div
+              key={job.id}
+              ref={
+                useInfiniteScroll &&
+                isLastItem &&
+                hasMore
+                  ? lastElementRef
+                  : null
+              }
+            >
+              <JobCard
+                job={job}
+                onSave={onSave}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Pagination */}
+      {!useInfiniteScroll &&
+        totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+          />
+        )}
+
+      {/* Infinite Scroll Loader */}
+      {useInfiniteScroll &&
+        loading &&
+        jobs.length > 0 && (
+          <InfiniteLoader />
+        )}
+    </>
   );
 };
 

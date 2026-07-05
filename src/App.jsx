@@ -7,17 +7,21 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Jobs from "./pages/Jobs/Jobs";
+import JobDetails from "./pages/JobDetails/JobDetails";
 import Profile from "./pages/Profile/Profile";
 
 import "react-toastify/dist/ReactToastify.css";
-import Jobs from "./pages/Jobs/Jobs";
-import JobDetails from "./pages/JobDetails/JobDetails";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        {/* Redirect */}
+        <Route
+          path="/"
+          element={<Navigate to="/login" replace />}
+        />
 
         {/* Authentication */}
         <Route path="/login" element={<Login />} />
@@ -32,16 +36,25 @@ function App() {
         />
 
         {/* Dashboard */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+        {/* Jobs */}
+        <Route path="/jobs" element={<Jobs />} />
+        <Route
+          path="/jobs/:jobId"
+          element={<JobDetails />}
+        />
 
         {/* Candidate */}
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={<Profile />}
+        />
 
-        {/* Temporary Routes */}
-        <Route path="/jobs" element={ <Jobs />} />
-
-        <Route path="/jobs/:jobId" element={<JobDetails />} />
-
+        {/* Temporary Pages */}
         <Route
           path="/applications"
           element={
@@ -60,6 +73,7 @@ function App() {
           }
         />
 
+        {/* 404 */}
         <Route
           path="*"
           element={

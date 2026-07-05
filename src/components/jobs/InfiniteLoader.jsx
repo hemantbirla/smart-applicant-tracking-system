@@ -1,11 +1,7 @@
-const InfiniteLoader = ({ loading }) => {
-  if (!loading) return null;
-
+const InfiniteLoader = () => {
   return (
     <div className="infinite-loader">
-      <div className="loader-spinner"></div>
-
-      <p>Loading more jobs...</p>
+      Loading more jobs...
     </div>
   );
 };

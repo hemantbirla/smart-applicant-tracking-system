@@ -1,3 +1,5 @@
+import axiosInstance from "../api/axios";
+import env from "../config/env";
 import jobData from "../constants/jobData";
 
 const delay = (ms = 600) =>
