@@ -5,32 +5,27 @@ import {
   FiClock,
 } from "react-icons/fi";
 
-const JobMeta = ({
-  location,
-  experience,
-  salary,
-  employmentType,
-}) => {
+const JobMeta = ({ job }) => {
   return (
     <div className="job-meta">
       <span>
         <FiMapPin />
-        {location}
+        {job.location}
       </span>
 
       <span>
         <FiBriefcase />
-        {experience}
+        {job.experience}
       </span>
 
       <span>
         <FiDollarSign />
-        {salary}
+        {job.salary}
       </span>
 
       <span>
         <FiClock />
-        {employmentType}
+        {job.employmentType}
       </span>
     </div>
   );

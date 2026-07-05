@@ -1,24 +1,77 @@
+import { useEffect, useState } from "react";
+
 import DashboardLayout from "../../layouts/DashboardLayout";
+
 import JobList from "../../components/jobs/JobList";
 
-import jobData from "../../constants/jobData";
+import { getJobs } from "../../services/jobService";
 
 import "../../styles/jobs.css";
 
 const Jobs = () => {
+  const [jobs, setJobs] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const fetchJobs = async () => {
+    try {
+      setLoading(true);
+
+      setError("");
+
+      const response = await getJobs();
+
+      setJobs(response);
+    } catch (err) {
+      setError("Unable to load jobs.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <DashboardLayout>
       <div className="jobs-page">
-        <div className="jobs-header">
-          <h1>Available Jobs</h1>
+        <h1 className="jobs-heading">
+          Find Your Dream Job
+        </h1>
 
-          <p>
-            Explore the latest opportunities matching your
-            skills.
-          </p>
-        </div>
+        <p className="jobs-subtitle">
+          Browse the latest opportunities from top companies.
+        </p>
 
-        <JobList jobs={jobData} />
+        {loading && (
+          <div className="jobs-loading">
+            Loading jobs...
+          </div>
+        )}
+
+        {!loading && error && (
+          <div className="jobs-error">
+            {error}
+          </div>
+        )}
+
+        {!loading &&
+          !error &&
+          jobs.length === 0 && (
+            <div className="jobs-empty">
+              No jobs available.
+            </div>
+          )}
+
+        {!loading &&
+          !error &&
+          jobs.length > 0 && (
+            <JobList jobs={jobs} />
+          )}
       </div>
     </DashboardLayout>
   );

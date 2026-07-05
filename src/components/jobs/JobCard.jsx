@@ -11,27 +11,43 @@ const JobCard = ({ job }) => {
 
   if (!job) return null;
 
-  const handleApply = () => {
-    alert(`Applied for ${job.title}`);
-  };
-
   return (
-    <div className="job-card-body">
-  <JobMeta job={job} />
+    <div className="job-card">
 
-  <JobTags skills={job.skills} />
+      <div className="job-header">
+        <img
+          src={job.companyLogo}
+          alt={job.company}
+          className="company-logo"
+        />
 
-  <div className="job-card-actions">
-    <ApplyButton />
+        <div>
+          <h3>{job.title}</h3>
 
-    <button
-      className="details-btn"
-      onClick={() => navigate(`/jobs/${job.id}`)}
-    >
-      View Details
-    </button>
-  </div>
-</div>
+          <h4>{job.company}</h4>
+
+          <p>{job.postedAt}</p>
+        </div>
+      </div>
+
+      <JobMeta job={job} />
+
+      <JobTags skills={job.skills} />
+
+      <div className="job-card-actions">
+
+        <ApplyButton />
+
+        <button
+          className="details-btn"
+          onClick={() => navigate(`/jobs/${job.id}`)}
+        >
+          View Details
+        </button>
+
+      </div>
+
+    </div>
   );
 };
 
