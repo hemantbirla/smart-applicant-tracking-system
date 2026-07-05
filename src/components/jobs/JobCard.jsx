@@ -13,13 +13,8 @@ const JobCard = ({ job }) => {
 
   return (
     <div className="job-card">
-
       <div className="job-header">
-        <img
-          src={job.companyLogo}
-          alt={job.company}
-          className="company-logo"
-        />
+        <img src={job.companyLogo} alt={job.company} className="company-logo" />
 
         <div>
           <h3>{job.title}</h3>
@@ -35,7 +30,6 @@ const JobCard = ({ job }) => {
       <JobTags skills={job.skills} />
 
       <div className="job-card-actions">
-
         <ApplyButton />
 
         <button
@@ -44,9 +38,7 @@ const JobCard = ({ job }) => {
         >
           View Details
         </button>
-
       </div>
-
     </div>
   );
 };

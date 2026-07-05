@@ -324,6 +324,32 @@ Profile
 
 The upload module is built using reusable components and is ready for backend integration using `multipart/form-data`.
 
+## Jobs Module
+
+The Jobs module provides a reusable architecture for displaying and managing job listings.
+
+### Features
+
+- Job Listing
+- Reusable Job Card
+- Job Details
+- Company Details
+- Apply Button
+- API-ready Service Layer
+
+### Architecture
+
+```
+Jobs
+├── JobList
+│   └── JobCard
+└── JobDetails
+    ├── CompanyDetails
+    └── ApplyButton
+```
+
+Mock data is currently used and will be replaced with backend API integration in later phases.
+
 
 ## Current Progress
 
@@ -342,3 +368,4 @@ The upload module is built using reusable components and is ready for backend in
 - ✅ Develop candidate dashboard
 - ✅ Develop candidate profile management
 - ✅ Add resume upload functionality
+- ✅ Build job listing module
