@@ -16,41 +16,22 @@ const JobCard = ({ job }) => {
   };
 
   return (
-    <div className="job-card">
-      <div className="job-header">
-        <div>
-          <h2>{job.title}</h2>
+    <div className="job-card-body">
+  <JobMeta job={job} />
 
-          <h4>{job.company}</h4>
-        </div>
+  <JobTags skills={job.skills} />
 
-        <span className="posted-date">
-          {job.postedAt}
-        </span>
-      </div>
+  <div className="job-card-actions">
+    <ApplyButton />
 
-      <JobMeta
-        location={job.location}
-        experience={job.experience}
-        salary={job.salary}
-        employmentType={job.employmentType}
-      />
-
-      <JobTags skills={job.skills} />
-
-      <div className="job-footer">
-        <ApplyButton onApply={handleApply} />
-
-        <button
-          className="details-btn"
-          onClick={() =>
-            navigate(`/jobs/${job.id}`)
-          }
-        >
-          View Details
-        </button>
-      </div>
-    </div>
+    <button
+      className="details-btn"
+      onClick={() => navigate(`/jobs/${job.id}`)}
+    >
+      View Details
+    </button>
+  </div>
+</div>
   );
 };
 
