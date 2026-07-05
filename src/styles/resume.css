@@ -237,3 +237,67 @@
   font-size: 14px;
   color: #6b7280;
 }
+
+/* ==========================================
+   Resume Actions
+========================================== */
+
+.resume-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.resume-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.resume-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resume-btn.primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.resume-btn.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.resume-btn.secondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.resume-btn.secondary:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.resume-btn.danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.resume-btn.danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+@media (max-width: 768px) {
+  .resume-actions {
+    flex-direction: column;
+  }
+
+  .resume-btn {
+    width: 100%;
+  }
+}
