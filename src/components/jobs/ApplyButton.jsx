@@ -1,11 +1,52 @@
-const ApplyButton = ({ jobId }) => {
-  const handleApply = () => {
-    alert(`Applied to job ID: ${jobId}`);
+import { useState } from "react";
+
+import { toast } from "react-toastify";
+
+const ApplyButton = ({
+  jobId,
+  applied = false,
+  onApply,
+}) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleApply = async () => {
+    if (applied) {
+      toast.info("You have already applied for this job.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      if (onApply) {
+        await onApply(jobId);
+      } else {
+        // Placeholder until API integration
+        await new Promise((resolve) =>
+          setTimeout(resolve, 1000)
+        );
+
+        toast.success("Application submitted successfully.");
+      }
+    } catch (error) {
+      toast.error("Failed to apply for the job.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <button className="apply-btn" onClick={handleApply}>
-      Apply Now
+    <button
+      type="button"
+      className={`apply-btn ${applied ? "applied" : ""}`}
+      onClick={handleApply}
+      disabled={loading || applied}
+    >
+      {loading
+        ? "Applying..."
+        : applied
+        ? "Applied"
+        : "Apply Now"}
     </button>
   );
 };
