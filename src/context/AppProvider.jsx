@@ -1,15 +1,16 @@
-import React from "react";
-
 import { AuthProvider } from "./AuthContext";
 import { ThemeProvider } from "./ThemeContext";
 import { UserProvider } from "./UserContext";
+import { SavedJobsProvider } from "./SavedJobsContext";
 
 const AppProvider = ({ children }) => {
   return (
     <AuthProvider>
       <ThemeProvider>
         <UserProvider>
-          {children}
+          <SavedJobsProvider>
+            {children}
+          </SavedJobsProvider>
         </UserProvider>
       </ThemeProvider>
     </AuthProvider>
