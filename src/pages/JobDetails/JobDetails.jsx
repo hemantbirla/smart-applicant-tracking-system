@@ -1,175 +1,116 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import jobData from "../../constants/jobData";
+import DashboardLayout from "../../layouts/DashboardLayout";
 
-import CompanyDetails from "../../components/jobs/CompanyDetails";
 import ApplyButton from "../../components/jobs/ApplyButton";
 import ApplyJobModal from "../../components/application/ApplyJobModal";
 
-import { applyJob } from "../../services/applicationService";
+import useApplications from "../../hooks/useApplications";
 
-import "../../styles/jobs.css";
+import { getJobById } from "../../services/jobService";
 
 const JobDetails = () => {
-  const { jobId } = useParams();
+  const { id } = useParams();
 
-  const navigate = useNavigate();
+  const [job, setJob] = useState(null);
 
-  const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const [applied, setApplied] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const job = jobData.find(
-    (j) => j.id === Number(jobId)
-  );
+  const {
+    isAlreadyApplied,
+    refreshApplications,
+  } = useApplications();
 
-  if (!job) {
-    return (
-      <div className="job-not-found">
-        <h2>Job Not Found</h2>
+  useEffect(() => {
+    loadJob();
+  }, [id]);
 
-        <button
-          className="details-btn"
-          onClick={() => navigate("/jobs")}
-        >
-          Back to Jobs
-        </button>
-      </div>
-    );
-  }
-
-  const handleSubmitApplication = async (formData) => {
+  const loadJob = async () => {
     try {
-      await applyJob(job.id, {
-        company: job.company,
-        position: job.title,
-        location: job.location,
-        appliedDate: new Date()
-          .toISOString()
-          .split("T")[0],
-        status: "Applied",
-        ...formData,
-      });
+      setLoading(true);
 
-      toast.success("Application Submitted Successfully");
+      const data = await getJobById(id);
 
-      setApplied(true);
-
-      setOpenModal(false);
-    } catch (error) {
-      toast.error("Failed to submit application.");
+      setJob(data);
+    } finally {
+      setLoading(false);
     }
   };
 
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="container py-4">
+          Loading...
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!job) {
+    return (
+      <DashboardLayout>
+        <div className="container py-4">
+          <h2>Job Not Found</h2>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
   return (
-    <div className="job-details-container">
-      {/* Header */}
-      <div className="job-header">
-        <div className="job-title-section">
-          <img
-            src={job.companyLogo}
-            alt={job.company}
-            className="company-logo"
+    <DashboardLayout>
+      <div className="container py-4">
+
+        <h1>{job.title}</h1>
+
+        <h3>{job.company}</h3>
+
+        <p>
+          <strong>Salary:</strong> {job.salary}
+        </p>
+
+        <p>
+          <strong>Location:</strong> {job.location}
+        </p>
+
+        <p>
+          <strong>Experience:</strong>{" "}
+          {job.experience}
+        </p>
+
+        <p>
+          <strong>Employment Type:</strong>{" "}
+          {job.employmentType}
+        </p>
+
+        <p>
+          <strong>Work Mode:</strong>{" "}
+          {job.workMode}
+        </p>
+
+        <p style={{ marginTop: 20 }}>
+          {job.description}
+        </p>
+
+        <div style={{ marginTop: 30 }}>
+          <ApplyButton
+            applied={isAlreadyApplied(job.id)}
+            onClick={() => setShowModal(true)}
           />
-
-          <div>
-            <h1>{job.title}</h1>
-
-            <h3>{job.company}</h3>
-
-            <p className="posted-date">
-              Posted: {job.postedAt}
-            </p>
-          </div>
         </div>
 
-        <div className="job-meta">
-          <span>{job.location}</span>
-
-          <span>{job.salary}</span>
-
-          <span>{job.experience}</span>
-
-          <span>{job.employmentType}</span>
-        </div>
+        {showModal && (
+          <ApplyJobModal
+            job={job}
+            onClose={() => setShowModal(false)}
+            onSuccess={refreshApplications}
+          />
+        )}
       </div>
-
-      {/* Description */}
-      <div className="job-section">
-        <h2>Job Description</h2>
-
-        <p>{job.description}</p>
-      </div>
-
-      {/* Responsibilities */}
-      <div className="job-section">
-        <h2>Responsibilities</h2>
-
-        <ul>
-          {job.responsibilities.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Requirements */}
-      <div className="job-section">
-        <h2>Requirements</h2>
-
-        <ul>
-          {job.requirements.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Benefits */}
-      <div className="job-section">
-        <h2>Benefits</h2>
-
-        <ul>
-          {job.benefits.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Skills */}
-      <div className="job-section">
-        <h2>Required Skills</h2>
-
-        <div className="skills-container">
-          {job.skills.map((skill, index) => (
-            <span
-              key={index}
-              className="skill-tag"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <CompanyDetails job={job} />
-
-      <div className="job-apply">
-        <ApplyButton
-          jobId={job.id}
-          applied={applied}
-          onApply={() => {
-            setOpenModal(true);
-          }}
-        />
-      </div>
-
-      <ApplyJobModal
-        isOpen={openModal}
-        onClose={() => setOpenModal(false)}
-        onSubmit={handleSubmitApplication}
-      />
-    </div>
+    </DashboardLayout>
   );
 };
 

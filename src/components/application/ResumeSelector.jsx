@@ -1,12 +1,10 @@
 const ResumeSelector = ({
   register,
-  error,
+  errors,
 }) => {
   return (
     <div className="form-group">
-      <label>
-        Resume
-      </label>
+      <label>Resume</label>
 
       <select
         {...register("resume")}
@@ -16,14 +14,14 @@ const ResumeSelector = ({
           Select Resume
         </option>
 
-        <option value="Hemant_Birla_Resume.pdf">
+        <option value="resume.pdf">
           Hemant_Birla_Resume.pdf
         </option>
       </select>
 
-      {error && (
+      {errors.resume && (
         <p className="form-error">
-          {error.message}
+          {errors.resume.message}
         </p>
       )}
     </div>

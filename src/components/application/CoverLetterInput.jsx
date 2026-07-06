@@ -1,23 +1,21 @@
 const CoverLetterInput = ({
   register,
-  error,
+  errors,
 }) => {
   return (
     <div className="form-group">
-      <label>
-        Cover Letter
-      </label>
+      <label>Cover Letter</label>
 
       <textarea
         rows={6}
         placeholder="Write your cover letter..."
-        className="form-control"
         {...register("coverLetter")}
+        className="form-control"
       />
 
-      {error && (
+      {errors.coverLetter && (
         <p className="form-error">
-          {error.message}
+          {errors.coverLetter.message}
         </p>
       )}
     </div>

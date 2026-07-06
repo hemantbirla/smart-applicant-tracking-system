@@ -1,78 +1,70 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import {
-  getApplications,
   applyJob,
+  getApplications,
   withdrawApplication,
 } from "../services/applicationService";
 
+import { APPLICATION_STATUS } from "../constants/applicationStatus";
+
 const useApplications = () => {
   const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    loadApplications();
+  }, []);
 
-  const [error, setError] = useState("");
-
-  /**
-   * Load Applications
-   */
   const loadApplications = async () => {
     try {
       setLoading(true);
 
       const data = await getApplications();
 
-      setApplications(data);
-
-      setError("");
-    } catch (err) {
-      console.error(err);
-
-      setError("Failed to load applications.");
+      setApplications(data || []);
+    } catch (error) {
+      console.error(error);
+      setApplications([]);
     } finally {
       setLoading(false);
     }
   };
 
-  /**
-   * Apply for a Job
-   */
-  const submitApplication = async (
-    jobId,
-    applicationData
-  ) => {
+  const isAlreadyApplied = (jobId) => {
+    return applications.some(
+      (item) =>
+        item.jobId === jobId && item.status !== APPLICATION_STATUS.WITHDRAWN,
+    );
+  };
+
+  const apply = async (jobId, data) => {
+    if (isAlreadyApplied(jobId)) {
+      toast.info("Already applied.");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      const response = await applyJob(
-        jobId,
-        applicationData
-      );
+      const response = await applyJob(jobId, data);
 
-      setApplications((prev) => [
-        response,
-        ...prev,
-      ]);
+      setApplications((prev) => [response, ...prev]);
+
+      toast.success("Application submitted.");
 
       return response;
-    } catch (err) {
-      console.error(err);
-
-      setError("Failed to submit application.");
-
-      throw err;
+    } catch (error) {
+      toast.error("Application failed.");
+      throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  /**
-   * Withdraw Application
-   */
-  const removeApplication = async (id) => {
+  const withdraw = async (id) => {
     try {
-      setLoading(true);
-
       await withdrawApplication(id);
 
       setApplications((prev) =>
@@ -80,58 +72,25 @@ const useApplications = () => {
           item.id === id
             ? {
                 ...item,
-                status: "Withdrawn",
+                status: APPLICATION_STATUS.WITHDRAWN,
               }
-            : item
-        )
+            : item,
+        ),
       );
-    } catch (err) {
-      console.error(err);
 
-      setError("Failed to withdraw application.");
-    } finally {
-      setLoading(false);
+      toast.success("Application withdrawn.");
+    } catch {
+      toast.error("Unable to withdraw.");
     }
   };
 
-  /**
-   * Check if already applied
-   */
-  const hasApplied = (jobId) => {
-    return applications.some(
-      (item) => item.jobId === jobId
-    );
-  };
-
-  /**
-   * Get Application by Job ID
-   */
-  const getApplication = (jobId) => {
-    return applications.find(
-      (item) => item.jobId === jobId
-    );
-  };
-
-  useEffect(() => {
-    loadApplications();
-  }, []);
-
   return {
     applications,
-
     loading,
-
-    error,
-
-    reload: loadApplications,
-
-    submitApplication,
-
-    removeApplication,
-
-    hasApplied,
-
-    getApplication,
+    apply,
+    withdraw,
+    isAlreadyApplied,
+    refreshApplications: loadApplications,
   };
 };
 

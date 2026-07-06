@@ -1,62 +1,82 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import JobMeta from "./JobMeta";
 import JobTags from "./JobTags";
-import ApplyButton from "./ApplyButton";
 import SaveJobButton from "./SaveJobButton";
+import ApplyButton from "./ApplyButton";
 
-import useSavedJobs from "../../hooks/useSavedJobs";
+import ApplyJobModal from "../application/ApplyJobModal";
+import useApplications from "../../hooks/useApplications";
 
 import "../../styles/jobs.css";
 
 const JobCard = ({ job }) => {
   const navigate = useNavigate();
-  
+
+  const [showModal, setShowModal] = useState(false);
+
+  const { isAlreadyApplied, refreshApplications } = useApplications();
+
   if (!job) return null;
 
   return (
-    <div className="job-card">
-      <div className="job-header">
-        <div className="job-header-left">
-          {job.companyLogo && (
-            <img
-              src={job.companyLogo}
-              alt={job.company}
-              className="company-logo"
+    <>
+      <div className="job-card">
+        {/* Header */}
+        <div className="job-header">
+          <div className="job-header-left">
+            {job.companyLogo && (
+              <img
+                src={job.companyLogo}
+                alt={job.company}
+                className="company-logo"
+              />
+            )}
+
+            <div>
+              <h3>{job.title}</h3>
+              <h4>{job.company}</h4>
+            </div>
+          </div>
+
+          <SaveJobButton job={job} />
+        </div>
+
+        {/* Job Meta */}
+        <JobMeta job={job} />
+
+        {/* Skills */}
+        <JobTags skills={job.skills} />
+
+        {/* Footer */}
+        <div className="job-card-footer">
+          <span>{job.postedDate || job.postedAt}</span>
+
+          <div className="job-card-actions">
+            <ApplyButton
+              applied={isAlreadyApplied(job.id)}
+              onClick={() => setShowModal(true)}
             />
-          )}
 
-          <div>
-            <h3 className="job-title">{job.title}</h3>
-
-            <h4 className="company-name">{job.company}</h4>
+            <button
+              className="details-btn"
+              onClick={() => navigate(`/jobs/${job.id}`)}
+            >
+              View Details
+            </button>
           </div>
         </div>
-
-        <SaveJobButton job={job} />
       </div>
 
-      <JobMeta job={job} />
-
-      <JobTags skills={job.skills} />
-
-      <div className="job-card-footer">
-        <span className="posted-date">
-          {job.postedDate || job.postedAt}
-        </span>
-
-        <div className="job-card-actions">
-          <ApplyButton jobId={job.id} />
-
-          <button
-            className="details-btn"
-            onClick={() => navigate(`/jobs/${job.id}`)}
-          >
-            View Details
-          </button>
-        </div>
-      </div>
-    </div>
+      {showModal && (
+        <ApplyJobModal
+          job={job}
+          onClose={() => setShowModal(false)}
+          onSuccess={refreshApplications}
+        />
+      )}
+    </>
   );
 };
 

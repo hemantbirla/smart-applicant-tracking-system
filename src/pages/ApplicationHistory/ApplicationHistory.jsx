@@ -1,21 +1,40 @@
+import { useEffect } from "react";
+
 import DashboardLayout from "../../layouts/DashboardLayout";
+import ApplicationCard from "../../components/application/ApplicationCard";
+import useApplications from "../../hooks/useApplications";
 
 const ApplicationHistory = () => {
+  const { applications, withdraw, refreshApplications, loading } =
+    useApplications();
+
+  useEffect(() => {
+    refreshApplications();
+  }, []);
+
+  console.log("ApplicationHistory rendered");
+  console.log("Applications:", applications);
+  console.log(
+    "LocalStorage:",
+    JSON.parse(localStorage.getItem("applications")),
+  );
+
   return (
     <DashboardLayout>
-      <div className="application-page">
-        <div className="page-header">
-          <h1>Application History</h1>
-          <p>Track all your job applications.</p>
-        </div>
+      <div className="container py-4">
+        <h1>Application History</h1>
 
-        <div className="empty-state">
-          <h3>No Applications Yet</h3>
-          <p>
-            Your application history will appear here after
-            you apply for jobs.
-          </p>
-        </div>
+        {loading && <p>Loading...</p>}
+
+        {!loading && applications.length === 0 && <p>No applications found.</p>}
+
+        {applications.map((application) => (
+          <ApplicationCard
+            key={application.id}
+            application={application}
+            onWithdraw={withdraw}
+          />
+        ))}
       </div>
     </DashboardLayout>
   );

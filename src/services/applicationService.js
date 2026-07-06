@@ -1,96 +1,102 @@
-import applications from "../constants/applicationsData";
-
-import { APPLICATION_STATUS } from "../constants/applicationStatus";
-
-// Local Mock Database
-let applicationList = [...applications];
+const STORAGE_KEY = "applications";
 
 /**
  * Get all applications
  */
 export const getApplications = async () => {
-  return Promise.resolve(applicationList);
+  const applications =
+    JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+  return applications;
 };
 
 /**
  * Get application by ID
  */
 export const getApplicationById = async (id) => {
-  const application = applicationList.find(
-    (item) => item.id === Number(id)
-  );
+  const applications = await getApplications();
 
-  return Promise.resolve(application);
+  return applications.find(
+    (application) => application.id === id
+  );
 };
 
 /**
- * Check if candidate already applied for a job
- */
-export const hasApplied = async (jobId) => {
-  const exists = applicationList.some(
-    (item) => item.jobId === Number(jobId)
-  );
-
-  return Promise.resolve(exists);
-};
-
-/**
- * Apply for a job
+ * Apply for Job
  */
 export const applyJob = async (jobId, data) => {
-  const alreadyApplied = applicationList.some(
-    (item) => item.jobId === Number(jobId)
+  console.log("applyJob called");
+
+  const applications = await getApplications();
+
+  console.log("Existing applications:", applications);
+
+  const alreadyApplied = applications.find(
+    (application) => application.jobId === jobId
   );
 
   if (alreadyApplied) {
-    return Promise.reject(
-      new Error("You have already applied for this job.")
-    );
+    console.log("Already exists");
+    throw new Error("Already applied for this job.");
   }
 
   const newApplication = {
     id: Date.now(),
-
-    jobId: Number(jobId),
+    jobId,
 
     company: data.company,
-
     position: data.position,
-
-    location: data.location,
 
     resume: data.resume,
 
     coverLetter: data.coverLetter,
 
-    portfolio: data.portfolio || "",
+    linkedin: data.linkedin,
 
-    linkedin: data.linkedin || "",
+    portfolio: data.portfolio,
 
-    appliedDate: new Date()
-      .toISOString()
-      .split("T")[0],
+    appliedDate: new Date().toLocaleDateString("en-IN"),
 
-    status: APPLICATION_STATUS.APPLIED,
+    status: "Applied",
   };
 
-  applicationList.unshift(newApplication);
+  console.log("Saving:", newApplication);
 
-  return Promise.resolve(newApplication);
+  applications.unshift(newApplication);
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(applications)
+  );
+
+  console.log(
+    "Saved:",
+    localStorage.getItem(STORAGE_KEY)
+  );
+
+  return newApplication;
 };
 
 /**
- * Withdraw application
+ * Withdraw Application
  */
 export const withdrawApplication = async (id) => {
-  applicationList = applicationList.map((item) =>
-    item.id === Number(id)
-      ? {
-          ...item,
-          status: APPLICATION_STATUS.WITHDRAWN,
-        }
-      : item
+  const applications = await getApplications();
+
+  const updatedApplications = applications.map(
+    (application) =>
+      application.id === id
+        ? {
+            ...application,
+            status: "Withdrawn",
+          }
+        : application
   );
 
-  return Promise.resolve(true);
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(updatedApplications)
+  );
+
+  return true;
 };

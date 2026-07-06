@@ -1,18 +1,29 @@
-import ApplicationCard from "./ApplicationCard";
-import recentApplications from "../../constants/recentApplications";
+import useApplications from "../../hooks/useApplications";
 
-import "../../styles/dashboard.css";
+import ApplicationCard from "../application/ApplicationCard";
 
-const RecentApplications = ({ applications = recentApplications }) => {
+const RecentApplications = () => {
+  const { applications, loading } =
+    useApplications();
+
+  if (loading) {
+    return <p>Loading applications...</p>;
+  }
+
   return (
-    <section className="recent-applications">
-      <h2 className="section-title">Recent Applications</h2>
+    <section className="dashboard-section">
+      <h2 className="dashboard-title">
+        Recent Applications
+      </h2>
 
-      <div className="applications-list">
-        {applications.map((application) => (
-          <ApplicationCard key={application.id} {...application} />
+      {applications
+        .slice(0, 5)
+        .map((application) => (
+          <ApplicationCard
+            key={application.id}
+            application={application}
+          />
         ))}
-      </div>
     </section>
   );
 };

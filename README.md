@@ -429,6 +429,28 @@ SavedJobsContext
 Local Storage
 ```
 
+## Job Application Workflow
+
+Candidates can apply for jobs and track their applications throughout the recruitment process.
+
+### Features
+
+- Apply for Jobs
+- Resume Submission
+- Cover Letter Support
+- Application History
+- Status Tracking
+- Withdraw Application (when eligible)
+
+### Application Statuses
+
+- Applied
+- Under Review
+- Interview Scheduled
+- Shortlisted
+- Offer
+- Rejected
+- Withdrawn
 
 ## Current Progress
 
@@ -451,3 +473,4 @@ Local Storage
 - ✅ Implement job search filters and sorting
 - ✅ Add pagination and infinite scrolling
 - ✅ Implement saved jobs feature
+- ✅ Develop job application workflow
