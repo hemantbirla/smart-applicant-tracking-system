@@ -16,8 +16,6 @@ const JobCard = ({ job }) => {
 
   if (!job) return null;
 
-  const saved = isSaved(job.id);
-
   return (
     <div className="job-card">
       <div className="job-header">
@@ -37,10 +35,7 @@ const JobCard = ({ job }) => {
           </div>
         </div>
 
-        <SaveJobButton
-          saved={saved}
-          onToggle={() => toggleSave(job)}
-        />
+        <SaveJobButton job={job} />
       </div>
 
       <JobMeta job={job} />

@@ -954,3 +954,35 @@
   background: #fee2e2;
   color: #ef4444;
 }
+
+/* ===========================
+   Empty Saved Job
+=========================== */
+
+.empty-saved-jobs {
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  color: #d1d5db;
+  margin-top: 30px;
+}
+
+.empty-icon {
+  font-size: 70px;
+  color: #2563eb;
+  margin-bottom: 20px;
+}
+
+.empty-saved-jobs h2 {
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.empty-saved-jobs p {
+  color: #9ca3af;
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}

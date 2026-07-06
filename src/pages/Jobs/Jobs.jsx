@@ -23,7 +23,7 @@ const Jobs = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Future API pagination state
+  // API Ready
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
@@ -41,12 +41,7 @@ const Jobs = () => {
         limit: PAGE_SIZE,
       });
 
-      const formattedJobs = response.jobs.map((job) => ({
-        ...job,
-        saved: job.saved ?? false,
-      }));
-
-      setJobs(formattedJobs);
+      setJobs(response.jobs);
 
       setHasMore(response.jobs.length === PAGE_SIZE);
     } catch (err) {
@@ -55,20 +50,6 @@ const Jobs = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  // Save Job
-  const handleSave = (id) => {
-    setJobs((prevJobs) =>
-      prevJobs.map((job) =>
-        job.id === id
-          ? {
-              ...job,
-              saved: !job.saved,
-            }
-          : job
-      )
-    );
   };
 
   const {
@@ -82,7 +63,6 @@ const Jobs = () => {
     clearFilters,
   } = useJobFilters(jobs);
 
-  // Client Pagination
   const {
     currentItems,
     currentPage,
@@ -90,14 +70,13 @@ const Jobs = () => {
     goToPage,
   } = usePagination(filteredJobs);
 
-  // Infinite Scroll (API Ready)
   const loadMore = useCallback(() => {
     if (loading || !hasMore) return;
 
     setPage((prev) => prev + 1);
 
-    // Later:
-    // fetch next page from API
+    // Future API
+    // fetchJobs(page + 1);
   }, [loading, hasMore]);
 
   const { lastElementRef } = useInfiniteScroll(
@@ -142,7 +121,6 @@ const Jobs = () => {
 
             <JobList
               jobs={currentItems}
-              onSave={handleSave}
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={goToPage}

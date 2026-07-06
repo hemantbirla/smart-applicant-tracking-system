@@ -5,7 +5,6 @@ import EmptyState from "./EmptyState";
 
 const JobList = ({
   jobs = [],
-  onSave,
 
   // Pagination
   currentPage = 1,
@@ -47,31 +46,25 @@ const JobList = ({
                   : null
               }
             >
-              <JobCard
-                job={job}
-                onSave={onSave}
-              />
+              <JobCard job={job} />
             </div>
           );
         })}
       </div>
 
       {/* Pagination */}
-      {!useInfiniteScroll &&
-        totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={onPageChange}
-          />
-        )}
+      {!useInfiniteScroll && totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
+      )}
 
       {/* Infinite Scroll Loader */}
       {useInfiniteScroll &&
         loading &&
-        jobs.length > 0 && (
-          <InfiniteLoader />
-        )}
+        jobs.length > 0 && <InfiniteLoader />}
     </>
   );
 };

@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Jobs from "./pages/Jobs/Jobs";
 import JobDetails from "./pages/JobDetails/JobDetails";
 import Profile from "./pages/Profile/Profile";
+import SavedJobs from "./pages/SavedJobs/SavedJobs";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,60 +19,31 @@ function App() {
     <>
       <Routes>
         {/* Redirect */}
-        <Route
-          path="/"
-          element={<Navigate to="/login" replace />}
-        />
+        <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/* Authentication */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/forgot-password"
-          element={<ForgotPassword />}
-        />
-        <Route
-          path="/reset-password"
-          element={<ResetPassword />}
-        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Dashboard */}
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         {/* Jobs */}
         <Route path="/jobs" element={<Jobs />} />
-        <Route
-          path="/jobs/:jobId"
-          element={<JobDetails />}
-        />
+        <Route path="/jobs/:jobId" element={<JobDetails />} />
 
         {/* Candidate */}
-        <Route
-          path="/profile"
-          element={<Profile />}
-        />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Temporary Pages */}
         <Route
           path="/applications"
-          element={
-            <h2 style={{ padding: 30 }}>
-              Applications Page
-            </h2>
-          }
+          element={<h2 style={{ padding: 30 }}>Applications Page</h2>}
         />
 
-        <Route
-          path="/saved-jobs"
-          element={
-            <h2 style={{ padding: 30 }}>
-              Saved Jobs Page
-            </h2>
-          }
-        />
+        <Route path="/saved-jobs" element={<SavedJobs />} />
 
         {/* 404 */}
         <Route
@@ -91,10 +63,7 @@ function App() {
         />
       </Routes>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-      />
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }
