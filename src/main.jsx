@@ -7,6 +7,9 @@ import AppProvider from "./context/AppProvider";
 
 import "./styles/auth.css";
 import "./styles/dashboard.css";
+import "./styles/profile.css";
+import "./styles/resume.css";
+import "./styles/application.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

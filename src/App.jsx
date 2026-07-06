@@ -11,6 +11,7 @@ import Jobs from "./pages/Jobs/Jobs";
 import JobDetails from "./pages/JobDetails/JobDetails";
 import Profile from "./pages/Profile/Profile";
 import SavedJobs from "./pages/SavedJobs/SavedJobs";
+import ApplicationHistory from "./pages/ApplicationHistory/ApplicationHistory";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,13 +37,7 @@ function App() {
 
         {/* Candidate */}
         <Route path="/profile" element={<Profile />} />
-
-        {/* Temporary Pages */}
-        <Route
-          path="/applications"
-          element={<h2 style={{ padding: 30 }}>Applications Page</h2>}
-        />
-
+        <Route path="/applications" element={<ApplicationHistory />} />
         <Route path="/saved-jobs" element={<SavedJobs />} />
 
         {/* 404 */}

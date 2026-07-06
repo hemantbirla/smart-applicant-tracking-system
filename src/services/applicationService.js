@@ -1,147 +1,96 @@
-import axiosInstance from "../api/axios";
+import applications from "../constants/applicationsData";
 
-// import applications from "../data/applications";
+import { APPLICATION_STATUS } from "../constants/applicationStatus";
 
-// let applicationList = [...applications];
+// Local Mock Database
+let applicationList = [...applications];
 
 /**
- * Get All Applications
+ * Get all applications
  */
 export const getApplications = async () => {
-  // Mock
   return Promise.resolve(applicationList);
-
-  /*
-  const response = await axiosInstance.get("/applications");
-  return response.data;
-  */
 };
 
 /**
- * Get Application By ID
+ * Get application by ID
  */
 export const getApplicationById = async (id) => {
-  // Mock
-  return Promise.resolve(
-    applicationList.find(
-      (application) => application.id === Number(id)
-    )
+  const application = applicationList.find(
+    (item) => item.id === Number(id)
   );
 
-  /*
-  const response = await axiosInstance.get(`/applications/${id}`);
-  return response.data;
-  */
+  return Promise.resolve(application);
 };
 
 /**
- * Check if Candidate Already Applied
+ * Check if candidate already applied for a job
  */
 export const hasApplied = async (jobId) => {
-  // Mock
-  return Promise.resolve(
-    applicationList.some(
-      (application) => application.jobId === Number(jobId)
-    )
+  const exists = applicationList.some(
+    (item) => item.jobId === Number(jobId)
   );
 
-  /*
-  const response = await axiosInstance.get(
-    `/applications/check/${jobId}`
-  );
-
-  return response.data.applied;
-  */
+  return Promise.resolve(exists);
 };
 
 /**
- * Apply Job
+ * Apply for a job
  */
-export const applyJob = async (
-  jobId,
-  applicationData
-) => {
-  // Mock
-
+export const applyJob = async (jobId, data) => {
   const alreadyApplied = applicationList.some(
-    (application) =>
-      application.jobId === Number(jobId)
+    (item) => item.jobId === Number(jobId)
   );
 
   if (alreadyApplied) {
-    throw new Error(
-      "You have already applied for this job."
+    return Promise.reject(
+      new Error("You have already applied for this job.")
     );
   }
 
   const newApplication = {
     id: Date.now(),
 
-    jobId,
+    jobId: Number(jobId),
 
-    company: applicationData.company,
+    company: data.company,
 
-    position: applicationData.position,
+    position: data.position,
 
-    location: applicationData.location,
+    location: data.location,
+
+    resume: data.resume,
+
+    coverLetter: data.coverLetter,
+
+    portfolio: data.portfolio || "",
+
+    linkedin: data.linkedin || "",
 
     appliedDate: new Date()
       .toISOString()
       .split("T")[0],
 
-    status: "Applied",
-
-    resume: applicationData.resume,
-
-    coverLetter:
-      applicationData.coverLetter || "",
-
-    portfolio:
-      applicationData.portfolio || "",
-
-    linkedin:
-      applicationData.linkedin || "",
+    status: APPLICATION_STATUS.APPLIED,
   };
 
   applicationList.unshift(newApplication);
 
   return Promise.resolve(newApplication);
-
-  /*
-  const response = await axiosInstance.post(
-      "/applications",
-      applicationData
-  );
-
-  return response.data;
-  */
 };
 
 /**
- * Withdraw Application
+ * Withdraw application
  */
-export const withdrawApplication = async (
-  id
-) => {
-  // Mock
-
-  applicationList = applicationList.map(
-    (application) =>
-      application.id === Number(id)
-        ? {
-            ...application,
-            status: "Withdrawn",
-          }
-        : application
+export const withdrawApplication = async (id) => {
+  applicationList = applicationList.map((item) =>
+    item.id === Number(id)
+      ? {
+          ...item,
+          status: APPLICATION_STATUS.WITHDRAWN,
+        }
+      : item
   );
 
   return Promise.resolve(true);
-
-  /*
-  const response = await axiosInstance.delete(
-      `/applications/${id}`
-  );
-
-  return response.data;
-  */
 };
