@@ -3,17 +3,23 @@ import { useNavigate } from "react-router-dom";
 import JobMeta from "./JobMeta";
 import JobTags from "./JobTags";
 import ApplyButton from "./ApplyButton";
+import SaveJobButton from "./SaveJobButton";
+
+import useSavedJobs from "../../hooks/useSavedJobs";
 
 import "../../styles/jobs.css";
 
-const JobCard = ({ job, onSave }) => {
+const JobCard = ({ job }) => {
   const navigate = useNavigate();
+
+  const { toggleSave, isSaved } = useSavedJobs();
 
   if (!job) return null;
 
+  const saved = isSaved(job.id);
+
   return (
     <div className="job-card">
-      {/* Header */}
       <div className="job-header">
         <div className="job-header-left">
           {job.companyLogo && (
@@ -31,21 +37,16 @@ const JobCard = ({ job, onSave }) => {
           </div>
         </div>
 
-        <button
-          className={`save-btn ${job.saved ? "active" : ""}`}
-          onClick={() => onSave(job.id)}
-        >
-          {job.saved ? "Saved" : "Save"}
-        </button>
+        <SaveJobButton
+          saved={saved}
+          onToggle={() => toggleSave(job)}
+        />
       </div>
 
-      {/* Meta */}
       <JobMeta job={job} />
 
-      {/* Skills */}
       <JobTags skills={job.skills} />
 
-      {/* Footer */}
       <div className="job-card-footer">
         <span className="posted-date">
           {job.postedDate || job.postedAt}

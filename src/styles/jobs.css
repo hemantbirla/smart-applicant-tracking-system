@@ -330,32 +330,6 @@
 }
 
 /* =====================================================
-   SAVE BUTTON
-===================================================== */
-
-.save-btn {
-    padding: 10px 18px;
-    border: 1px solid #2563eb;
-    border-radius: 8px;
-    background: #ffffff;
-    color: #2563eb;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all .3s ease;
-}
-
-.save-btn:hover {
-    background: #eff6ff;
-}
-
-.save-btn.active {
-    background: #2563eb;
-    color: #ffffff;
-}
-
-
-/* =====================================================
    JOB DETAILS PAGE
 ===================================================== */
 
@@ -949,4 +923,34 @@
 .pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+
+/* ===========================
+   Save Job Button
+=========================== */
+
+.save-job-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  font-size: 18px;
+}
+
+.save-job-btn:hover {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.save-job-btn.saved {
+  background: #fee2e2;
+  color: #ef4444;
 }
