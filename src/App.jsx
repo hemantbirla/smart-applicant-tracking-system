@@ -14,6 +14,8 @@ import JobDetails from "./pages/JobDetails/JobDetails";
 import ApplicationHistory from "./pages/ApplicationHistory/ApplicationHistory";
 import SavedJobs from "./pages/SavedJobs/SavedJobs";
 
+import RecruiterDashboard from "./pages/RecruiterDashboard/RecruiterDashboard";
+
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -67,6 +69,10 @@ function App() {
             </div>
           }
         />
+
+        {/* RecruiterDashboard */}
+        <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
+        
       </Routes>
 
       <ToastContainer
