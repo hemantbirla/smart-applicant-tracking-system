@@ -11,9 +11,7 @@ import "../../styles/jobs.css";
 
 const JobCard = ({ job }) => {
   const navigate = useNavigate();
-
-  const { toggleSave, isSaved } = useSavedJobs();
-
+  
   if (!job) return null;
 
   return (

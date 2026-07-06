@@ -405,6 +405,30 @@ Jobs
 │   └── InfiniteLoader
 ```
 
+## Saved Jobs
+
+Candidates can bookmark jobs to review or apply later.
+
+### Features
+
+- Save / Unsave Job
+- Bookmark Toggle
+- Saved Jobs Page
+- Local Persistence
+- Responsive UI
+
+### Architecture
+
+```
+Job Card
+   ↓
+SaveJobButton
+   ↓
+SavedJobsContext
+   ↓
+Local Storage
+```
+
 
 ## Current Progress
 
@@ -426,3 +450,4 @@ Jobs
 - ✅ Build job listing module
 - ✅ Implement job search filters and sorting
 - ✅ Add pagination and infinite scrolling
+- ✅ Implement saved jobs feature

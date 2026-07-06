@@ -1,32 +1,42 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
+import {
+  getSavedJobs,
+  setSavedJobs,
+  removeSavedJobs,
+} from "../utils/storage";
 
 const SavedJobsContext = createContext();
 
 export const SavedJobsProvider = ({ children }) => {
-  const [savedJobs, setSavedJobs] = useState([]);
+  const [savedJobs, setSavedJobsState] = useState([]);
 
-  // Load from LocalStorage
+  /**
+   * Load saved jobs on app start
+   */
   useEffect(() => {
-    const jobs = localStorage.getItem("savedJobs");
+    const jobs = getSavedJobs();
 
-    if (jobs) {
-      setSavedJobs(JSON.parse(jobs));
-    }
+    setSavedJobsState(jobs);
   }, []);
 
-  // Save to LocalStorage
+  /**
+   * Persist whenever savedJobs changes
+   */
   useEffect(() => {
-    localStorage.setItem(
-      "savedJobs",
-      JSON.stringify(savedJobs)
-    );
+    setSavedJobs(savedJobs);
   }, [savedJobs]);
 
   /**
    * Save Job
    */
   const saveJob = (job) => {
-    setSavedJobs((prev) => {
+    setSavedJobsState((prev) => {
       const exists = prev.some(
         (item) => item.id === job.id
       );
@@ -41,13 +51,13 @@ export const SavedJobsProvider = ({ children }) => {
    * Remove Job
    */
   const removeJob = (jobId) => {
-    setSavedJobs((prev) =>
+    setSavedJobsState((prev) =>
       prev.filter((job) => job.id !== jobId)
     );
   };
 
   /**
-   * Toggle Save
+   * Toggle Save / Unsave
    */
   const toggleSave = (job) => {
     const exists = savedJobs.some(
@@ -62,7 +72,7 @@ export const SavedJobsProvider = ({ children }) => {
   };
 
   /**
-   * Check Saved
+   * Check if job is saved
    */
   const isSaved = (jobId) => {
     return savedJobs.some(
@@ -71,10 +81,11 @@ export const SavedJobsProvider = ({ children }) => {
   };
 
   /**
-   * Clear Saved Jobs
+   * Clear all saved jobs
    */
   const clearSavedJobs = () => {
-    setSavedJobs([]);
+    removeSavedJobs();
+    setSavedJobsState([]);
   };
 
   return (
