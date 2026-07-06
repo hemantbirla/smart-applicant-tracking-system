@@ -1,15 +1,16 @@
-import React from "react";
+const DashboardHeader = ({ title, greeting, name, subtitle }) => {
 
-const DashboardHeader = () => {
   return (
-    <div className="dashboard-header">
-      <div>
-        <h3 className="dashboard-greeting">Good Morning,</h3>
+    <div className="dashboard-header"> 
+      <h1 className="dashboard-title"></h1>
 
-        <h1 className="dashboard-name">Hemant 👋</h1>
-
-        <p className="dashboard-subtitle">Welcome Back</p>
-      </div>
+      {(greeting || name) && (
+        <div className="dashboard-welcome">
+          {greeting && <h2>{greeting}</h2>}
+          {name && <h3>{name}</h3>}
+          {subtitle && <p>{subtitle}</p>}
+        </div>
+      )}
     </div>
   );
 };

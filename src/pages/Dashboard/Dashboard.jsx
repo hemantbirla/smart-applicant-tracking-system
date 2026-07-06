@@ -8,7 +8,12 @@ import ProfileSummary from "../../components/profile/ProfileSummary";
 const Dashboard = () => {
   return (
     <DashboardLayout>
-      <DashboardHeader />
+      <DashboardHeader
+        title="Candidate Dashboard"
+        greeting="Good Morning,"
+        name="Hemant 👋"
+        subtitle="Welcome Back"
+      />
       <StatisticsSection />
       <RecentApplications />
       <ProfileSummary />

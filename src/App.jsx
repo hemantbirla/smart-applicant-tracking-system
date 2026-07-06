@@ -15,6 +15,7 @@ import ApplicationHistory from "./pages/ApplicationHistory/ApplicationHistory";
 import SavedJobs from "./pages/SavedJobs/SavedJobs";
 
 import RecruiterDashboard from "./pages/RecruiterDashboard/RecruiterDashboard";
+import RecruiterLayout from "./layouts/RecruiterLayout";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -72,7 +73,69 @@ function App() {
 
         {/* RecruiterDashboard */}
         <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
-        
+
+        <Route
+          path="/recruiter/jobs"
+          element={
+            <RecruiterLayout>
+              <h2>Jobs Page</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/applications"
+          element={
+            <RecruiterLayout>
+              <h2>Applications Page</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/candidates"
+          element={
+            <RecruiterLayout>
+              <h2>Candidates Page</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/interviews"
+          element={
+            <RecruiterLayout>
+              <h2>Interviews Page</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/company"
+          element={
+            <RecruiterLayout>
+              <h2>Company Page</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/reports"
+          element={
+            <RecruiterLayout>
+              <h2>Reports Page</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/settings"
+          element={
+            <RecruiterLayout>
+              <h2>Settings Page</h2>
+            </RecruiterLayout>
+          }
+        />
       </Routes>
 
       <ToastContainer

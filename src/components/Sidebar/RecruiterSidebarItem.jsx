@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 
 const RecruiterSidebarItem = ({ item }) => {
+  const Icon = item.icon;
+
   return (
     <NavLink
       to={item.path}
@@ -10,8 +12,7 @@ const RecruiterSidebarItem = ({ item }) => {
           : "sidebar-item"
       }
     >
-      <item.icon className="sidebar-icon" />
-
+      <Icon className="sidebar-icon" />
       <span>{item.title}</span>
     </NavLink>
   );

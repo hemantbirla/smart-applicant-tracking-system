@@ -6,6 +6,17 @@ import {
 } from "react-icons/fi";
 
 // ===============================
+// Recruiter Dashboard
+// ===============================
+
+export const recruiterHeader = {
+  title: "Recruiter Dashboard",
+  greeting: "Welcome Back,",
+  name: "ABC Technologies",
+  subtitle: "Recruiter Portal",
+};
+
+// ===============================
 // Dashboard Statistics
 // ===============================
 
@@ -99,8 +110,7 @@ export const recentCandidates = [
 
 export const companySummary = {
   companyName: "ABC Technologies",
-  logo:
-    "https://ui-avatars.com/api/?name=ABC+Technologies&background=2563eb&color=fff",
+  logo: "https://ui-avatars.com/api/?name=ABC+Technologies&background=2563eb&color=fff",
   industry: "Software Development",
   location: "Pune, Maharashtra",
   totalEmployees: 850,
