@@ -1,16 +1,29 @@
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import jobData from "../../constants/jobData";
 
 import CompanyDetails from "../../components/jobs/CompanyDetails";
 import ApplyButton from "../../components/jobs/ApplyButton";
+import ApplyJobModal from "../../components/application/ApplyJobModal";
+
+import { applyJob } from "../../services/applicationService";
 
 import "../../styles/jobs.css";
 
 const JobDetails = () => {
   const { jobId } = useParams();
+
   const navigate = useNavigate();
 
-  const job = jobData.find((j) => j.id === Number(jobId));
+  const [openModal, setOpenModal] = useState(false);
+
+  const [applied, setApplied] = useState(false);
+
+  const job = jobData.find(
+    (j) => j.id === Number(jobId)
+  );
 
   if (!job) {
     return (
@@ -27,9 +40,32 @@ const JobDetails = () => {
     );
   }
 
+  const handleSubmitApplication = async (formData) => {
+    try {
+      await applyJob(job.id, {
+        company: job.company,
+        position: job.title,
+        location: job.location,
+        appliedDate: new Date()
+          .toISOString()
+          .split("T")[0],
+        status: "Applied",
+        ...formData,
+      });
+
+      toast.success("Application Submitted Successfully");
+
+      setApplied(true);
+
+      setOpenModal(false);
+    } catch (error) {
+      toast.error("Failed to submit application.");
+    }
+  };
+
   return (
     <div className="job-details-container">
-      {/* Job Header */}
+      {/* Header */}
       <div className="job-header">
         <div className="job-title-section">
           <img
@@ -40,22 +76,30 @@ const JobDetails = () => {
 
           <div>
             <h1>{job.title}</h1>
+
             <h3>{job.company}</h3>
-            <p className="posted-date">Posted: {job.postedAt}</p>
+
+            <p className="posted-date">
+              Posted: {job.postedAt}
+            </p>
           </div>
         </div>
 
         <div className="job-meta">
           <span>{job.location}</span>
+
           <span>{job.salary}</span>
+
           <span>{job.experience}</span>
+
           <span>{job.employmentType}</span>
         </div>
       </div>
 
-      {/* Job Description */}
+      {/* Description */}
       <div className="job-section">
         <h2>Job Description</h2>
+
         <p>{job.description}</p>
       </div>
 
@@ -98,20 +142,33 @@ const JobDetails = () => {
 
         <div className="skills-container">
           {job.skills.map((skill, index) => (
-            <span key={index} className="skill-tag">
+            <span
+              key={index}
+              className="skill-tag"
+            >
               {skill}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Company Details */}
       <CompanyDetails job={job} />
 
-      {/* Apply Button */}
       <div className="job-apply">
-        <ApplyButton jobId={job.id} />
+        <ApplyButton
+          jobId={job.id}
+          applied={applied}
+          onApply={() => {
+            setOpenModal(true);
+          }}
+        />
       </div>
+
+      <ApplyJobModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+        onSubmit={handleSubmitApplication}
+      />
     </div>
   );
 };
