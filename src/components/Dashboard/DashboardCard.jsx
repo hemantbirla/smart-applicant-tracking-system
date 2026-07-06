@@ -1,6 +1,8 @@
-import "./../../styles/dashboard.css";
+import "../../styles/dashboard.css";
 
-const DashboardCard = ({ title, count, icon: Icon, color }) => {
+const DashboardCard = ({ data }) => {
+  const { title, count, icon: Icon, color } = data;
+
   return (
     <div className="dashboard-card">
       <div
