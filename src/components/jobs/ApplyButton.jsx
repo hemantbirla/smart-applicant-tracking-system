@@ -2,11 +2,7 @@ import { useState } from "react";
 
 import { toast } from "react-toastify";
 
-const ApplyButton = ({
-  jobId,
-  applied = false,
-  onApply,
-}) => {
+const ApplyButton = ({ jobId, applied = false, onApply }) => {
   const [loading, setLoading] = useState(false);
 
   const handleApply = async () => {
@@ -15,19 +11,17 @@ const ApplyButton = ({
       return;
     }
 
+    if (onApply) {
+      onApply(jobId);
+      return;
+    }
+
     try {
       setLoading(true);
 
-      if (onApply) {
-        await onApply(jobId);
-      } else {
-        // Placeholder until API integration
-        await new Promise((resolve) =>
-          setTimeout(resolve, 1000)
-        );
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        toast.success("Application submitted successfully.");
-      }
+      toast.success("Application submitted successfully.");
     } catch (error) {
       toast.error("Failed to apply for the job.");
     } finally {
@@ -42,11 +36,7 @@ const ApplyButton = ({
       onClick={handleApply}
       disabled={loading || applied}
     >
-      {loading
-        ? "Applying..."
-        : applied
-        ? "Applied"
-        : "Apply Now"}
+      {loading ? "Applying..." : applied ? "Applied" : "Apply Now"}
     </button>
   );
 };
