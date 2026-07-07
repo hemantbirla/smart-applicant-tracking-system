@@ -1315,3 +1315,82 @@
   font-size: 18px;
   color: #6b7280;
 }
+
+/* ===========================
+   Job Form
+=========================== */
+
+.job-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.job-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.job-field label {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.job-field input,
+.job-field select,
+.job-field textarea {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.job-field textarea {
+  resize: vertical;
+}
+
+.job-error {
+  margin-top: 6px;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.job-submit-btn {
+  margin-top: 25px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.job-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.job-submit-btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+@media (max-width:768px){
+  .job-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+
+/* ===========================
+   Job Form
+=========================== */
