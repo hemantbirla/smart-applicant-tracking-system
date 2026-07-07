@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const RecruiterSidebarItem = ({ item }) => {
+  // React components must be capitalized to render correctly
   const Icon = item.icon;
 
   return (
@@ -8,11 +9,12 @@ const RecruiterSidebarItem = ({ item }) => {
       to={item.path}
       className={({ isActive }) =>
         isActive
-          ? "sidebar-item active"
-          : "sidebar-item"
+          ? "sidebar-link active"
+          : "sidebar-link"
       }
     >
       <Icon className="sidebar-icon" />
+
       <span>{item.title}</span>
     </NavLink>
   );

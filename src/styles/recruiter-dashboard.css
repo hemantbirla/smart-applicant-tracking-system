@@ -1,21 +1,115 @@
-/* Sidebar */
-.sidebar {
-    width: 260px;
+/* ======================================================
+   THEME VARIABLES (Light Mode Default / Dark Mode Sync)
+====================================================== */
+:root {
+    /* Light Mode Palette */
+    --bg-main: #f8fafc;          /* Slate 50 */
+    --bg-card: #ffffff;          /* Pure White */
+    --bg-card-hover: #f1f5f9;    /* Slate 100 */
+    --border-color: #e2e8f0;     /* Slate 200 */
+    --text-primary: #0f172a;     /* Slate 900 */
+    --text-secondary: #64748b;   /* Slate 500 */
+    
+    /* Status Badges (Light) */
+    --bg-open: #dcfce7;   --text-open: #16a34a;
+    --bg-closed: #fee2e2; --text-closed: #dc2626;
+    --bg-draft: #fef3c7;  --text-draft: #d97706;
+}
+
+/* Automatically switches when body has the .dark class */
+body.dark {
+    /* Dark Mode Palette */
+    --bg-main: #0f172a;          /* Slate 900 */
+    --bg-card: #1e293b;          /* Slate 800 */
+    --bg-card-hover: #243249;    
+    --border-color: #334155;     /* Slate 700 */
+    --text-primary: #ffffff;     
+    --text-secondary: #94a3b8;   /* Slate 400 */
+
+    /* Status Badges (Dark) */
+    --bg-open: rgba(22, 163, 74, 0.15);   --text-open: #4ade80;
+    --bg-closed: rgba(220, 38, 38, 0.15); --text-closed: #f87171;
+    --bg-draft: rgba(217, 119, 6, 0.15);  --text-draft: #fbbf24;
+}
+
+/* ======================================================
+   GLOBAL & LAYOUT SHIFT
+====================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+.recruiter-layout {
+    display: flex;
     min-height: 100vh;
-    background: #111827;
+    background: var(--bg-main);
+}
+
+.recruiter-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 32px;
+    overflow-y: auto;
+    background: var(--bg-main);
+}
+
+/* ======================================================
+   MODERN SIDEBAR
+====================================================== */
+
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #172033 0%, #0f172a 100%);
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 30px 20px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.25);
 }
 
+/* Logo */
+
 .sidebar-logo {
-    font-size: 30px;
-    font-weight: 700;
+    text-align: center;
     margin-bottom: 40px;
 }
 
+.sidebar-logo h2 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-logo span {
+    display: block;
+    color: #60a5fa;
+    font-size: 15px;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Navigation */
+
 .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     flex: 1;
 }
 
@@ -23,397 +117,447 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    color: #d1d5db;
-    text-decoration: none;
+
+    width: 100%;
+
     padding: 14px 18px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    transition: 0.3s;
+
+    color: #cbd5e1;
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border-radius: 12px;
+
+    transition: all 0.25s ease;
+
+    position: relative;
 }
 
 .sidebar-link:hover {
-    background: #1e3a8a;
+    background: rgba(59,130,246,0.15);
     color: #fff;
+    transform: translateX(5px);
 }
 
 .sidebar-link.active {
-    background: #2563eb;
-    color: #fff;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: white;
+    box-shadow: 0 8px 18px rgba(37,99,235,0.35);
+}
+
+.sidebar-link.active::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    width: 5px;
+    height: calc(100% - 20px);
+    border-radius: 20px;
+    background: #60a5fa;
 }
 
 .sidebar-icon {
-    font-size: 20px;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
 }
 
-.logout-btn {
-    width: 100%;
+/* Divider */
+
+.sidebar-divider {
+    margin: 25px 0;
     border: none;
-    cursor: pointer;
-    background: transparent;
-    color: #d1d5db;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Logout */
+
+.logout-btn {
     display: flex;
     align-items: center;
     gap: 14px;
+
+    width: 100%;
+
     padding: 14px 18px;
-    border-radius: 10px;
+
+    background: rgba(255,255,255,0.03);
+
+    color: #cbd5e1;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: all .25s ease;
 }
 
 .logout-btn:hover {
     background: #dc2626;
+    border-color: #dc2626;
     color: white;
 }
 
-/* Dashboard */
+/* Responsive */
 
-.dashboard-header {
-    background: #ffffff;
-    padding: 25px 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+@media (max-width: 992px) {
+
+    .sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
+
+    .sidebar-logo h2 {
+        font-size: 24px;
+    }
+
+    .sidebar-link {
+        padding: 12px 16px;
+    }
 }
 
-.dashboard-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 20px;
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 80px;
+        min-width: 80px;
+        padding: 20px 10px;
+    }
+
+    .sidebar-logo h2,
+    .sidebar-logo span,
+    .sidebar-link span,
+    .logout-btn span {
+        display: none;
+    }
+
+    .sidebar-link,
+    .logout-btn {
+        justify-content: center;
+        padding: 14px;
+    }
+
+    .sidebar-link.active::before {
+        display: none;
+    }
 }
 
-.dashboard-welcome h2 {
+/* ==========================================
+   Dashboard Header
+========================================== */
+
+.dashboard-welcome {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:32px 40px;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1e3a8a
+    );
+
+    color:white;
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.25);
+
+    margin-bottom:50px;
+}
+
+
+.welcome-left {
+    display:flex;
+    flex-direction:column;
+}
+
+
+.welcome-role {
+
+    display:inline-flex;
+
+    width:max-content;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.15);
+
+    font-size:13px;
+
+    margin-bottom:14px;
+}
+
+
+.welcome-left h1 {
+
+    font-size:18px;
+
+    font-weight:500;
+
+    margin:0;
+
+    opacity:.9;
+}
+
+
+.welcome-left h2 {
+
+    font-size:34px;
+
+    margin:5px 0;
+
+    font-weight:750;
+}
+
+
+.welcome-left h3 {
+
+    font-size:18px;
+
+    font-weight:500;
+
+    margin:0;
+
+    opacity:.9;
+}
+
+
+.welcome-left p {
+
+    margin-top:12px;
+
+    font-size:15px;
+
+    opacity:.85;
+}
+
+
+.company-logo {
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.15);
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    font-size:36px;
+
+    font-weight:700;
+
+
+    border:
+    2px solid rgba(255,255,255,.3);
+}
+
+/* =======================================================
+   DASHBOARD / MAIN CONTENT GRID
+======================================================= */
+.recruiter-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+.recruiter-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.recruiter-left, .recruiter-right {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+/* =======================================================
+   COMMON STRUCTURAL CARDS 
+======================================================= */
+.recruiter-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.recruiter-card h2 {
     font-size: 22px;
-    color: #6b7280;
-    margin-bottom: 8px;
-}
-
-.dashboard-welcome h3 {
-    font-size: 34px;
     font-weight: 700;
-    color: #2563eb;
-}
-
-/* statistics */
-
-.statistics-section {
-    margin-top: 40px;
-}
-
-.dashboard-section-title {
-    font-size: 32px;
-    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 24px;
 }
 
-.dashboard-grid {
+/* =======================================================
+   STATISTICS SECTION
+======================================================= */
+.recruiter-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
 }
 
-@media (max-width: 992px) {
-    .dashboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.recruiter-stats .recruiter-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.3s;
 }
 
-@media (max-width: 576px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
+.recruiter-stats .recruiter-card:hover {
+    transform: translateY(-4px);
+    border-color: #3b82f6;
 }
 
-/* ==========================
-   Dashboard Section
-========================== */
-
-.dashboard-section {
-    margin-top: 35px;
+/* Fix text colors inside stat counters */
+.recruiter-stats .recruiter-card span,
+.recruiter-stats .recruiter-card div {
+    color: var(--text-primary);
 }
 
-.dashboard-section-title {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #f9fafb;
-}
-
-/* ==========================
-   Jobs List
-========================== */
-
-.jobs-list {
+/* =======================================================
+   JOBS & CANDIDATE LISTS
+======================================================= */
+.jobs-list, .candidate-list {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
 }
 
-/* ==========================
-   Job Card
-========================== */
-
-.job-card {
+.job-item, .candidate-item {
+    background: var(--bg-card);
+    border-radius: 14px;
+    padding: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #1f2937;
-    border-radius: 12px;
-    padding: 22px 24px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
 }
 
-.job-card h3 {
-    color: white;
-    margin-bottom: 8px;
-    font-size: 20px;
-}
-
-.job-card p {
-    color: #9ca3af;
-}
-
-/* ==========================
-   Status Badge
-========================== */
-
-.job-status {
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.job-status.open {
-    background: rgba(34, 197, 94, 0.15);
-    color: #22c55e;
-}
-
-.job-status.closed {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
-}
-
-.job-status.draft {
-    background: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-}
-
-/* ==========================
-   Recent Candidates
-========================== */
-
-.candidate-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.candidate-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    border: 1px solid #e5e7eb;
-    transition: 0.3s;
-}
-
-.candidate-card:hover {
+.job-item:hover, .candidate-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-color: #3b82f6;
+    background: var(--bg-card-hover);
 }
 
-.candidate-info h4 {
-    margin: 0;
+.job-title, .candidate-name {
     font-size: 18px;
-    color: #111827;
-}
-
-.candidate-info p {
-    margin-top: 6px;
-    color: #6b7280;
-}
-
-.candidate-status {
-    padding: 8px 16px;
-    border-radius: 30px;
-    background: #dbeafe;
-    color: #2563eb;
+    color: var(--text-primary);
     font-weight: 600;
+}
+
+.job-applications, .candidate-role {
+    margin-top: 6px;
+    color: var(--text-secondary);
     font-size: 14px;
 }
 
-@media (max-width:768px) {
-    .candidate-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
+/* =======================================================
+   STATUS BADGES
+======================================================= */
+.job-status, .candidate-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
-/* ==========================
-   Quick Actions
-========================== */
+.status-open { background: var(--bg-open); color: var(--text-open); }
+.status-closed { background: var(--bg-closed); color: var(--text-closed); }
+.status-draft { background: var(--bg-draft); color: var(--text-draft); }
+.candidate-status { background: rgba(37, 99, 235, 0.15); color: #3b82f6; }
 
+/* =======================================================
+   QUICK ACTIONS GRID
+======================================================= */
 .quick-actions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
 }
 
 .quick-action-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 24px 16px;
-    cursor: pointer;
-
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    min-height: 130px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 14px;
-
-    transition: all 0.25s ease;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .quick-action-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
-    border-color: #2563eb;
+    border-color: #3b82f6;
+    background: var(--bg-card-hover);
 }
 
 .quick-action-icon {
-    font-size: 32px;
-    color: #2563eb;
+    width: 24px;
+    height: 24px;
+    color: #3b82f6;
 }
 
 .quick-action-card span {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    color: #111827;
-    text-align: center;
+    color: var(--text-primary);
 }
 
-/* ===============================
-   Company Summary
-================================ */
-
-.company-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+/* =======================================================
+   RESPONSIVE MEDIA QUERIES
+======================================================= */
+@media (max-width: 1200px) {
+    .recruiter-content { grid-template-columns: 1fr; }
 }
-
-.company-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
+@media (max-width: 992px) {
+    .recruiter-stats { grid-template-columns: repeat(2, 1fr); }
+    .recruiter-main { padding: 30px; }
 }
-
-.company-logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    object-fit: cover;
-}
-
-.company-header h3 {
-    font-size: 22px;
-    margin-bottom: 5px;
-    color: #111827;
-}
-
-.company-header p {
-    color: #6b7280;
-}
-
-.company-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.company-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #374151;
-}
-
-.company-item svg {
-    color: #2563eb;
-    font-size: 20px;
-}
-
-.company-footer {
-    margin-top: 25px;
-    border-top: 1px solid #e5e7eb;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.company-footer strong {
-    color: #111827;
-}
-
-.company-footer span {
-    color: #374151;
-}
-
-@media (max-width:768px) {
-
-    .company-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .company-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .company-footer {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-}
-
-.recruiter-dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px;
-}
-
-.recruiter-section {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.recruiter-section-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #111827;
-}
-
 @media (max-width: 768px) {
-  .recruiter-dashboard {
-    padding: 20px;
-    gap: 20px;
-  }
-
-  .recruiter-section {
-    padding: 18px;
-  }
-
-  .recruiter-section-title {
-    font-size: 20px;
-  }
+    .quick-actions-grid, .company-grid { grid-template-columns: 1fr; }
+    .job-item, .candidate-item { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .recruiter-header h1 { font-size: 28px; }
+}
+@media (max-width: 576px) {
+    .recruiter-stats { grid-template-columns: 1fr; }
 }

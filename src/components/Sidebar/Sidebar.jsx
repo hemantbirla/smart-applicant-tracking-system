@@ -15,7 +15,10 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-logo">Job Portal</div>
+      <div className="sidebar-logo">
+        <h2>Job</h2>
+        <span>Portal</span>
+      </div>
 
       <nav className="sidebar-menu">
         {sidebarMenu.map((item) => (

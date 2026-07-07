@@ -1,7 +1,6 @@
 import RecruiterLayout from "../../layouts/RecruiterLayout";
 
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
-
 import RecruiterStats from "../../components/dashboard/recruiter/RecruiterStats";
 import RecentJobs from "../../components/dashboard/recruiter/RecentJobs";
 import RecentCandidates from "../../components/dashboard/recruiter/RecentCandidates";
@@ -16,21 +15,26 @@ const RecruiterDashboard = () => {
     <RecruiterLayout>
       <div className="recruiter-dashboard">
         <DashboardHeader
-          title={recruiterHeader.title}
           greeting={recruiterHeader.greeting}
           name={recruiterHeader.name}
-          subtitle={recruiterHeader.subtitle}
+          role={recruiterHeader.role}
+          description = {recruiterHeader.description}
+          logo = {recruiterHeader.logo}
         />
 
         <RecruiterStats />
 
-        <RecentJobs />
+        <div className="recruiter-content">
+          <div className="recruiter-left">
+            <RecentJobs />
+            <RecentCandidates />
+          </div>
 
-        <RecentCandidates />
-
-        <QuickActions />
-
-        <CompanySummary />
+          <div className="recruiter-right">
+            <QuickActions />
+            <CompanySummary />
+          </div>
+        </div>
       </div>
     </RecruiterLayout>
   );

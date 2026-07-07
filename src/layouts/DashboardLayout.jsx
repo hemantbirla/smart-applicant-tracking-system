@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }) => {
       <Sidebar />
 
       <div className="dashboard-content">
-        <Navbar />
+        <Navbar title="Candidate Dashboard" />
         {children}
       </div>
     </div>

@@ -9,10 +9,14 @@ const Dashboard = () => {
   return (
     <DashboardLayout>
       <DashboardHeader
-        title="Candidate Dashboard"
-        greeting="Good Morning,"
-        name="Hemant 👋"
-        subtitle="Welcome Back"
+        headerData={{
+          greeting: "Welcome Back 👋",
+          name: "John Smith",
+          role: "Candidate Portal",
+          description:
+            "Track applications, discover opportunities and grow your career.",
+          logo: "JS",
+        }}
       />
       <StatisticsSection />
       <RecentApplications />

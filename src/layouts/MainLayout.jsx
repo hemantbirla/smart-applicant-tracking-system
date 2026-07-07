@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 const MainLayout = ({ children }) => {
   return (
     <>
-      <Navbar />
+      <Navbar title="Candidate Dashboard" />
 
       <div
         style={{

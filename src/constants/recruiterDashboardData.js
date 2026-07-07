@@ -10,10 +10,11 @@ import {
 // ===============================
 
 export const recruiterHeader = {
-  title: "Recruiter Dashboard",
-  greeting: "Welcome Back,",
+  greeting: "Welcome Back 👋",
   name: "ABC Technologies",
-  subtitle: "Recruiter Portal",
+  role: "Recruiter Portal",
+  description: "Find the best talent faster and build your dream team.",
+  logo: "AT",
 };
 
 // ===============================

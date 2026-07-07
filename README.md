@@ -452,6 +452,31 @@ Candidates can apply for jobs and track their applications throughout the recrui
 - Rejected
 - Withdrawn
 
+
+## Recruiter Dashboard
+
+The Recruiter Dashboard provides recruiters with an overview of hiring activities.
+
+### Features
+
+- Recruiter Statistics
+- Recent Job Postings
+- Recent Applications
+- Quick Actions
+- Company Summary
+- Responsive Layout
+
+### Reusable Components
+
+The dashboard reuses shared components such as:
+
+- DashboardHeader
+- DashboardCard
+- StatisticsSection
+- MainLayout
+
+This approach minimizes duplication and keeps the UI consistent across different user roles.
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -474,3 +499,4 @@ Candidates can apply for jobs and track their applications throughout the recrui
 - ✅ Add pagination and infinite scrolling
 - ✅ Implement saved jobs feature
 - ✅ Develop job application workflow
+- ✅ Create recruiter dashboard

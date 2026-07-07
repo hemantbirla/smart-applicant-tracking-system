@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar/Navbar";
 import RecruiterSidebar from "../components/sidebar/RecruiterSidebar";
 
 const RecruiterLayout = ({ children }) => {
@@ -5,9 +6,13 @@ const RecruiterLayout = ({ children }) => {
     <div className="dashboard-layout">
       <RecruiterSidebar />
 
-      <main className="dashboard-main">
-        {children}
-      </main>
+      <div className="dashboard-content">
+        <Navbar title="Recruiter Dashboard" />
+
+        <main className="dashboard-main">
+          {children}
+        </main>
+      </div>
     </div>
   );
 };
