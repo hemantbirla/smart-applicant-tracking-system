@@ -1,11 +1,30 @@
-import React from 'react'
+import { JOB_STATUS } from "../../constants/jobConstants";
 
-const JobStatusBadge = () => {
+const JobStatusBadge = ({ status }) => {
+  const getStatusClass = () => {
+    switch (status) {
+      case JOB_STATUS.OPEN:
+        return "status-open";
+
+      case JOB_STATUS.CLOSED:
+        return "status-closed";
+
+      case JOB_STATUS.DRAFT:
+        return "status-draft";
+
+      case JOB_STATUS.EXPIRED:
+        return "status-expired";
+
+      default:
+        return "status-default";
+    }
+  };
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <span className={`job-status ${getStatusClass()}`}>
+      {status}
+    </span>
+  );
+};
 
-export default JobStatusBadge
+export default JobStatusBadge;

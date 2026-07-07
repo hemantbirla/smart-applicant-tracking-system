@@ -986,3 +986,53 @@
   max-width: 500px;
   margin: 0 auto;
 }
+
+/* ===========================
+   Job Status Badge
+=========================== */
+
+.job-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+/* Open */
+
+.status-open {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Closed */
+
+.status-closed {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Draft */
+
+.status-draft {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* Expired */
+
+.status-expired {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Default */
+
+.status-default {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
