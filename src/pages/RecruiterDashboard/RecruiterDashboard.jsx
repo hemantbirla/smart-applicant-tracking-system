@@ -6,6 +6,7 @@ import RecentJobs from "../../components/dashboard/recruiter/RecentJobs";
 import RecentCandidates from "../../components/dashboard/recruiter/RecentCandidates";
 
 import { recruiterHeader } from "../../constants/recruiterDashboardData";
+import QuickActions from "../../components/Dashboard/recruiter/QuickActions";
 
 const RecruiterDashboard = () => {
   return (
@@ -22,6 +23,7 @@ const RecruiterDashboard = () => {
       <RecentJobs />
 
       <RecentCandidates />
+      <QuickActions />
     </RecruiterLayout>
   );
 };

@@ -136,6 +136,30 @@ function App() {
             </RecruiterLayout>
           }
         />
+        <Route
+          path="/recruiter/jobs/new"
+          element={<h2 style={{ padding: 30 }}>Post New Job</h2>}
+        />
+
+        <Route
+          path="/recruiter/jobs"
+          element={<h2 style={{ padding: 30 }}>Manage Jobs</h2>}
+        />
+
+        <Route
+          path="/recruiter/applications"
+          element={<h2 style={{ padding: 30 }}>Applications</h2>}
+        />
+
+        <Route
+          path="/recruiter/company"
+          element={<h2 style={{ padding: 30 }}>Company Profile</h2>}
+        />
+
+        <Route
+          path="/recruiter/reports"
+          element={<h2 style={{ padding: 30 }}>Reports</h2>}
+        />
       </Routes>
 
       <ToastContainer

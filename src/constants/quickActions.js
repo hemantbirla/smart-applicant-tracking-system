@@ -1,7 +1,7 @@
 import {
   FiPlusCircle,
   FiBriefcase,
-  FiUsers,
+  FiFileText,
   FiHome,
   FiBarChart2,
 } from "react-icons/fi";
@@ -22,7 +22,7 @@ export const quickActions = [
   {
     id: 3,
     title: "View Applications",
-    icon: FiUsers,
+    icon: FiFileText,
     path: "/recruiter/applications",
   },
   {
