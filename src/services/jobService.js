@@ -1,5 +1,5 @@
-import axiosInstance from "../api/axios";
-import env from "../config/env";
+// import axiosInstance from "../api/axios";
+// import env from "../config/env";
 import jobData from "../constants/jobData";
 
 const delay = (ms = 600) =>
@@ -228,5 +228,87 @@ export const removeSavedJob = async (
     success: true,
     jobId,
     message: "Saved job removed.",
+  };
+};
+
+/*
+====================================
+Recruiter Job
+====================================
+*/
+/*
+====================================
+Create Job
+====================================
+*/
+export const createJob = async (job) => {
+  await delay();
+
+  const newJob = {
+    ...job,
+    id: Date.now(),
+    applicants: 0,
+    postedDate: new Date().toISOString().split("T")[0],
+  };
+
+  // Mock API
+  jobData.unshift(newJob);
+
+  return {
+    success: true,
+    message: "Job created successfully.",
+    job: newJob,
+  };
+};
+
+/*
+====================================
+Update Job
+====================================
+*/
+export const updateJob = async (id, updatedJob) => {
+  await delay();
+
+  const index = jobData.findIndex(
+    (job) => job.id === Number(id)
+  );
+
+  if (index === -1) {
+    throw new Error("Job not found");
+  }
+
+  jobData[index] = {
+    ...jobData[index],
+    ...updatedJob,
+  };
+
+  return {
+    success: true,
+    message: "Job updated successfully.",
+    job: jobData[index],
+  };
+};
+
+/*
+====================================
+Delete Job
+====================================
+*/
+export const deleteJob = async (id) => {
+  await delay();
+
+  const index = jobData.findIndex(
+    (job) => job.id === Number(id)
+  );
+
+  if (index === -1) {
+    throw new Error("Job not found");
+  }
+
+  jobData.splice(index, 1);
+
+  return {
+    success: true,
+    message: "Job deleted successfully.",
   };
 };
