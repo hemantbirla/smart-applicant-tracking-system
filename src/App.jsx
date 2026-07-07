@@ -72,13 +72,24 @@ function App() {
         />
 
         {/* RecruiterDashboard */}
+        {/* ================= Recruiter ================= */}
+
         <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
 
         <Route
           path="/recruiter/jobs"
           element={
             <RecruiterLayout>
-              <h2>Jobs Page</h2>
+              <h2>Manage Jobs</h2>
+            </RecruiterLayout>
+          }
+        />
+
+        <Route
+          path="/recruiter/jobs/new"
+          element={
+            <RecruiterLayout>
+              <h2>Post New Job</h2>
             </RecruiterLayout>
           }
         />
@@ -87,7 +98,7 @@ function App() {
           path="/recruiter/applications"
           element={
             <RecruiterLayout>
-              <h2>Applications Page</h2>
+              <h2>Applications</h2>
             </RecruiterLayout>
           }
         />
@@ -96,7 +107,7 @@ function App() {
           path="/recruiter/candidates"
           element={
             <RecruiterLayout>
-              <h2>Candidates Page</h2>
+              <h2>Candidates</h2>
             </RecruiterLayout>
           }
         />
@@ -105,7 +116,7 @@ function App() {
           path="/recruiter/interviews"
           element={
             <RecruiterLayout>
-              <h2>Interviews Page</h2>
+              <h2>Interviews</h2>
             </RecruiterLayout>
           }
         />
@@ -114,7 +125,7 @@ function App() {
           path="/recruiter/company"
           element={
             <RecruiterLayout>
-              <h2>Company Page</h2>
+              <h2>Company Profile</h2>
             </RecruiterLayout>
           }
         />
@@ -123,7 +134,7 @@ function App() {
           path="/recruiter/reports"
           element={
             <RecruiterLayout>
-              <h2>Reports Page</h2>
+              <h2>Reports</h2>
             </RecruiterLayout>
           }
         />
@@ -132,33 +143,9 @@ function App() {
           path="/recruiter/settings"
           element={
             <RecruiterLayout>
-              <h2>Settings Page</h2>
+              <h2>Settings</h2>
             </RecruiterLayout>
           }
-        />
-        <Route
-          path="/recruiter/jobs/new"
-          element={<h2 style={{ padding: 30 }}>Post New Job</h2>}
-        />
-
-        <Route
-          path="/recruiter/jobs"
-          element={<h2 style={{ padding: 30 }}>Manage Jobs</h2>}
-        />
-
-        <Route
-          path="/recruiter/applications"
-          element={<h2 style={{ padding: 30 }}>Applications</h2>}
-        />
-
-        <Route
-          path="/recruiter/company"
-          element={<h2 style={{ padding: 30 }}>Company Profile</h2>}
-        />
-
-        <Route
-          path="/recruiter/reports"
-          element={<h2 style={{ padding: 30 }}>Reports</h2>}
         />
       </Routes>
 
