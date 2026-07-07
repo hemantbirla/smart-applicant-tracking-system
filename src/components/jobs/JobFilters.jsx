@@ -3,16 +3,17 @@ import React from "react";
 const JobFilters = ({
   filters,
   setFilters,
-  locations,
-  jobTypes,
-  experienceLevels,
-  salaryRanges,
-  workModes,
-  sortOptions,
+  locations = [],
+  jobTypes = [],
+  experienceLevels = [],
+  salaryRanges = [],
+  workModes = [],
+  status = [],
+  sortOptions = [],
 }) => {
-  // Handles changes across all fields using the element's name attribute
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFilters((prev) => ({
       ...prev,
       [name]: value,
@@ -21,106 +22,135 @@ const JobFilters = ({
 
   return (
     <div className="job-filters">
-      
-      {/* Search Input */}
+      {/* Search */}
+
       <input
         type="text"
         name="search"
-        className="filter-input"
-        placeholder="Search jobs..."
-        value={filters?.search || ""}
+        value={filters.search || ""}
         onChange={handleChange}
+        placeholder="Search title, company, skills..."
+        className="filter-input"
       />
 
-      {/* Location Selector */}
+      {/* Location */}
+
       <select
         name="location"
-        className="filter-select"
-        value={filters?.location || ""}
+        value={filters.location || ""}
         onChange={handleChange}
+        className="filter-select"
       >
         <option value="">All Locations</option>
-        {locations?.map((loc) => (
-          <option key={loc} value={loc}>
-            {loc}
+
+        {locations.map((item) => (
+          <option key={item} value={item}>
+            {item}
           </option>
         ))}
       </select>
 
-      {/* Job Type Selector */}
+      {/* Job Type */}
+
       <select
         name="jobType"
-        className="filter-select"
-        value={filters?.jobType || ""}
+        value={filters.jobType || ""}
         onChange={handleChange}
+        className="filter-select"
       >
         <option value="">All Job Types</option>
-        {jobTypes?.map((type) => (
-          <option key={type} value={type}>
-            {type}
+
+        {jobTypes.map((item) => (
+          <option key={item} value={item}>
+            {item}
           </option>
         ))}
       </select>
 
-      {/* Experience Selector */}
+      {/* Experience */}
+
       <select
         name="experience"
-        className="filter-select"
-        value={filters?.experience || ""}
+        value={filters.experience || ""}
         onChange={handleChange}
+        className="filter-select"
       >
         <option value="">All Experience</option>
-        {experienceLevels?.map((exp) => (
-          <option key={exp.value} value={exp.value}>
-            {exp.label}
+
+        {experienceLevels.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
           </option>
         ))}
       </select>
 
-      {/* Work Mode Selector */}
+      {/* Status */}
+
+      <select
+        name="status"
+        value={filters.status || ""}
+        onChange={handleChange}
+        className="filter-select"
+      >
+        <option value="">All Status</option>
+
+        {status.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+
+      {/* Work Mode */}
+
       <select
         name="workMode"
-        className="filter-select"
-        value={filters?.workMode || ""}
+        value={filters.workMode || ""}
         onChange={handleChange}
+        className="filter-select"
       >
         <option value="">All Work Modes</option>
-        {workModes?.map((mode) => (
-          <option key={mode} value={mode}>
-            {mode}
+
+        {workModes.map((item) => (
+          <option key={item} value={item}>
+            {item}
           </option>
         ))}
       </select>
 
-      {/* Salary Selector */}
+      {/* Salary */}
+
       <select
         name="salary"
-        className="filter-select"
-        value={filters?.salary || ""}
+        value={filters.salary || ""}
         onChange={handleChange}
+        className="filter-select"
       >
         <option value="">Any Salary</option>
-        {salaryRanges?.map((sal) => (
-          <option key={sal.value} value={sal.value}>
-            {sal.label}
+
+        {salaryRanges.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
           </option>
         ))}
       </select>
 
-      {/* Sorting Selector */}
+      {/* Sort */}
+
       <select
         name="sortBy"
-        className="filter-select"
-        value={filters?.sortBy || "newest"}
+        value={filters.sortBy || ""}
         onChange={handleChange}
+        className="filter-select"
       >
-        {sortOptions?.map((sort) => (
-          <option key={sort.value} value={sort.value}>
-            {sort.label}
+        <option value="">Sort By</option>
+
+        {sortOptions.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
           </option>
         ))}
       </select>
-
     </div>
   );
 };

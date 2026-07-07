@@ -477,6 +477,36 @@ The dashboard reuses shared components such as:
 
 This approach minimizes duplication and keeps the UI consistent across different user roles.
 
+
+## Recruiter Job Management
+
+Recruiters can manage job postings through a complete CRUD interface.
+
+### Features
+
+- View Jobs
+- Create Job
+- Edit Job
+- Delete Job
+- Search & Filter Jobs
+- Status Management
+- Pagination-ready architecture
+
+### Architecture
+
+```
+ManageJobs
+├── JobFilters
+├── JobTable
+│   ├── JobStatusBadge
+│   └── JobActions
+├── DeleteJobModal
+└── JobForm (Add/Edit)
+```
+
+The module uses a reusable service layer and custom hook for data management.
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -500,3 +530,4 @@ This approach minimizes duplication and keeps the UI consistent across different
 - ✅ Implement saved jobs feature
 - ✅ Develop job application workflow
 - ✅ Create recruiter dashboard
+- ✅ Implement recruiter job management

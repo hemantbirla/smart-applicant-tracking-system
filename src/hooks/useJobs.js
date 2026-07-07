@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   getJobs,
@@ -39,36 +39,14 @@ const useJobs = () => {
 
       const response = await getJobs();
 
-      /**
-       * Supports:
-       *
-       * API:
-       * {
-       *   jobs: [],
-       *   total: 20
-       * }
-       *
-       * OR
-       *
-       * Fake API:
-       * []
-       */
+      const jobsData = Array.isArray(response) ? response : response.jobs || [];
 
-      if (Array.isArray(response)) {
-        setJobs(response);
+      setJobs(jobsData);
 
-        setPagination((prev) => ({
-          ...prev,
-          total: response.length,
-        }));
-      } else {
-        setJobs(response.jobs || []);
-
-        setPagination((prev) => ({
-          ...prev,
-          total: response.total || 0,
-        }));
-      }
+      setPagination((prev) => ({
+        ...prev,
+        total: jobsData.length,
+      }));
     } catch (err) {
       setError(err?.response?.data?.message || "Failed to load jobs.");
     } finally {
@@ -102,11 +80,7 @@ const useJobs = () => {
 
       const updatedJob = await updateJobService(id, jobData);
 
-      setJobs((prev) =>
-        prev.map((job) =>
-          job.id === id ? updatedJob : job
-        )
-      );
+      setJobs((prev) => prev.map((job) => (job.id === id ? updatedJob : job)));
 
       return updatedJob;
     } finally {
@@ -123,20 +97,80 @@ const useJobs = () => {
 
       await deleteJobService(id);
 
-      setJobs((prev) =>
-        prev.filter((job) => job.id !== id)
-      );
+      setJobs((prev) => prev.filter((job) => job.id !== id));
     } finally {
       setLoading(false);
     }
   };
 
   /**
-   * Refetch Jobs
+   * Apply Filters
    */
-  const refetch = () => {
-    fetchJobs();
-  };
+  const filteredJobs = useMemo(() => {
+    let data = [...jobs];
+
+    // Search
+    if (filters.search.trim()) {
+      const keyword = filters.search.toLowerCase();
+
+      data = data.filter((job) =>
+        [job.title, job.company, job.location, job.description, job.skills]
+          .join(" ")
+          .toLowerCase()
+          .includes(keyword),
+      );
+    }
+
+    // Location
+    if (filters.location) {
+      data = data.filter((job) => job.location === filters.location);
+    }
+
+    // Job Type
+    if (filters.jobType) {
+      data = data.filter((job) => job.jobType === filters.jobType);
+    }
+
+    // Status
+    if (filters.status) {
+      data = data.filter((job) => job.status === filters.status);
+    }
+
+    // Experience
+    if (filters.experience) {
+      data = data.filter((job) => job.experience === filters.experience);
+    }
+
+    // Sorting
+    switch (filters.sortBy) {
+      case "latest":
+        data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+
+      case "oldest":
+        data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        break;
+
+      case "title":
+        data.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+
+      default:
+        break;
+    }
+
+    return data;
+  }, [jobs, filters]);
+
+  /**
+   * Pagination
+   */
+  const totalPages = Math.ceil(filteredJobs.length / pagination.limit);
+
+  const paginatedJobs = filteredJobs.slice(
+    (pagination.page - 1) * pagination.limit,
+    pagination.page * pagination.limit,
+  );
 
   /**
    * Update Filters
@@ -146,16 +180,29 @@ const useJobs = () => {
       ...prev,
       ...newFilters,
     }));
+
+    // Reset to first page
+    setPagination((prev) => ({
+      ...prev,
+      page: 1,
+    }));
   };
 
   /**
    * Update Pagination
    */
-  const updatePagination = (data) => {
+  const updatePagination = (newPagination) => {
     setPagination((prev) => ({
       ...prev,
-      ...data,
+      ...newPagination,
     }));
+  };
+
+  /**
+   * Refetch
+   */
+  const refetch = () => {
+    fetchJobs();
   };
 
   useEffect(() => {
@@ -163,7 +210,7 @@ const useJobs = () => {
   }, [fetchJobs]);
 
   return {
-    jobs,
+    jobs: paginatedJobs,
 
     loading,
 
@@ -172,6 +219,8 @@ const useJobs = () => {
     filters,
 
     pagination,
+
+    totalPages,
 
     fetchJobs,
 

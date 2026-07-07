@@ -32,11 +32,11 @@ export const LOCATIONS = [
 
 // Experience
 export const EXPERIENCE_LEVELS = [
-  "All",
-  "Fresher",
-  "Junior",
-  "Mid Level",
-  "Senior",
+  { label: "All", value: "" },
+  { label: "Fresher", value: "Fresher" },
+  { label: "Junior", value: "Junior" },
+  { label: "Mid Level", value: "Mid Level" },
+  { label: "Senior", value: "Senior" },
 ];
 
 // Status
@@ -70,20 +70,23 @@ export const SORT_OPTIONS = [
 
 // Salary
 export const SALARY_RANGES = [
-  "3-5 LPA",
-  "5-8 LPA",
-  "8-12 LPA",
-  "12-18 LPA",
-  "18-25 LPA",
-  "25+ LPA",
+  { label: "Any Salary", value: "" },
+  { label: "3-5 LPA", value: "3-5 LPA" },
+  { label: "5-8 LPA", value: "5-8 LPA" },
+  { label: "8-12 LPA", value: "8-12 LPA" },
+  { label: "12-18 LPA", value: "12-18 LPA" },
+  { label: "18-25 LPA", value: "18-25 LPA" },
+  { label: "25+ LPA", value: "25+ LPA" },
 ];
 
 export const DEFAULT_JOB_FILTERS = {
   search: "",
   location: "",
-  employmentType: "",
+  jobType: "",
   experience: "",
   status: "",
+  workMode: "",
+  salary: "",
   sortBy: "newest",
 };
 
@@ -111,6 +114,12 @@ export const JOB_TABLE_COLUMNS = [
   "Posted Date",
   "Applicants",
   "Actions",
+];
+
+export const WORK_MODES = [
+  "Remote",
+  "Hybrid",
+  "Onsite",
 ];
 
 export const PAGE_SIZE = 10;
