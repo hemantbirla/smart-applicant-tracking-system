@@ -18,6 +18,9 @@ import RecruiterDashboard from "./pages/RecruiterDashboard/RecruiterDashboard";
 import RecruiterLayout from "./layouts/RecruiterLayout";
 
 import "react-toastify/dist/ReactToastify.css";
+import ManageJobs from "./pages/recruiter/ManageJobs";
+import AddJob from "./pages/recruiter/AddJob";
+import EditJob from "./pages/recruiter/EditJob";
 
 function App() {
   return (
@@ -71,8 +74,7 @@ function App() {
           }
         />
 
-        {/* RecruiterDashboard */}
-        {/* ================= Recruiter ================= */}
+        {/* ================= Recruiter Dashboard================= */}
 
         <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
 
@@ -147,6 +149,13 @@ function App() {
             </RecruiterLayout>
           }
         />
+
+        {/* ================= Recruiter Jobs ================= */}
+        <Route path="/recruiter/jobs" element={<ManageJobs />} />
+
+        <Route path="/recruiter/jobs/add" element={<AddJob />} />
+
+        <Route path="/recruiter/jobs/edit/:id" element={<EditJob />} />
       </Routes>
 
       <ToastContainer
