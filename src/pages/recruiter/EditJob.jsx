@@ -35,9 +35,9 @@ const EditJob = () => {
     fetchJob();
   }, [id]);
 
-  const handleUpdate = async (formData) => {
+  const handleUpdate = async (data) => {
     try {
-      await updateJob(id, formData);
+      await updateJob(id, data);
 
       toast.success("Job updated successfully.");
 
@@ -47,36 +47,19 @@ const EditJob = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <DashboardLayout>
-        <div className="page-container">
-          <h2>Loading Job...</h2>
-        </div>
-      </DashboardLayout>
-    );
-  }
-
-  if (!job) {
-    return (
-      <DashboardLayout>
-        <div className="page-container">
-          <h2>Job not found.</h2>
-        </div>
-      </DashboardLayout>
-    );
-  }
-
   return (
     <DashboardLayout>
       <div className="page-container">
         <h1>Edit Job</h1>
 
-        <JobForm
-          key={job.id}
-          defaultValues={job}
-          onSubmit={handleUpdate}
-        />
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <JobForm
+            defaultValues={job}
+            onSubmit={handleUpdate}
+          />
+        )}
       </div>
     </DashboardLayout>
   );

@@ -20,88 +20,118 @@ const JobForm = ({
     <form
       className="job-form"
       onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      autoComplete="off"
     >
       <div className="form-grid">
+        {/* Job Title */}
         <div className="form-group">
           <label>Job Title</label>
 
           <input
-            {...register("title")}
+            type="text"
             placeholder="React Developer"
+            {...register("title")}
           />
 
-          <p>{errors.title?.message}</p>
+          <small className="form-error">
+            {errors.title?.message}
+          </small>
         </div>
 
+        {/* Company */}
         <div className="form-group">
           <label>Company</label>
 
           <input
-            {...register("company")}
+            type="text"
             placeholder="Google"
+            {...register("company")}
           />
 
-          <p>{errors.company?.message}</p>
+          <small className="form-error">
+            {errors.company?.message}
+          </small>
         </div>
 
+        {/* Location */}
         <div className="form-group">
           <label>Location</label>
 
           <input
-            {...register("location")}
+            type="text"
             placeholder="Bangalore"
+            {...register("location")}
           />
 
-          <p>{errors.location?.message}</p>
+          <small className="form-error">
+            {errors.location?.message}
+          </small>
         </div>
 
+        {/* Job Type */}
         <div className="form-group">
           <label>Employment Type</label>
 
           <select {...register("jobType")}>
             <option value="">Select</option>
-            <option>Full Time</option>
-            <option>Part Time</option>
-            <option>Internship</option>
-            <option>Contract</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Internship">Internship</option>
+            <option value="Contract">Contract</option>
           </select>
 
-          <p>{errors.jobType?.message}</p>
+          <small className="form-error">
+            {errors.jobType?.message}
+          </small>
         </div>
 
+        {/* Experience */}
         <div className="form-group">
           <label>Experience</label>
 
           <input
-            {...register("experience")}
+            type="text"
             placeholder="3-5 Years"
+            {...register("experience")}
           />
 
-          <p>{errors.experience?.message}</p>
+          <small className="form-error">
+            {errors.experience?.message}
+          </small>
         </div>
 
+        {/* Salary */}
         <div className="form-group">
-          <label>Salary</label>
+          <label>Salary Range</label>
 
           <input
-            {...register("salary")}
+            type="text"
             placeholder="10-15 LPA"
+            {...register("salary")}
           />
 
-          <p>{errors.salary?.message}</p>
+          <small className="form-error">
+            {errors.salary?.message}
+          </small>
         </div>
 
+        {/* Skills */}
         <div className="form-group full-width">
           <label>Skills</label>
 
           <input
-            {...register("skills")}
+            type="text"
             placeholder="React, JavaScript, Redux"
+            {...register("skills")}
           />
 
-          <p>{errors.skills?.message}</p>
+          <small className="form-error">
+            {errors.skills?.message}
+          </small>
         </div>
 
+        {/* Description */}
         <div className="form-group full-width">
           <label>Description</label>
 
@@ -110,9 +140,12 @@ const JobForm = ({
             {...register("description")}
           />
 
-          <p>{errors.description?.message}</p>
+          <small className="form-error">
+            {errors.description?.message}
+          </small>
         </div>
 
+        {/* Requirements */}
         <div className="form-group full-width">
           <label>Requirements</label>
 
@@ -121,9 +154,12 @@ const JobForm = ({
             {...register("requirements")}
           />
 
-          <p>{errors.requirements?.message}</p>
+          <small className="form-error">
+            {errors.requirements?.message}
+          </small>
         </div>
 
+        {/* Responsibilities */}
         <div className="form-group full-width">
           <label>Responsibilities</label>
 
@@ -132,9 +168,12 @@ const JobForm = ({
             {...register("responsibilities")}
           />
 
-          <p>{errors.responsibilities?.message}</p>
+          <small className="form-error">
+            {errors.responsibilities?.message}
+          </small>
         </div>
 
+        {/* Deadline */}
         <div className="form-group">
           <label>Application Deadline</label>
 
@@ -143,29 +182,37 @@ const JobForm = ({
             {...register("deadline")}
           />
 
-          <p>{errors.deadline?.message}</p>
+          <small className="form-error">
+            {errors.deadline?.message}
+          </small>
         </div>
 
+        {/* Status */}
         <div className="form-group">
           <label>Status</label>
 
           <select {...register("status")}>
-            <option>Open</option>
-            <option>Closed</option>
-            <option>Draft</option>
-            <option>Expired</option>
+            <option value="">Select</option>
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
+            <option value="Draft">Draft</option>
+            <option value="Expired">Expired</option>
           </select>
 
-          <p>{errors.status?.message}</p>
+          <small className="form-error">
+            {errors.status?.message}
+          </small>
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="primary-btn"
-      >
-        Save Job
-      </button>
+      <div className="job-form-actions">
+        <button
+          type="submit"
+          className="primary-btn"
+        >
+          Save Job
+        </button>
+      </div>
     </form>
   );
 };

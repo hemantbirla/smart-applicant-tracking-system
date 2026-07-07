@@ -1,13 +1,26 @@
-import { FiAlertTriangle } from "react-icons/fi";
+import { FiAlertCircle } from "react-icons/fi";
 
-const ErrorState = ({ message }) => {
+const ErrorState = ({
+  title = "Something went wrong",
+  message = "Please try again later.",
+  onRetry,
+}) => {
   return (
     <div className="error-state">
-      <FiAlertTriangle size={50} />
+      <FiAlertCircle className="error-icon" />
 
-      <h3>Something went wrong</h3>
+      <h2>{title}</h2>
 
       <p>{message}</p>
+
+      {onRetry && (
+        <button
+          className="primary-btn"
+          onClick={onRetry}
+        >
+          Retry
+        </button>
+      )}
     </div>
   );
 };

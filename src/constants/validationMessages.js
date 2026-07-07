@@ -32,4 +32,23 @@ export const validationMessages = {
     addressRequired: "Address is required",
     invalidUrl: "Enter a valid URL",
   },
+
+  // ==============================
+  // Recruiter Jobs
+  // ==============================
+  job: {
+    titleRequired: "Job title is required.",
+    companyRequired: "Company name is required.",
+    locationRequired: "Location is required.",
+    jobTypeRequired: "Employment type is required.",
+    experienceRequired: "Experience level is required.",
+    salaryRequired: "Salary range is required.",
+    skillsRequired: "Skills are required.",
+    descriptionRequired: "Job description is required.",
+    requirementsRequired: "Requirements are required.",
+    responsibilitiesRequired: "Responsibilities are required.",
+    deadlineRequired: "Application deadline is required.",
+    invalidDeadline: "Please select a valid date.",
+    statusRequired: "Job status is required.",
+  },
 };

@@ -2,9 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
+
 import JobFilters from "../../components/jobs/JobFilters";
 import JobTable from "../../components/jobs/JobTable";
 import DeleteJobModal from "../../components/jobs/DeleteJobModal";
+
+import SkeletonCard from "../../components/common/SkeletonCard";
+import EmptyState from "../../components/common/EmptyState";
+import ErrorState from "../../components/common/ErrorState";
 
 import useJobs from "../../hooks/useJobs";
 
@@ -25,18 +30,16 @@ const ManageJobs = () => {
   const {
     jobs,
     loading,
+    error,
     deleteJob,
+    fetchJobs,
   } = useJobs(filters);
 
   const [selectedJob, setSelectedJob] = useState(null);
-
-  const [isDeleteOpen, setIsDeleteOpen] =
-    useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const handleView = (job) => {
     console.log("View Job", job);
-
-    // Future
     // navigate(`/recruiter/jobs/${job.id}`);
   };
 
@@ -46,7 +49,6 @@ const ManageJobs = () => {
 
   const handleDeleteClick = (job) => {
     setSelectedJob(job);
-
     setIsDeleteOpen(true);
   };
 
@@ -56,7 +58,6 @@ const ManageJobs = () => {
     await deleteJob(selectedJob.id);
 
     setSelectedJob(null);
-
     setIsDeleteOpen(false);
   };
 
@@ -86,13 +87,39 @@ const ManageJobs = () => {
           sortOptions={SORT_OPTIONS}
         />
 
-        <JobTable
-          jobs={jobs}
-          loading={loading}
-          onView={handleView}
-          onEdit={handleEdit}
-          onDelete={handleDeleteClick}
-        />
+        {/* Loading */}
+        {loading && <SkeletonCard rows={6} />}
+
+        {/* Error */}
+        {!loading && error && (
+          <ErrorState
+            title="Unable to Load Jobs"
+            message={error}
+            onRetry={fetchJobs}
+          />
+        )}
+
+        {/* Empty */}
+        {!loading &&
+          !error &&
+          jobs.length === 0 && (
+            <EmptyState
+              title="No Jobs Found"
+              message="Create your first job posting to start receiving applications."
+            />
+          )}
+
+        {/* Jobs */}
+        {!loading &&
+          !error &&
+          jobs.length > 0 && (
+            <JobTable
+              jobs={jobs}
+              onView={handleView}
+              onEdit={handleEdit}
+              onDelete={handleDeleteClick}
+            />
+          )}
 
         <DeleteJobModal
           isOpen={isDeleteOpen}
