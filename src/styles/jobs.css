@@ -1036,3 +1036,60 @@
   background: #dbeafe;
   color: #1d4ed8;
 }
+
+/* ===========================
+   Job Actions
+=========================== */
+
+.job-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.job-action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.25s ease;
+  font-size: 16px;
+}
+
+.job-action-btn svg {
+  pointer-events: none;
+}
+
+.job-action-btn.view {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.job-action-btn.view:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.job-action-btn.edit {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.job-action-btn.edit:hover {
+  background: #059669;
+  color: white;
+}
+
+.job-action-btn.delete {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.job-action-btn.delete:hover {
+  background: #dc2626;
+  color: white;
+}
