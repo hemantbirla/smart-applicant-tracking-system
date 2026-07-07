@@ -1,15 +1,18 @@
 import "../../styles/dashboard.css";
 
-const DashboardCard = ({ data }) => {
-  const { title, count, icon: Icon, color } = data;
-
+const DashboardCard = ({
+  title,
+  count,
+  icon: Icon,
+  color,
+}) => {
   return (
     <div className="dashboard-card">
       <div
         className="dashboard-card-icon"
         style={{ backgroundColor: color }}
       >
-        <Icon className="dashboard-icon" />
+        {Icon && <Icon className="dashboard-icon" />}
       </div>
 
       <div className="dashboard-card-content">
