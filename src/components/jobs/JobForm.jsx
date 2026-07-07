@@ -1,193 +1,173 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
-import { jobSchema } from "../../constants/jobValidation";
-import {
-  JOB_TYPES,
-  EXPERIENCE_LEVELS,
-  JOB_STATUS,
-} from "../../constants/jobConstants";
+import { jobSchema } from "../../constants/validationSchemas";
 
-import "../../styles/jobs.css";
-
-const JobForm = ({ defaultValues = {}, onSubmit, loading = false }) => {
+const JobForm = ({
+  defaultValues = {},
+  onSubmit,
+}) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(jobSchema),
-
-    defaultValues: {
-      title: "",
-      company: "",
-      location: "",
-      employmentType: "",
-      experience: "",
-      salary: "",
-      skills: "",
-      description: "",
-      requirements: "",
-      responsibilities: "",
-      deadline: "",
-      status: "Open",
-      ...defaultValues,
-    },
+    defaultValues,
   });
 
-  useEffect(() => {
-    if (defaultValues?.title) {
-      reset(defaultValues);
-    }
-  }, [reset]);
-
   return (
-    <form className="job-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="job-grid">
-        <Input
-          label="Job Title"
-          name="title"
-          register={register}
-          error={errors.title}
-        />
+    <form
+      className="job-form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="form-grid">
+        <div className="form-group">
+          <label>Job Title</label>
 
-        <Input
-          label="Company"
-          name="company"
-          register={register}
-          error={errors.company}
-        />
+          <input
+            {...register("title")}
+            placeholder="React Developer"
+          />
 
-        <Input
-          label="Location"
-          name="location"
-          register={register}
-          error={errors.location}
-        />
+          <p>{errors.title?.message}</p>
+        </div>
 
-        <Select
-          label="Employment Type"
-          name="employmentType"
-          options={JOB_TYPES}
-          register={register}
-          error={errors.employmentType}
-        />
+        <div className="form-group">
+          <label>Company</label>
 
-        <Select
-          label="Experience"
-          name="experience"
-          options={EXPERIENCE_LEVELS}
-          register={register}
-          error={errors.experience}
-        />
+          <input
+            {...register("company")}
+            placeholder="Google"
+          />
 
-        <Input
-          label="Salary"
-          name="salary"
-          register={register}
-          error={errors.salary}
-        />
+          <p>{errors.company?.message}</p>
+        </div>
 
-        <Input
-          label="Skills"
-          name="skills"
-          placeholder="React, Node.js..."
-          register={register}
-          error={errors.skills}
-        />
+        <div className="form-group">
+          <label>Location</label>
 
-        <Select
-          label="Status"
-          name="status"
-          options={JOB_STATUS}
-          register={register}
-          error={errors.status}
-        />
+          <input
+            {...register("location")}
+            placeholder="Bangalore"
+          />
+
+          <p>{errors.location?.message}</p>
+        </div>
+
+        <div className="form-group">
+          <label>Employment Type</label>
+
+          <select {...register("jobType")}>
+            <option value="">Select</option>
+            <option>Full Time</option>
+            <option>Part Time</option>
+            <option>Internship</option>
+            <option>Contract</option>
+          </select>
+
+          <p>{errors.jobType?.message}</p>
+        </div>
+
+        <div className="form-group">
+          <label>Experience</label>
+
+          <input
+            {...register("experience")}
+            placeholder="3-5 Years"
+          />
+
+          <p>{errors.experience?.message}</p>
+        </div>
+
+        <div className="form-group">
+          <label>Salary</label>
+
+          <input
+            {...register("salary")}
+            placeholder="10-15 LPA"
+          />
+
+          <p>{errors.salary?.message}</p>
+        </div>
+
+        <div className="form-group full-width">
+          <label>Skills</label>
+
+          <input
+            {...register("skills")}
+            placeholder="React, JavaScript, Redux"
+          />
+
+          <p>{errors.skills?.message}</p>
+        </div>
+
+        <div className="form-group full-width">
+          <label>Description</label>
+
+          <textarea
+            rows={5}
+            {...register("description")}
+          />
+
+          <p>{errors.description?.message}</p>
+        </div>
+
+        <div className="form-group full-width">
+          <label>Requirements</label>
+
+          <textarea
+            rows={5}
+            {...register("requirements")}
+          />
+
+          <p>{errors.requirements?.message}</p>
+        </div>
+
+        <div className="form-group full-width">
+          <label>Responsibilities</label>
+
+          <textarea
+            rows={5}
+            {...register("responsibilities")}
+          />
+
+          <p>{errors.responsibilities?.message}</p>
+        </div>
+
+        <div className="form-group">
+          <label>Application Deadline</label>
+
+          <input
+            type="date"
+            {...register("deadline")}
+          />
+
+          <p>{errors.deadline?.message}</p>
+        </div>
+
+        <div className="form-group">
+          <label>Status</label>
+
+          <select {...register("status")}>
+            <option>Open</option>
+            <option>Closed</option>
+            <option>Draft</option>
+            <option>Expired</option>
+          </select>
+
+          <p>{errors.status?.message}</p>
+        </div>
       </div>
 
-      <TextArea
-        label="Description"
-        name="description"
-        register={register}
-        error={errors.description}
-      />
-
-      <TextArea
-        label="Requirements"
-        name="requirements"
-        register={register}
-        error={errors.requirements}
-      />
-
-      <TextArea
-        label="Responsibilities"
-        name="responsibilities"
-        register={register}
-        error={errors.responsibilities}
-      />
-
-      <div className="job-grid">
-        <Input
-          type="date"
-          label="Application Deadline"
-          name="deadline"
-          register={register}
-          error={errors.deadline}
-        />
-      </div>
-
-      <button className="job-submit-btn" disabled={loading}>
-        {loading ? "Saving..." : "Save Job"}
+      <button
+        type="submit"
+        className="primary-btn"
+      >
+        Save Job
       </button>
     </form>
   );
 };
-
-const Input = ({
-  label,
-  name,
-  register,
-  error,
-  type = "text",
-  placeholder = "",
-}) => (
-  <div className="job-field">
-    <label>{label}</label>
-
-    <input type={type} placeholder={placeholder} {...register(name)} />
-
-    {error && <p className="job-error">{error.message}</p>}
-  </div>
-);
-
-const Select = ({ label, name, options, register, error }) => (
-  <div className="job-field">
-    <label>{label}</label>
-
-    <select {...register(name)}>
-      <option value="">Select</option>
-
-      {options.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
-
-    {error && <p className="job-error">{error.message}</p>}
-  </div>
-);
-
-const TextArea = ({ label, name, register, error }) => (
-  <div className="job-field">
-    <label>{label}</label>
-
-    <textarea rows={5} {...register(name)} />
-
-    {error && <p className="job-error">{error.message}</p>}
-  </div>
-);
 
 export default JobForm;

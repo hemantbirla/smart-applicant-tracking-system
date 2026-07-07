@@ -8,29 +8,27 @@ import useJobs from "../../hooks/useJobs";
 const AddJob = () => {
   const navigate = useNavigate();
 
-  const { createJob, loading } = useJobs();
+  const { createJob } = useJobs();
 
-  const handleSubmit = async (data) => {
+  const handleCreate = async (data) => {
     try {
       await createJob(data);
 
-      toast.success("Job created successfully.");
+      toast.success("Job created successfully");
 
       navigate("/recruiter/jobs");
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Failed to create job.");
+      toast.error("Failed to create job");
+      console.error(error);
     }
   };
 
   return (
     <DashboardLayout>
-      <div className="jobs-page">
-        <div className="page-header">
-          <h1>Add New Job</h1>
-          <p>Create a new job posting.</p>
-        </div>
+      <div className="page-container">
+        <h1>Add Job</h1>
 
-        <JobForm onSubmit={handleSubmit} loading={loading} />
+        <JobForm onSubmit={handleCreate} />
       </div>
     </DashboardLayout>
   );

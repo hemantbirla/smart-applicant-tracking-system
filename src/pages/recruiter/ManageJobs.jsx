@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import DashboardLayout from "../../layouts/DashboardLayout";
 import JobFilters from "../../components/jobs/JobFilters";
 import JobTable from "../../components/jobs/JobTable";
 import DeleteJobModal from "../../components/jobs/DeleteJobModal";
+
 import useJobs from "../../hooks/useJobs";
 
-// Import your newly structured constants
 import {
   LOCATIONS,
   JOB_TYPES,
@@ -16,26 +18,46 @@ import {
 } from "../../constants/jobConstants";
 
 const ManageJobs = () => {
-  // Use the exact filter configuration from your file
+  const navigate = useNavigate();
+
   const [filters, setFilters] = useState(DEFAULT_JOB_FILTERS);
 
-  const { jobs, loading, deleteJob } = useJobs(filters);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const {
+    jobs,
+    loading,
+    deleteJob,
+  } = useJobs(filters);
 
-  const handleView = (job) => console.log("View Job", job);
-  const handleEdit = (job) => console.log("Edit Job", job);
+  const [selectedJob, setSelectedJob] = useState(null);
+
+  const [isDeleteOpen, setIsDeleteOpen] =
+    useState(false);
+
+  const handleView = (job) => {
+    console.log("View Job", job);
+
+    // Future
+    // navigate(`/recruiter/jobs/${job.id}`);
+  };
+
+  const handleEdit = (job) => {
+    navigate(`/recruiter/jobs/edit/${job.id}`);
+  };
 
   const handleDeleteClick = (job) => {
     setSelectedJob(job);
+
     setIsDeleteOpen(true);
   };
 
   const confirmDelete = async () => {
     if (!selectedJob) return;
+
     await deleteJob(selectedJob.id);
-    setIsDeleteOpen(false);
+
     setSelectedJob(null);
+
+    setIsDeleteOpen(false);
   };
 
   return (
@@ -43,16 +65,17 @@ const ManageJobs = () => {
       <div className="page-container">
         <div className="page-header">
           <h1>Manage Jobs</h1>
+
           <button
             className="primary-btn"
-            to="/recruiter/jobs/add"
-            className="primary-btn"
+            onClick={() =>
+              navigate("/recruiter/jobs/add")
+            }
           >
             + Add Job
           </button>
         </div>
 
-        {/* Pass down the exact keys expected by your new configuration */}
         <JobFilters
           filters={filters}
           setFilters={setFilters}
@@ -73,7 +96,10 @@ const ManageJobs = () => {
 
         <DeleteJobModal
           isOpen={isDeleteOpen}
-          onClose={() => setIsDeleteOpen(false)}
+          onClose={() => {
+            setIsDeleteOpen(false);
+            setSelectedJob(null);
+          }}
           onConfirm={confirmDelete}
           job={selectedJob}
         />

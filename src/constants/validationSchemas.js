@@ -1,9 +1,9 @@
 import * as yup from "yup";
 import { validationMessages } from "./validationMessages";
 
-// ==============================
+// ======================================================
 // Login Schema
-// ==============================
+// ======================================================
 
 export const loginSchema = yup.object({
   email: yup
@@ -19,9 +19,9 @@ export const loginSchema = yup.object({
     .min(8, validationMessages.password.min),
 });
 
-// ==============================
+// ======================================================
 // Signup Schema
-// ==============================
+// ======================================================
 
 export const signupSchema = yup.object({
   fullName: yup
@@ -51,9 +51,9 @@ export const signupSchema = yup.object({
     ),
 });
 
-// ==============================
+// ======================================================
 // Forgot Password Schema
-// ==============================
+// ======================================================
 
 export const forgotPasswordSchema = yup.object({
   email: yup
@@ -63,9 +63,9 @@ export const forgotPasswordSchema = yup.object({
     .email(validationMessages.email.invalid),
 });
 
-// ==============================
+// ======================================================
 // Reset Password Schema
-// ==============================
+// ======================================================
 
 export const resetPasswordSchema = yup.object({
   password: yup
@@ -84,9 +84,9 @@ export const resetPasswordSchema = yup.object({
     ),
 });
 
-// ==============================
+// ======================================================
 // Personal Information Schema
-// ==============================
+// ======================================================
 
 export const personalInfoSchema = yup.object({
   firstName: yup
@@ -98,6 +98,11 @@ export const personalInfoSchema = yup.object({
     .string()
     .trim()
     .required(validationMessages.personalInfo.lastNameRequired),
+
+  title: yup
+    .string()
+    .trim()
+    .required("Job title is required"),
 
   email: yup
     .string()
@@ -114,10 +119,10 @@ export const personalInfoSchema = yup.object({
     .string()
     .required(validationMessages.personalInfo.dobRequired),
 
-  address: yup
+  location: yup
     .string()
     .trim()
-    .required(validationMessages.personalInfo.addressRequired),
+    .required("Location is required"),
 
   linkedin: yup
     .string()
@@ -139,4 +144,70 @@ export const personalInfoSchema = yup.object({
     .url(validationMessages.personalInfo.invalidUrl)
     .nullable()
     .transform((value) => (value === "" ? null : value)),
+});
+
+// ======================================================
+// Recruiter Job Schema
+// ======================================================
+
+export const jobSchema = yup.object({
+  title: yup
+    .string()
+    .trim()
+    .required("Job title is required"),
+
+  company: yup
+    .string()
+    .trim()
+    .required("Company name is required"),
+
+  location: yup
+    .string()
+    .trim()
+    .required("Location is required"),
+
+  jobType: yup
+    .string()
+    .trim()
+    .required("Job type is required"),
+
+  experience: yup
+    .string()
+    .trim()
+    .required("Experience level is required"),
+
+  salary: yup
+    .string()
+    .trim()
+    .required("Salary range is required"),
+
+  skills: yup
+    .string()
+    .trim()
+    .required("Skills are required"),
+
+  description: yup
+    .string()
+    .trim()
+    .required("Description is required"),
+
+  requirements: yup
+    .string()
+    .trim()
+    .required("Requirements are required"),
+
+  responsibilities: yup
+    .string()
+    .trim()
+    .required("Responsibilities are required"),
+
+  deadline: yup
+    .date()
+    .required("Application deadline is required")
+    .typeError("Please select a valid date"),
+
+  status: yup
+    .string()
+    .trim()
+    .required("Status is required"),
 });

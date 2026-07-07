@@ -1,5 +1,6 @@
 import { FiEye, FiEdit2, FiTrash2 } from "react-icons/fi";
 import "../../styles/jobs.css";
+
 const JobActions = ({
   job,
   onView,
@@ -7,7 +8,7 @@ const JobActions = ({
   onDelete,
 }) => {
   return (
-    <div className="job-actions"> 
+    <div className="job-actions">
       <button
         type="button"
         className="job-action-btn view"
