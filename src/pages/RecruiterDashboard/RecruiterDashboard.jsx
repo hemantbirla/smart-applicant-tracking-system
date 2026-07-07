@@ -3,6 +3,7 @@ import RecruiterLayout from "../../layouts/RecruiterLayout";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import RecruiterStats from "../../components/dashboard/recruiter/RecruiterStats";
 import RecentJobs from "../../components/dashboard/recruiter/RecentJobs";
+import RecentCandidates from "../../components/dashboard/recruiter/RecentCandidates";
 
 import { recruiterHeader } from "../../constants/recruiterDashboardData";
 
@@ -19,6 +20,8 @@ const RecruiterDashboard = () => {
       <RecruiterStats />
 
       <RecentJobs />
+
+      <RecentCandidates />
     </RecruiterLayout>
   );
 };
