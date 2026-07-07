@@ -1,80 +1,77 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+
 import DashboardLayout from "../../layouts/DashboardLayout";
+
 import JobFilters from "../../components/jobs/JobFilters";
 import JobTable from "../../components/jobs/JobTable";
 import DeleteJobModal from "../../components/jobs/DeleteJobModal";
+
 import useJobs from "../../hooks/useJobs";
 
-// Import your newly structured constants
-import {
-  LOCATIONS,
-  JOB_TYPES,
-  EXPERIENCE_LEVELS,
-  JOB_STATUS,
-  SORT_OPTIONS,
-  DEFAULT_JOB_FILTERS
-} from "../../constants/jobConstants";
+import "../../styles/jobs.css";
 
 const ManageJobs = () => {
-  // Use the exact filter configuration from your file
-  const [filters, setFilters] = useState(DEFAULT_JOB_FILTERS);
+  const {
+    jobs,
+    loading,
+    error,
+    deleteJob,
+    refetch,
+  } = useJobs();
 
-  const { jobs, loading, deleteJob } = useJobs(filters);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-  const handleView = (job) => console.log("View Job", job);
-  const handleEdit = (job) => console.log("Edit Job", job);
+  const [showDeleteModal, setShowDeleteModal] =
+    useState(false);
 
   const handleDeleteClick = (job) => {
     setSelectedJob(job);
-    setIsDeleteOpen(true);
+    setShowDeleteModal(true);
   };
 
   const confirmDelete = async () => {
-    if (!selectedJob) return;
-    await deleteJob(selectedJob.id);
-    setIsDeleteOpen(false);
-    setSelectedJob(null);
+    try {
+      await deleteJob(selectedJob.id);
+
+      toast.success("Job deleted successfully.");
+
+      setShowDeleteModal(false);
+
+      setSelectedJob(null);
+
+      refetch();
+    } catch {
+      toast.error("Unable to delete job.");
+    }
   };
 
   return (
     <DashboardLayout>
-      <div className="page-container">
-        
-        <div className="page-header">
+      <div className="jobs-page">
+
+        <div className="jobs-header">
           <h1>Manage Jobs</h1>
-          <button className="primary-btn" onClick={() => console.log("Navigate to Add Job")}>
-            + Add Job
-          </button>
         </div>
 
-        {/* Pass down the exact keys expected by your new configuration */}
-        <JobFilters
-          filters={filters}
-          setFilters={setFilters}
-          locations={LOCATIONS}
-          jobTypes={JOB_TYPES}
-          experienceLevels={EXPERIENCE_LEVELS}
-          statuses={JOB_STATUS}
-          sortOptions={SORT_OPTIONS}
-        />
+        <JobFilters />
 
         <JobTable
           jobs={jobs}
           loading={loading}
-          onView={handleView}
-          onEdit={handleEdit}
+          error={error}
           onDelete={handleDeleteClick}
         />
 
         <DeleteJobModal
-          isOpen={isDeleteOpen}
-          onClose={() => setIsDeleteOpen(false)}
-          onConfirm={confirmDelete}
+          open={showDeleteModal}
           job={selectedJob}
+          onCancel={() => {
+            setShowDeleteModal(false);
+            setSelectedJob(null);
+          }}
+          onConfirm={confirmDelete}
         />
-
       </div>
     </DashboardLayout>
   );

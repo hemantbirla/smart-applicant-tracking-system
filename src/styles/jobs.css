@@ -3,22 +3,41 @@
 ===================================================== */
 
 .jobs-page {
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 30px;
 }
 
-.jobs-heading {
-    font-size: 34px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 8px;
+.jobs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.jobs-subtitle {
-    color: #6b7280;
-    font-size: 15px;
-    margin-bottom: 35px;
+.jobs-header h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.jobs-table-wrapper {
+  margin-top: 25px;
+  overflow-x: auto;
+}
+
+.jobs-empty {
+  padding: 50px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.jobs-loading {
+  padding: 40px;
+  text-align: center;
+}
+
+.jobs-error {
+  padding: 40px;
+  text-align: center;
+  color: #ef4444;
 }
 
 /* =====================================================
