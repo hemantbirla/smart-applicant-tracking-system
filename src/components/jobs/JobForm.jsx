@@ -11,11 +11,7 @@ import {
 
 import "../../styles/jobs.css";
 
-const JobForm = ({
-  defaultValues = {},
-  onSubmit,
-  loading = false,
-}) => {
+const JobForm = ({ defaultValues = {}, onSubmit, loading = false }) => {
   const {
     register,
     handleSubmit,
@@ -42,28 +38,13 @@ const JobForm = ({
   });
 
   useEffect(() => {
-    reset({
-      title: "",
-      company: "",
-      location: "",
-      employmentType: "",
-      experience: "",
-      salary: "",
-      skills: "",
-      description: "",
-      requirements: "",
-      responsibilities: "",
-      deadline: "",
-      status: "Open",
-      ...defaultValues,
-    });
-  }, [defaultValues, reset]);
+    if (defaultValues?.title) {
+      reset(defaultValues);
+    }
+  }, [reset]);
 
   return (
-    <form
-      className="job-form"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="job-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="job-grid">
         <Input
           label="Job Title"
@@ -157,10 +138,7 @@ const JobForm = ({
         />
       </div>
 
-      <button
-        className="job-submit-btn"
-        disabled={loading}
-      >
+      <button className="job-submit-btn" disabled={loading}>
         {loading ? "Saving..." : "Save Job"}
       </button>
     </form>
@@ -178,27 +156,13 @@ const Input = ({
   <div className="job-field">
     <label>{label}</label>
 
-    <input
-      type={type}
-      placeholder={placeholder}
-      {...register(name)}
-    />
+    <input type={type} placeholder={placeholder} {...register(name)} />
 
-    {error && (
-      <p className="job-error">
-        {error.message}
-      </p>
-    )}
+    {error && <p className="job-error">{error.message}</p>}
   </div>
 );
 
-const Select = ({
-  label,
-  name,
-  options,
-  register,
-  error,
-}) => (
+const Select = ({ label, name, options, register, error }) => (
   <div className="job-field">
     <label>{label}</label>
 
@@ -206,42 +170,23 @@ const Select = ({
       <option value="">Select</option>
 
       {options.map((option) => (
-        <option
-          key={option}
-          value={option}
-        >
+        <option key={option} value={option}>
           {option}
         </option>
       ))}
     </select>
 
-    {error && (
-      <p className="job-error">
-        {error.message}
-      </p>
-    )}
+    {error && <p className="job-error">{error.message}</p>}
   </div>
 );
 
-const TextArea = ({
-  label,
-  name,
-  register,
-  error,
-}) => (
+const TextArea = ({ label, name, register, error }) => (
   <div className="job-field">
     <label>{label}</label>
 
-    <textarea
-      rows={5}
-      {...register(name)}
-    />
+    <textarea rows={5} {...register(name)} />
 
-    {error && (
-      <p className="job-error">
-        {error.message}
-      </p>
-    )}
+    {error && <p className="job-error">{error.message}</p>}
   </div>
 );
 
