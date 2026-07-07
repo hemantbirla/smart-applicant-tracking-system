@@ -1,61 +1,26 @@
-// ===============================
 // Employment Types
-// ===============================
-
 export const EMPLOYMENT_TYPES = [
   "Full Time",
   "Part Time",
   "Contract",
   "Internship",
   "Freelance",
-  "Remote",
 ];
 
-// ===============================
-// Experience Levels
-// ===============================
-
-export const EXPERIENCE_LEVELS = [
-  "All",
-  "Fresher",
-  "Junior",
-  "Mid Level",
-  "Senior",
-];
-
-// ===============================
-// Job Status
-// ===============================
-
-export const JOB_STATUS = [
-  "All",
-  "Open",
-  "Closed",
-  "Draft",
-  "Expired",
-];
-
-// ===============================
 // Job Types
-// ===============================
-
 export const JOB_TYPES = [
   "All",
   "Full Time",
   "Part Time",
   "Contract",
   "Internship",
-  "Remote",
+  "Freelance",
 ];
 
-// ===============================
 // Locations
-// ===============================
-
-export const JOB_LOCATIONS = [
+export const LOCATIONS = [
   "Remote",
   "Hybrid",
-  "Onsite",
   "Bangalore",
   "Hyderabad",
   "Pune",
@@ -65,10 +30,25 @@ export const JOB_LOCATIONS = [
   "Noida",
 ];
 
-// ===============================
-// Sort Options
-// ===============================
+// Experience
+export const EXPERIENCE_LEVELS = [
+  "All",
+  "Fresher",
+  "Junior",
+  "Mid Level",
+  "Senior",
+];
 
+// Status
+export const JOB_STATUS = [
+  "All",
+  "Open",
+  "Closed",
+  "Draft",
+  "Expired",
+];
+
+// Sort
 export const SORT_OPTIONS = [
   {
     label: "Newest First",
@@ -88,10 +68,7 @@ export const SORT_OPTIONS = [
   },
 ];
 
-// ===============================
-// Salary Range
-// ===============================
-
+// Salary
 export const SALARY_RANGES = [
   "3-5 LPA",
   "5-8 LPA",
@@ -101,10 +78,6 @@ export const SALARY_RANGES = [
   "25+ LPA",
 ];
 
-// ===============================
-// Default Filter Values
-// ===============================
-
 export const DEFAULT_JOB_FILTERS = {
   search: "",
   location: "",
@@ -113,10 +86,6 @@ export const DEFAULT_JOB_FILTERS = {
   status: "",
   sortBy: "newest",
 };
-
-// ===============================
-// Initial Job Form Values
-// ===============================
 
 export const INITIAL_JOB_VALUES = {
   title: "",
@@ -133,10 +102,6 @@ export const INITIAL_JOB_VALUES = {
   status: "Draft",
 };
 
-// ===============================
-// Table Headers
-// ===============================
-
 export const JOB_TABLE_COLUMNS = [
   "Title",
   "Location",
@@ -147,9 +112,5 @@ export const JOB_TABLE_COLUMNS = [
   "Applicants",
   "Actions",
 ];
-
-// ===============================
-// Pagination
-// ===============================
 
 export const PAGE_SIZE = 10;

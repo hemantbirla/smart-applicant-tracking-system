@@ -1245,3 +1245,54 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ===========================
+   Job Table
+=========================== */
+
+.job-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.job-table thead {
+  background: #f3f4f6;
+}
+
+.job-table th {
+  padding: 16px;
+  text-align: left;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.job-table td {
+  padding: 18px 16px;
+  border-top: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 15px;
+}
+
+.job-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.jobs-loading,
+.jobs-empty {
+  background: #ffffff;
+  padding: 60px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #6b7280;
+}

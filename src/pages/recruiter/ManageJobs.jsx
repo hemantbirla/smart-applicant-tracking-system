@@ -1,123 +1,80 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
-
 import DashboardLayout from "../../layouts/DashboardLayout";
-
 import JobFilters from "../../components/jobs/JobFilters";
 import JobTable from "../../components/jobs/JobTable";
 import DeleteJobModal from "../../components/jobs/DeleteJobModal";
-
 import useJobs from "../../hooks/useJobs";
 
+// Import your newly structured constants
+import {
+  LOCATIONS,
+  JOB_TYPES,
+  EXPERIENCE_LEVELS,
+  JOB_STATUS,
+  SORT_OPTIONS,
+  DEFAULT_JOB_FILTERS
+} from "../../constants/jobConstants";
+
 const ManageJobs = () => {
-  const {
-    jobs,
-    loading,
-    error,
-    fetchJobs,
-    deleteJob,
-  } = useJobs();
+  // Use the exact filter configuration from your file
+  const [filters, setFilters] = useState(DEFAULT_JOB_FILTERS);
 
-  const [selectedJob, setSelectedJob] =
-    useState(null);
+  const { jobs, loading, deleteJob } = useJobs(filters);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-  const [deleteOpen, setDeleteOpen] =
-    useState(false);
+  const handleView = (job) => console.log("View Job", job);
+  const handleEdit = (job) => console.log("Edit Job", job);
 
-  const [deleting, setDeleting] =
-    useState(false);
-
-  // Search & Filters (UI only for now)
-  const [filters, setFilters] = useState({
-    search: "",
-    location: "",
-    jobType: "",
-    experience: "",
-    status: "",
-    sort: "",
-  });
-
-  const openDeleteModal = (job) => {
+  const handleDeleteClick = (job) => {
     setSelectedJob(job);
-    setDeleteOpen(true);
+    setIsDeleteOpen(true);
   };
 
-  const closeDeleteModal = () => {
-    setSelectedJob(null);
-    setDeleteOpen(false);
-  };
-
-  const handleDelete = async () => {
+  const confirmDelete = async () => {
     if (!selectedJob) return;
-
-    try {
-      setDeleting(true);
-
-      await deleteJob(selectedJob.id);
-
-      toast.success("Job deleted successfully.");
-
-      closeDeleteModal();
-
-      fetchJobs();
-    } catch (error) {
-      toast.error(
-        error?.message ||
-          "Failed to delete job."
-      );
-    } finally {
-      setDeleting(false);
-    }
+    await deleteJob(selectedJob.id);
+    setIsDeleteOpen(false);
+    setSelectedJob(null);
   };
 
   return (
     <DashboardLayout>
-      <div className="manage-jobs-page">
+      <div className="page-container">
+        
         <div className="page-header">
           <h1>Manage Jobs</h1>
+          <button className="primary-btn" onClick={() => console.log("Navigate to Add Job")}>
+            + Add Job
+          </button>
         </div>
 
+        {/* Pass down the exact keys expected by your new configuration */}
         <JobFilters
           filters={filters}
           setFilters={setFilters}
+          locations={LOCATIONS}
+          jobTypes={JOB_TYPES}
+          experienceLevels={EXPERIENCE_LEVELS}
+          statuses={JOB_STATUS}
+          sortOptions={SORT_OPTIONS}
         />
 
-        {loading && (
-          <div className="jobs-loading">
-            Loading jobs...
-          </div>
-        )}
-
-        {error && (
-          <div className="jobs-error">
-            {error}
-          </div>
-        )}
-
-        {!loading &&
-          !error &&
-          jobs.length === 0 && (
-            <div className="jobs-empty">
-              No jobs found.
-            </div>
-          )}
-
-        {!loading &&
-          !error &&
-          jobs.length > 0 && (
-            <JobTable
-              jobs={jobs}
-              onDelete={openDeleteModal}
-            />
-          )}
+        <JobTable
+          jobs={jobs}
+          loading={loading}
+          onView={handleView}
+          onEdit={handleEdit}
+          onDelete={handleDeleteClick}
+        />
 
         <DeleteJobModal
-          isOpen={deleteOpen}
-          jobTitle={selectedJob?.title}
-          loading={deleting}
-          onClose={closeDeleteModal}
-          onConfirm={handleDelete}
+          isOpen={isDeleteOpen}
+          onClose={() => setIsDeleteOpen(false)}
+          onConfirm={confirmDelete}
+          job={selectedJob}
         />
+
       </div>
     </DashboardLayout>
   );
