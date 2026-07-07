@@ -109,12 +109,13 @@ export const recentCandidates = [
 // ===============================
 
 export const companySummary = {
-  companyName: "ABC Technologies",
   logo: "https://ui-avatars.com/api/?name=ABC+Technologies&background=2563eb&color=fff",
+  companyName: "ABC Technologies",
   industry: "Software Development",
   location: "Pune, Maharashtra",
-  totalEmployees: 850,
+  employees: 850,
   openPositions: 24,
-  recruiter: "John Smith",
+  recruiter: "Hemant Birla",
   website: "https://abctecnologies.com",
+  email: "hr@abctechnologies.com",
 };
