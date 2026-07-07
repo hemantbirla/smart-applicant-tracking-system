@@ -7,7 +7,7 @@ const JobActions = ({
   onDelete,
 }) => {
   return (
-    <div className="job-actions">
+    <div className="job-actions"> 
       <button
         type="button"
         className="job-action-btn view"
