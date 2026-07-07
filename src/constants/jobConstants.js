@@ -16,12 +16,11 @@ export const EMPLOYMENT_TYPES = [
 // ===============================
 
 export const EXPERIENCE_LEVELS = [
+  "All",
   "Fresher",
-  "1-2 Years",
-  "2-4 Years",
-  "4-6 Years",
-  "6-8 Years",
-  "8+ Years",
+  "Junior",
+  "Mid Level",
+  "Senior",
 ];
 
 // ===============================
@@ -29,10 +28,24 @@ export const EXPERIENCE_LEVELS = [
 // ===============================
 
 export const JOB_STATUS = [
+  "All",
   "Open",
-  "Draft",
   "Closed",
+  "Draft",
   "Expired",
+];
+
+// ===============================
+// Job Types
+// ===============================
+
+export const JOB_TYPES = [
+  "All",
+  "Full Time",
+  "Part Time",
+  "Contract",
+  "Internship",
+  "Remote",
 ];
 
 // ===============================
