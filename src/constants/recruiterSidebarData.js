@@ -32,9 +32,9 @@ export const recruiterSidebarMenu = [
   },
   {
     id: 4,
-    title: "Candidates",
+    title: "Applicants",
     icon: FiUsers,
-    path: "/recruiter/candidates",
+    path: "/recruiter/applicants",
   },
   {
     id: 5,

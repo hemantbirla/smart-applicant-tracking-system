@@ -22,6 +22,8 @@ import ViewJob from "./pages/recruiter/ViewJob";
 import AddJob from "./pages/recruiter/AddJob";
 import EditJob from "./pages/recruiter/EditJob";
 
+import Applicants from "./pages/Applicants/Applicants";
+
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -143,6 +145,9 @@ function App() {
             </DashboardLayout>
           }
         />
+
+        {/* ================= Applicants ================= */}
+        <Route path="/recruiter/applicants" element={<Applicants />} />
 
         {/* ================= 404 ================= */}
 
