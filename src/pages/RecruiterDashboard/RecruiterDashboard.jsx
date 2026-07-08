@@ -1,4 +1,4 @@
-import RecruiterLayout from "../../layouts/RecruiterLayout";
+import DashboardLayout from "../../layouts/DashboardLayout";
 
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import RecruiterStats from "../../components/dashboard/recruiter/RecruiterStats";
@@ -12,7 +12,7 @@ import { recruiterHeader } from "../../constants/recruiterDashboardData";
 
 const RecruiterDashboard = () => {
   return (
-    <RecruiterLayout>
+    <DashboardLayout>
       <div className="recruiter-dashboard">
         <DashboardHeader
           greeting={recruiterHeader.greeting}
@@ -36,7 +36,7 @@ const RecruiterDashboard = () => {
           </div>
         </div>
       </div>
-    </RecruiterLayout>
+    </DashboardLayout>
   );
 };
 

@@ -1,16 +1,16 @@
 import { FiInbox } from "react-icons/fi";
 
 const EmptyState = ({
-  title,
-  description,
+  title = "No Data Found",
+  message = "Nothing to display.",
 }) => {
   return (
     <div className="empty-state">
-      <FiInbox size={60} />
+      <FiInbox className="empty-icon" />
 
-      <h3>{title}</h3>
+      <h2>{title}</h2>
 
-      <p>{description}</p>
+      <p>{message}</p>
     </div>
   );
 };
