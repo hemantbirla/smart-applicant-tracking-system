@@ -1,31 +1,25 @@
 import * as yup from "yup";
 
 export const interviewSchema = yup.object({
-  candidate: yup
-    .string()
-    .trim()
-    .required("Candidate name is required"),
+  candidate: yup.string().trim().required("Candidate name is required"),
 
-  job: yup
-    .string()
-    .trim()
-    .required("Job title is required"),
+  job: yup.string().trim().required("Job title is required"),
 
-  type: yup
-    .string()
-    .required("Interview type is required"),
+  type: yup.string().required("Interview type is required"),
 
   date: yup
-    .date()
-    .min(
-      new Date(new Date().setHours(0, 0, 0, 0)),
-      "Date cannot be in the past"
-    )
-    .required("Interview date is required"),
-
-  time: yup
     .string()
-    .required("Interview time is required"),
+    .required("Interview date is required")
+    .test("future-date", "Date cannot be in the past", (value) => {
+      if (!value) return false;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      return new Date(value) >= today;
+    }),
+
+  time: yup.string().required("Interview time is required"),
 
   duration: yup
     .number()
@@ -33,10 +27,7 @@ export const interviewSchema = yup.object({
     .positive("Duration must be greater than zero")
     .required("Duration is required"),
 
-  interviewer: yup
-    .string()
-    .trim()
-    .required("Interviewer is required"),
+  interviewer: yup.string().trim().required("Interviewer is required"),
 
   meetingLink: yup
     .string()

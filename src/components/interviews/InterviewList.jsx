@@ -6,16 +6,10 @@ const InterviewList = ({
   onEdit,
   onCancel,
 }) => {
-  if (!interviews.length) {
-    return (
-      <div className="empty-state">
-        No interviews found.
-      </div>
-    );
-  }
+  // console.log("Interview List:", interviews);
 
   return (
-    <div className="interview-list">
+    <div>
       {interviews.map((interview) => (
         <InterviewCard
           key={interview.id}

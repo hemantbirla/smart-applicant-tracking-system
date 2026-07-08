@@ -2,8 +2,17 @@ import interviewData from "../constants/interviewData";
 
 let interviews = [...interviewData];
 
+// Convert Date object to YYYY-MM-DD string
+const formatDate = (date) => {
+  if (date instanceof Date) {
+    return date.toISOString().split("T")[0];
+  }
+
+  return date;
+};
+
 export const getInterviews = async () => {
-  return Promise.resolve(interviews);
+  return Promise.resolve([...interviews]);
 };
 
 export const getInterviewById = async (id) => {
@@ -16,17 +25,29 @@ export const scheduleInterview = async (data) => {
   const newInterview = {
     ...data,
     id: Date.now(),
+    date: formatDate(data.date),
+    updatedAt: new Date().toISOString().split("T")[0],
   };
 
-  interviews.push(newInterview);
+  interviews = [...interviews, newInterview];
 
   return Promise.resolve(newInterview);
 };
 
-export const updateInterview = async (id, updatedData) => {
+export const updateInterview = async (
+  id,
+  updatedData
+) => {
   interviews = interviews.map((item) =>
     item.id === id
-      ? { ...item, ...updatedData }
+      ? {
+          ...item,
+          ...updatedData,
+          date: formatDate(updatedData.date),
+          updatedAt: new Date()
+            .toISOString()
+            .split("T")[0],
+        }
       : item
   );
 
@@ -39,7 +60,13 @@ export const updateInterviewStatus = async (
 ) => {
   interviews = interviews.map((item) =>
     item.id === id
-      ? { ...item, status }
+      ? {
+          ...item,
+          status,
+          updatedAt: new Date()
+            .toISOString()
+            .split("T")[0],
+        }
       : item
   );
 
@@ -49,7 +76,13 @@ export const updateInterviewStatus = async (
 export const cancelInterview = async (id) => {
   interviews = interviews.map((item) =>
     item.id === id
-      ? { ...item, status: "Cancelled" }
+      ? {
+          ...item,
+          status: "Cancelled",
+          updatedAt: new Date()
+            .toISOString()
+            .split("T")[0],
+        }
       : item
   );
 
@@ -63,3 +96,74 @@ export const deleteInterview = async (id) => {
 
   return Promise.resolve(true);
 };
+
+
+
+// {// For Backend
+//   import axiosInstance from "../api/axios";
+
+//   /**
+//    * Get All Interviews
+//    */
+//   export const getInterviews = async () => {
+//     const response = await axiosInstance.get("/interviews");
+
+//     return response.data;
+//   };
+
+//   /**
+//    * Get Interview By ID
+//    */
+//   export const getInterviewById = async (id) => {
+//     const response = await axiosInstance.get(`/interviews/${id}`);
+
+//     return response.data;
+//   };
+
+//   /**
+//    * Schedule New Interview
+//    */
+//   export const scheduleInterview = async (data) => {
+//     const response = await axiosInstance.post("/interviews", data);
+
+//     return response.data;
+//   };
+
+//   /**
+//    * Update Interview
+//    */
+//   export const updateInterview = async (id, data) => {
+//     const response = await axiosInstance.put(`/interviews/${id}`, data);
+
+//     return response.data;
+//   };
+
+//   /**
+//    * Update Interview Status
+//    */
+//   export const updateInterviewStatus = async (id, status) => {
+//     const response = await axiosInstance.patch(`/interviews/${id}/status`, {
+//       status,
+//     });
+
+//     return response.data;
+//   };
+
+//   /**
+//    * Cancel Interview
+//    */
+//   export const cancelInterview = async (id) => {
+//     const response = await axiosInstance.patch(`/interviews/${id}/cancel`);
+
+//     return response.data;
+//   };
+
+//   /**
+//    * Delete Interview
+//    */
+//   export const deleteInterview = async (id) => {
+//     const response = await axiosInstance.delete(`/interviews/${id}`);
+
+//     return response.data;
+//   };
+// }
