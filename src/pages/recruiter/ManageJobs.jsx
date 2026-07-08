@@ -13,6 +13,7 @@ import EmptyState from "../../components/common/EmptyState";
 import ErrorState from "../../components/common/ErrorState";
 
 import useJobs from "../../hooks/useJobs";
+import usePagination from "../../hooks/usePagination";
 
 import {
   LOCATIONS,
@@ -30,16 +31,16 @@ const ManageJobs = () => {
 
   const [filters, setFilters] = useState(DEFAULT_JOB_FILTERS);
 
+  // Fetch the jobs data array
   const {
     jobs,
     loading,
     error,
     deleteJob,
     fetchJobs,
-    pagination,
-    totalPages,
-    updatePagination,
   } = useJobs(filters);
+
+  // Filter and sort the full dataset locally
   const filteredJobs = jobs
     .filter((job) => {
       // Search
@@ -107,6 +108,15 @@ const ManageJobs = () => {
           return new Date(b.postedDate) - new Date(a.postedDate);
       }
     });
+
+  // Handle local pagination of the final filtered list
+  const {
+    currentItems,
+    currentPage,
+    totalPages,
+    goToPage,
+  } = usePagination(filteredJobs);
+
   const [selectedJob, setSelectedJob] = useState(null);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
@@ -114,17 +124,7 @@ const ManageJobs = () => {
    * View Job
    */
   const handleView = (job) => {
-    console.log("View Job:", job);
-
-    // Future
-    // navigate(`/recruiter/jobs/${job.id}`);
-  };
-
-  const handlePageChange = (page) => {
-    if (page < 1) return;
-    if (page > totalPages) return;
-
-    updatePagination({ page });
+    navigate(`/recruiter/jobs/${job.id}`);
   };
 
   /**
@@ -202,20 +202,20 @@ const ManageJobs = () => {
           />
         )}
 
-        {/* Job Table */}
+        {/* Job Table & Pagination */}
         {!loading && !error && filteredJobs.length > 0 && (
           <>
             <JobTable
-              jobs={filteredJobs}
+              jobs={currentItems}
               onView={handleView}
               onEdit={handleEdit}
               onDelete={handleDeleteClick}
             />
 
             <Pagination
-              currentPage={pagination.page}
+              currentPage={currentPage}
               totalPages={totalPages}
-              onPageChange={handlePageChange}
+              onPageChange={goToPage}
             />
           </>
         )}

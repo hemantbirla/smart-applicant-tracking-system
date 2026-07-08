@@ -561,3 +561,53 @@ body {
 @media (max-width: 576px) {
     .recruiter-stats { grid-template-columns: 1fr; }
 }
+
+/* =======================================================
+   View Job
+======================================================= */
+
+.job-details-card {
+  background: var(--card-bg, #ffffff);
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.job-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.job-detail-row strong {
+  width: 220px;
+}
+
+.job-detail-row span {
+  flex: 1;
+}
+
+.skills-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.skill-chip {
+  background: #2563eb;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.job-details-card h3 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.job-details-card p {
+  line-height: 1.8;
+}

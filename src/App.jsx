@@ -15,9 +15,10 @@ import ApplicationHistory from "./pages/ApplicationHistory/ApplicationHistory";
 import SavedJobs from "./pages/SavedJobs/SavedJobs";
 
 import RecruiterDashboard from "./pages/RecruiterDashboard/RecruiterDashboard";
-import RecruiterLayout from "./layouts/RecruiterLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 import ManageJobs from "./pages/recruiter/ManageJobs";
+import ViewJob from "./pages/recruiter/ViewJob";
 import AddJob from "./pages/recruiter/AddJob";
 import EditJob from "./pages/recruiter/EditJob";
 
@@ -66,12 +67,14 @@ function App() {
 
         <Route path="/recruiter/jobs/edit/:id" element={<EditJob />} />
 
+        <Route path="/recruiter/jobs/:id" element={<ViewJob />} />
+
         <Route
           path="/recruiter/jobs/new"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Post New Job</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 
@@ -80,9 +83,9 @@ function App() {
         <Route
           path="/recruiter/applications"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Applications</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 
@@ -91,9 +94,9 @@ function App() {
         <Route
           path="/recruiter/candidates"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Candidates</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 
@@ -102,9 +105,9 @@ function App() {
         <Route
           path="/recruiter/interviews"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Interviews</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 
@@ -113,9 +116,9 @@ function App() {
         <Route
           path="/recruiter/company"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Company Profile</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 
@@ -124,9 +127,9 @@ function App() {
         <Route
           path="/recruiter/reports"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Reports</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 
@@ -135,9 +138,9 @@ function App() {
         <Route
           path="/recruiter/settings"
           element={
-            <RecruiterLayout>
+            <DashboardLayout>
               <h2>Settings</h2>
-            </RecruiterLayout>
+            </DashboardLayout>
           }
         />
 

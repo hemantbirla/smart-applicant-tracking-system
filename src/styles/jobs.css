@@ -1388,7 +1388,9 @@
     grid-template-columns:1fr;
   }
 }
-
+input[type="date"] {
+  color-scheme: light dark; /* Forces the browser's native picker to adapt */
+}
 
 
 /* ===========================

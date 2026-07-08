@@ -5,10 +5,7 @@ import { toast } from "react-toastify";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import JobForm from "../../components/jobs/JobForm";
 
-import {
-  getJobById,
-  updateJob,
-} from "../../services/jobService";
+import { getJobById, updateJob } from "../../services/jobService";
 
 const EditJob = () => {
   const { id } = useParams();
@@ -52,11 +49,22 @@ const EditJob = () => {
       <div className="page-container">
         <h1>Edit Job</h1>
 
-        {loading ? (
+        {loading || !job ? ( // Ensure job is not null before rendering form
           <h3>Loading...</h3>
         ) : (
           <JobForm
-            defaultValues={job}
+            defaultValues={{
+              ...job,
+              skills: Array.isArray(job.skills)
+                ? job.skills.join(", ")
+                : job.skills || "",
+              requirements: Array.isArray(job.requirements)
+                ? job.requirements.join(", ")
+                : job.requirements || "",
+              responsibilities: Array.isArray(job.responsibilities)
+                ? job.responsibilities.join(", ")
+                : job.responsibilities || "",
+            }}
             onSubmit={handleUpdate}
           />
         )}

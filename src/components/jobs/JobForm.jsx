@@ -2,19 +2,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import { jobSchema } from "../../constants/validationSchemas";
+import { useEffect } from "react";
 
-const JobForm = ({
-  defaultValues = {},
-  onSubmit,
-}) => {
+const JobForm = ({ defaultValues = {}, onSubmit }) => {
   const {
     register,
     handleSubmit,
+    reset, // 2. Destructure reset
     formState: { errors },
   } = useForm({
     resolver: yupResolver(jobSchema),
     defaultValues,
   });
+
+  // 3. Watch for changes to defaultValues and reset the form dynamically
+  useEffect(() => {
+    reset(defaultValues);
+  }, [defaultValues, reset]);
 
   return (
     <form
