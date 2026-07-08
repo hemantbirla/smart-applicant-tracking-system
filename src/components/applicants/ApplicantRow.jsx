@@ -4,6 +4,10 @@ import ApplicantStatusBadge from "./ApplicantStatusBadge";
 const ApplicantRow = ({
   applicant,
   onView,
+  onResume,
+  onSchedule,
+  onStatus,
+  onReject,
 }) => {
   const fullName = `${applicant.firstName} ${applicant.lastName}`;
 
@@ -16,9 +20,7 @@ const ApplicantRow = ({
       {/* Candidate */}
       <td>
         <div className="candidate-info">
-          <div className="candidate-avatar">
-            {initials}
-          </div>
+          <div className="candidate-avatar">{initials}</div>
 
           <div>
             <h4>{fullName}</h4>
@@ -36,10 +38,7 @@ const ApplicantRow = ({
       <td>
         <div className="skills-list">
           {applicant.skills.map((skill) => (
-            <span
-              key={skill}
-              className="skill-badge"
-            >
+            <span key={skill} className="skill-badge">
               {skill}
             </span>
           ))}
@@ -51,14 +50,12 @@ const ApplicantRow = ({
 
       {/* Status */}
       <td>
-        <ApplicantStatusBadge
-          status={applicant.status}
-        />
+        <ApplicantStatusBadge status={applicant.status} />
       </td>
 
       {/* Resume */}
       <td>
-        <button className="resume-btn">
+        <button className="resume-btn" onClick={() => onResume(applicant)}>
           View Resume
         </button>
       </td>
@@ -68,30 +65,10 @@ const ApplicantRow = ({
         <ApplicantActions
           applicant={applicant}
           onView={onView}
-          onResume={(applicant) =>
-            console.log(
-              "View Resume",
-              applicant
-            )
-          }
-          onSchedule={(applicant) =>
-            console.log(
-              "Schedule Interview",
-              applicant
-            )
-          }
-          onStatus={(applicant) =>
-            console.log(
-              "Update Status",
-              applicant
-            )
-          }
-          onReject={(applicant) =>
-            console.log(
-              "Reject Applicant",
-              applicant
-            )
-          }
+          onResume={onResume}
+          onSchedule={onSchedule}
+          onStatus={onStatus}
+          onReject={onReject}
         />
       </td>
     </tr>

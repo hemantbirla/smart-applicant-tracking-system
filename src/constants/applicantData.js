@@ -25,6 +25,8 @@ export const applicantData = [
     company: "Infosys",
     coverLetter:
       "I am excited to apply for the React Developer position.",
+      resumeUrl:
+      "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
   },
   {
     id: 2,

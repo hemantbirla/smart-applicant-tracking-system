@@ -506,6 +506,36 @@ ManageJobs
 
 The module uses a reusable service layer and custom hook for data management.
 
+## Applicant Management
+
+Recruiters can efficiently manage job applicants through a dedicated module.
+
+### Features
+
+- View applicants
+- Search applicants
+- Filter by status
+- Sort applicants
+- View applicant details
+- View and download resumes
+- Update application status
+- Pagination
+- Responsive design
+
+### Architecture
+
+```
+Applicants
+├── ApplicantSearch
+├── ApplicantFilters
+├── ApplicantTable
+│   ├── ApplicantRow
+│   ├── ApplicantStatusBadge
+│   └── ApplicantActions
+├── ApplicantDetailsModal
+└── ResumeViewer
+```
+
 
 ## Current Progress
 
@@ -531,3 +561,4 @@ The module uses a reusable service layer and custom hook for data management.
 - ✅ Develop job application workflow
 - ✅ Create recruiter dashboard
 - ✅ Implement recruiter job management
+- ✅ Add applicant management features

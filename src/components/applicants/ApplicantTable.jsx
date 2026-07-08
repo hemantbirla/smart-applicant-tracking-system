@@ -4,6 +4,10 @@ const ApplicantTable = ({
   applicants,
   loading = false,
   onViewApplicant,
+  onViewResume,
+  onSchedule,
+  onStatus,
+  onReject,
 }) => {
   if (loading) {
     return (
@@ -43,6 +47,10 @@ const ApplicantTable = ({
               key={applicant.id}
               applicant={applicant}
               onView={onViewApplicant}
+              onResume={onViewResume}
+              onSchedule={onSchedule}
+              onStatus={onStatus}
+              onReject={onReject}
             />
           ))}
         </tbody>
