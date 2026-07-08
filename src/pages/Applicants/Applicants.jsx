@@ -12,8 +12,8 @@ import "../../styles/applicants.css";
 
 const Applicants = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [sortBy, setSortBy] = useState("Newest");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [sortBy, setSortBy] = useState("latest");
 
   const filteredApplicants = useMemo(() => {
     let data = [...applicantData];
@@ -35,26 +35,30 @@ const Applicants = () => {
     }
 
     // Status Filter
-    if (statusFilter !== "All") {
+    if (statusFilter) {
       data = data.filter((applicant) => applicant.status === statusFilter);
     }
 
     // Sorting
     switch (sortBy) {
-      case "Name":
-        data.sort((a, b) => a.name.localeCompare(b.name));
+      case "name":
+        data.sort((a, b) =>
+          `${a.firstName} ${a.lastName}`.localeCompare(
+            `${b.firstName} ${b.lastName}`,
+          ),
+        );
         break;
 
-      case "Experience":
+      case "experience":
         data.sort((a, b) => b.experience - a.experience);
         break;
 
-      case "Oldest":
+      case "oldest":
         data.reverse();
         break;
 
+      case "latest":
       default:
-        // Newest
         break;
     }
 
@@ -71,16 +75,13 @@ const Applicants = () => {
         </div>
 
         <div className="applicant-toolbar">
-          <ApplicantSearch
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <ApplicantSearch value={searchTerm} onChange={setSearchTerm} />
 
           <ApplicantFilters
             status={statusFilter}
             sortBy={sortBy}
-            onStatusChange={(e) => setStatusFilter(e.target.value)}
-            onSortChange={(e) => setSortBy(e.target.value)}
+            onStatusChange={setStatusFilter}
+            onSortChange={setSortBy}
           />
         </div>
 
