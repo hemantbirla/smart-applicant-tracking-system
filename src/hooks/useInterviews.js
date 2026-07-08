@@ -42,19 +42,13 @@ const useInterviews = () => {
     fetchInterviews();
   };
 
-  const editInterview = async (
-    id,
-    updatedData
-  ) => {
+  const editInterview = async (id, updatedData) => {
     await updateInterview(id, updatedData);
 
     fetchInterviews();
   };
 
-  const changeStatus = async (
-    id,
-    status
-  ) => {
+  const changeStatus = async (id, status) => {
     await updateInterviewStatus(id, status);
 
     fetchInterviews();
@@ -72,24 +66,34 @@ const useInterviews = () => {
     fetchInterviews();
   };
 
+  const [selectedInterview, setSelectedInterview] = useState(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openInterview = (interview) => {
+    setSelectedInterview(interview);
+    setIsModalOpen(true);
+  };
+
+  const closeInterview = () => {
+    setSelectedInterview(null);
+    setIsModalOpen(false);
+  };
+
   return {
     interviews,
-
     loading,
-
     error,
-
     fetchInterviews,
-
     addInterview,
-
     editInterview,
-
     changeStatus,
-
     removeInterview,
-
     cancel,
+    selectedInterview,
+    isModalOpen,
+    openInterview,
+    closeInterview,
   };
 };
 

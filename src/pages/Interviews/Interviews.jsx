@@ -5,13 +5,18 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import InterviewSearch from "../../components/interviews/InterviewSearch";
 import InterviewFilters from "../../components/interviews/InterviewFilters";
 import InterviewList from "../../components/interviews/InterviewList";
+import InterviewDetailsModal from "../../components/interviews/InterviewDetailsModal";
 
 import useInterviews from "../../hooks/useInterviews";
 
 const Interviews = () => {
   const { interviews } = useInterviews();
 
-  const [selectedInterview, setSelectedInterview] = useState(null);
+  const [selectedInterview, setSelectedInterview] =
+    useState(null);
+
+  const [isModalOpen, setIsModalOpen] =
+    useState(false);
 
   const [filters, setFilters] = useState({
     status: "",
@@ -29,15 +34,26 @@ const Interviews = () => {
 
   const handleView = (interview) => {
     setSelectedInterview(interview);
-    console.log("View", interview);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedInterview(null);
+    setIsModalOpen(false);
   };
 
   const handleEdit = (interview) => {
-    console.log("Edit", interview);
+    console.log("Edit Interview:", interview);
+
+    // Part 6
+    // Open InterviewForm in edit mode
   };
 
   const handleCancel = (id) => {
-    console.log("Cancel", id);
+    console.log("Cancel Interview:", id);
+
+    // Part 6
+    // Update interview status to Cancelled
   };
 
   return (
@@ -57,6 +73,14 @@ const Interviews = () => {
         <InterviewList
           interviews={interviews}
           onView={handleView}
+          onEdit={handleEdit}
+          onCancel={handleCancel}
+        />
+
+        <InterviewDetailsModal
+          isOpen={isModalOpen}
+          interview={selectedInterview}
+          onClose={handleCloseModal}
           onEdit={handleEdit}
           onCancel={handleCancel}
         />

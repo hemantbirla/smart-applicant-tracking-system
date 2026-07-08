@@ -1,11 +1,6 @@
 import InterviewStatusBadge from "./InterviewStatusBadge";
 
-const InterviewCard = ({
-  interview,
-  onView,
-  onEdit,
-  onCancel,
-}) => {
+const InterviewCard = ({ interview, onView, onEdit, onCancel }) => {
   return (
     <div className="interview-card">
       <div className="interview-card-header">
@@ -14,9 +9,7 @@ const InterviewCard = ({
           <p>{interview.job}</p>
         </div>
 
-        <InterviewStatusBadge
-          status={interview.status}
-        />
+        <InterviewStatusBadge status={interview.status} />
       </div>
 
       <div className="interview-grid">
@@ -47,24 +40,15 @@ const InterviewCard = ({
       </div>
 
       <div className="interview-actions">
-        <button
-          className="btn-primary"
-          onClick={() => onView(interview)}
-        >
+        <button className="interview-btn" onClick={() => onView(interview)}>
           View
         </button>
 
-        <button
-          className="btn-secondary"
-          onClick={() => onEdit(interview)}
-        >
+        <button className="btn-secondary" onClick={() => onEdit(interview)}>
           Edit
         </button>
 
-        <button
-          className="btn-danger"
-          onClick={() => onCancel(interview.id)}
-        >
+        <button className="btn-danger" onClick={() => onCancel(interview.id)}>
           Cancel
         </button>
       </div>
