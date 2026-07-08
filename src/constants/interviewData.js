@@ -1,0 +1,80 @@
+import { INTERVIEW_STATUS } from "./interviewStatus";
+
+const interviewData = [
+  {
+    id: 1,
+    candidate: "Hemant Birla",
+    job: "React Developer",
+    type: "Technical Round",
+    interviewer: "Rahul Sharma",
+    date: "2026-07-20",
+    time: "10:30 AM",
+    duration: 60,
+    meetingLink: "https://meet.google.com/react-101",
+    notes: "Focus on React Hooks and Redux.",
+    status: INTERVIEW_STATUS.SCHEDULED,
+    updatedAt: "2026-07-05",
+  },
+
+  {
+    id: 2,
+    candidate: "Priya Singh",
+    job: "Frontend Developer",
+    type: "HR Round",
+    interviewer: "Anita Verma",
+    date: "2026-07-21",
+    time: "02:00 PM",
+    duration: 45,
+    meetingLink: "https://meet.google.com/hr-102",
+    notes: "Discuss company culture.",
+    status: INTERVIEW_STATUS.CONFIRMED,
+    updatedAt: "2026-07-05",
+  },
+
+  {
+    id: 3,
+    candidate: "Rohan Patel",
+    job: "UI Developer",
+    type: "Manager Round",
+    interviewer: "Vikas Mehta",
+    date: "2026-07-22",
+    time: "11:00 AM",
+    duration: 60,
+    meetingLink: "https://meet.google.com/ui-103",
+    notes: "Architecture discussion.",
+    status: INTERVIEW_STATUS.RESCHEDULED,
+    updatedAt: "2026-07-04",
+  },
+
+  {
+    id: 4,
+    candidate: "Neha Kapoor",
+    job: "React Native Developer",
+    type: "Technical Round",
+    interviewer: "Rahul Sharma",
+    date: "2026-07-23",
+    time: "04:00 PM",
+    duration: 90,
+    meetingLink: "https://meet.google.com/mobile-104",
+    notes: "React Native fundamentals.",
+    status: INTERVIEW_STATUS.SCHEDULED,
+    updatedAt: "2026-07-03",
+  },
+
+  {
+    id: 5,
+    candidate: "Amit Joshi",
+    job: "Full Stack Developer",
+    type: "Final Round",
+    interviewer: "Sandeep Kumar",
+    date: "2026-07-24",
+    time: "09:30 AM",
+    duration: 60,
+    meetingLink: "https://meet.google.com/fullstack-105",
+    notes: "Final HR discussion.",
+    status: INTERVIEW_STATUS.COMPLETED,
+    updatedAt: "2026-07-02",
+  },
+];
+
+export default interviewData;
