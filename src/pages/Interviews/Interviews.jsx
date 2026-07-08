@@ -1,42 +1,67 @@
 import { useState } from "react";
 
+import DashboardLayout from "../../layouts/DashboardLayout";
+
 import InterviewSearch from "../../components/interviews/InterviewSearch";
 import InterviewFilters from "../../components/interviews/InterviewFilters";
-import InterviewStatusBadge from "../../components/interviews/InterviewStatusBadge";
+import InterviewList from "../../components/interviews/InterviewList";
+
+import useInterviews from "../../hooks/useInterviews";
 
 const Interviews = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { interviews } = useInterviews();
+
+  const [selectedInterview, setSelectedInterview] = useState(null);
 
   const [filters, setFilters] = useState({
     status: "",
     type: "",
-    date: "",
     interviewer: "",
+    date: "",
   });
 
-  const handleFilterChange = (key, value) => {
+  const handleFilterChange = (field, value) => {
     setFilters((prev) => ({
       ...prev,
-      [key]: value,
+      [field]: value,
     }));
   };
 
+  const handleView = (interview) => {
+    setSelectedInterview(interview);
+    console.log("View", interview);
+  };
+
+  const handleEdit = (interview) => {
+    console.log("Edit", interview);
+  };
+
+  const handleCancel = (id) => {
+    console.log("Cancel", id);
+  };
+
   return (
-    <div className="container">
-      <h1>Interview Scheduling</h1>
+    <DashboardLayout>
+      <div className="page-container">
+        <h1 className="page-title">
+          Interview Scheduling
+        </h1>
 
-      <InterviewSearch
-        searchTerm={searchTerm}
-        onSearch={setSearchTerm}
-      />
+        <InterviewSearch />
 
-      <InterviewFilters
-        filters={filters}
-        onFilterChange={handleFilterChange}
-      />
+        <InterviewFilters
+          filters={filters}
+          onChange={handleFilterChange}
+        />
 
-      <InterviewStatusBadge status="Scheduled" />
-    </div>
+        <InterviewList
+          interviews={interviews}
+          onView={handleView}
+          onEdit={handleEdit}
+          onCancel={handleCancel}
+        />
+      </div>
+    </DashboardLayout>
   );
 };
 
