@@ -1,0 +1,98 @@
+/* ===========================================
+   Search
+=========================================== */
+
+.interview-search {
+  margin-bottom: 20px;
+}
+
+.interview-search input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.interview-search input:focus {
+  border-color: #2563eb;
+}
+
+/* ===========================================
+   Filters
+=========================================== */
+
+.interview-filters {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.interview-filters select,
+.interview-filters input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  min-width: 180px;
+  outline: none;
+  font-size: 14px;
+}
+
+.interview-filters select:focus,
+.interview-filters input:focus {
+  border-color: #2563eb;
+}
+
+/* ===========================================
+   Status Badge
+=========================================== */
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.status-badge.scheduled {
+  background: #2563eb;
+}
+
+.status-badge.confirmed {
+  background: #0ea5e9;
+}
+
+.status-badge.completed {
+  background: #10b981;
+}
+
+.status-badge.cancelled {
+  background: #ef4444;
+}
+
+.status-badge.rescheduled {
+  background: #f59e0b;
+}
+
+.status-badge.noshow {
+  background: #6b7280;
+}
+
+/* ===========================================
+   Responsive
+=========================================== */
+
+@media (max-width: 768px) {
+  .interview-filters {
+    flex-direction: column;
+  }
+
+  .interview-filters select,
+  .interview-filters input {
+    width: 100%;
+  }
+}
