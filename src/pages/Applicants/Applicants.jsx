@@ -166,8 +166,7 @@ const Applicants = () => {
         {/* Table */}
 
         <ApplicantTable
-          //   applicants={currentItems}
-          applicants={filteredApplicants}
+            applicants={currentItems}
           onViewApplicant={handleViewApplicant}
           onViewResume={handleResume}
           onSchedule={handleSchedule}
