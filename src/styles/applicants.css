@@ -1,27 +1,66 @@
 /* ==========================================
+   Theme Variables
+========================================== */
+:root {
+  /* Colors - Light Theme (Default) */
+  --bg-primary: #f9fafb;
+  --bg-surface: #ffffff;
+  --bg-surface-header: #f3f4f6;
+  --bg-surface-hover: #f3f4f6;
+  
+  --border-color: #d1d5db;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --skill-bg: rgba(37, 99, 235, 0.1);
+  --skill-text: #2563eb;
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] {
+  /* Colors - Dark Theme */
+  --bg-primary: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-surface-header: #0f172a;
+  --bg-surface-hover: #334155;
+  
+  --border-color: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --skill-bg: rgba(59, 130, 246, 0.15);
+  --skill-text: #93c5fd;
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================
    Applicant Status Badge
 ========================================== */
-
 .applicant-status-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-width: 150px;
   padding: 6px 14px;
-
   border-radius: 999px;
-
   font-size: 13px;
   font-weight: 600;
-
   white-space: nowrap;
 }
 
 /* ========================================
    Applicant Search
 ======================================== */
-
 .applicant-search {
   position: relative;
   width: 100%;
@@ -33,7 +72,7 @@
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: var(--text-muted);
   font-size: 18px;
 }
 
@@ -41,27 +80,27 @@
   width: 100%;
   height: 46px;
   padding: 0 16px 0 46px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   font-size: 15px;
   outline: none;
   transition: all 0.25s ease;
-  background: #fff;
+  background: var(--bg-surface);
+  color: var(--text-primary);
 }
 
 .applicant-search-input:focus {
-  border-color: #2563eb;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .applicant-search-input::placeholder {
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 /* ===============================
    Applicant Filters
 =============================== */
-
 .applicant-filters {
   display: flex;
   gap: 20px;
@@ -80,21 +119,22 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-secondary);
 }
 
 .filter-group select {
   padding: 12px 14px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--bg-surface);
+  color: var(--text-primary);
   font-size: 15px;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
 .filter-group select:focus {
-  border-color: #2563eb;
+  border-color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
@@ -102,24 +142,21 @@
     flex-direction: column;
     align-items: stretch;
   }
-
   .filter-group {
     width: 100%;
   }
 }
 
-
 /* ==========================
    Applicant Table
 ========================== */
-
 .applicant-table-wrapper {
   margin-top: 30px;
-  background: #1f2937;
+  background: var(--bg-surface);
   border-radius: 16px;
   overflow-x: auto;
-  box-shadow: 0 8px 24px rgba(0,0,0,.25);
-  border: 1px solid #374151;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
 }
 
 .applicant-table {
@@ -129,24 +166,24 @@
 }
 
 .applicant-table thead {
-  background: #111827;
+  background: var(--bg-surface-header);
 }
 
 .applicant-table th {
   padding: 18px 20px;
   text-align: left;
-  color: #e5e7eb;
+  color: var(--text-secondary);
   font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
-  border-bottom: 1px solid #374151;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .applicant-table td {
   padding: 18px 20px;
-  border-bottom: 1px solid #374151;
+  border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
-  color: #d1d5db;
+  color: var(--text-primary);
 }
 
 .applicant-table tbody tr {
@@ -154,13 +191,12 @@
 }
 
 .applicant-table tbody tr:hover {
-  background: #273449;
+  background: var(--bg-surface-hover);
 }
 
 /* ==========================
    Candidate
 ========================== */
-
 .candidate-cell {
   display: flex;
   align-items: center;
@@ -171,7 +207,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #2563eb;
+  background: var(--primary-color);
   color: white;
   font-weight: 700;
   display: flex;
@@ -183,20 +219,19 @@
 
 .candidate-info h4 {
   margin: 0;
-  color: white;
+  color: var(--text-primary);
   font-size: 16px;
 }
 
 .candidate-info p {
   margin: 4px 0 0;
-  color: #9ca3af;
+  color: var(--text-muted);
   font-size: 14px;
 }
 
 /* ==========================
    Skills
 ========================== */
-
 .skills-cell {
   display: flex;
   flex-wrap: wrap;
@@ -204,8 +239,8 @@
 }
 
 .skill-badge {
-  background: rgba(37,99,235,.15);
-  color: #60a5fa;
+  background: var(--skill-bg);
+  color: var(--skill-text);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 13px;
@@ -216,18 +251,16 @@
 /* ==========================
    Experience
 ========================== */
-
 .experience-cell {
   font-weight: 600;
-  color: white;
+  color: var(--text-primary);
 }
 
 /* ==========================
    Resume Button
 ========================== */
-
 .resume-btn {
-  background: #2563eb;
+  background: var(--primary-color);
   color: white;
   border: none;
   padding: 10px 18px;
@@ -238,19 +271,17 @@
 }
 
 .resume-btn:hover {
-  background: #1d4ed8;
+  background: var(--primary-hover);
 }
 
 /* ==========================
    Action Buttons
 ========================== */
-
 .action-buttons {
   display: flex;
   gap: 10px;
 }
 
-/* Apply shared styles to both distinct classes */
 .view-btn, .status-btn {
   border: none;
   cursor: pointer;
@@ -273,14 +304,15 @@
 .view-btn:hover, .status-btn:hover {
   opacity: .9;
 }
-/* ==========================
-   Loading
-========================== */
 
+/* ==========================
+   Loading & Empty States
+========================== */
 .applicant-loading,
 .applicant-empty {
-  background: #1f2937;
-  color: #d1d5db;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
   padding: 40px;
   text-align: center;
   border-radius: 14px;
@@ -290,17 +322,13 @@
 /* ==========================
    Responsive
 ========================== */
-
 @media (max-width:992px){
-
   .applicant-table{
       min-width:1100px;
   }
-
 }
 
 @media (max-width:768px){
-
   .applicant-table{
       min-width:950px;
   }
@@ -316,5 +344,4 @@
       height:40px;
       font-size:15px;
   }
-
 }
