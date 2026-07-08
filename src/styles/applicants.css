@@ -345,3 +345,89 @@
       font-size:15px;
   }
 }
+
+/* --|--|--|--|--| */
+
+.applicant-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  opacity: 0.9;
+}
+
+.icon-btn.danger {
+  background: #dc2626;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  width: 700px;
+  max-width: 95%;
+  background: var(--bg-surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.skills-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.resume-viewer {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.resume-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}

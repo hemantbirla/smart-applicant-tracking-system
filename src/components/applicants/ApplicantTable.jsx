@@ -42,7 +42,7 @@ const ApplicantTable = ({
             <ApplicantRow
               key={applicant.id}
               applicant={applicant}
-              onViewApplicant={onViewApplicant}
+              onView={onViewApplicant}
             />
           ))}
         </tbody>

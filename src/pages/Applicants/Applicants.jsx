@@ -5,6 +5,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import ApplicantSearch from "../../components/applicants/ApplicantSearch";
 import ApplicantFilters from "../../components/applicants/ApplicantFilters";
 import ApplicantTable from "../../components/applicants/ApplicantTable";
+import ApplicantDetailsModal from "../../components/applicants/ApplicantDetailsModal";
 
 import { applicantData } from "../../constants/applicantData";
 
@@ -15,10 +16,11 @@ const Applicants = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [sortBy, setSortBy] = useState("latest");
 
+  const [selectedApplicant, setSelectedApplicant] = useState(null);
+
   const filteredApplicants = useMemo(() => {
     let data = [...applicantData];
 
-    // Search
     if (searchTerm.trim()) {
       const keyword = searchTerm.toLowerCase();
 
@@ -34,12 +36,10 @@ const Applicants = () => {
       );
     }
 
-    // Status Filter
     if (statusFilter) {
-      data = data.filter((applicant) => applicant.status === statusFilter);
+      data = data.filter((a) => a.status === statusFilter);
     }
 
-    // Sorting
     switch (sortBy) {
       case "name":
         data.sort((a, b) =>
@@ -57,7 +57,6 @@ const Applicants = () => {
         data.reverse();
         break;
 
-      case "latest":
       default:
         break;
     }
@@ -68,14 +67,19 @@ const Applicants = () => {
   return (
     <DashboardLayout>
       <div className="applicants-page">
+
         <div className="page-header">
           <h1>Applicant Management</h1>
-
-          <p>Manage all candidates who have applied for this position.</p>
+          <p>
+            Manage all candidates who have applied for this position.
+          </p>
         </div>
 
         <div className="applicant-toolbar">
-          <ApplicantSearch value={searchTerm} onChange={setSearchTerm} />
+          <ApplicantSearch
+            value={searchTerm}
+            onChange={setSearchTerm}
+          />
 
           <ApplicantFilters
             status={statusFilter}
@@ -85,7 +89,17 @@ const Applicants = () => {
           />
         </div>
 
-        <ApplicantTable applicants={filteredApplicants} />
+        <ApplicantTable
+          applicants={filteredApplicants}
+          onView={setSelectedApplicant}
+        />
+
+        <ApplicantDetailsModal
+          applicant={selectedApplicant}
+          isOpen={!!selectedApplicant}
+          onClose={() => setSelectedApplicant(null)}
+        />
+
       </div>
     </DashboardLayout>
   );
