@@ -25,6 +25,7 @@ import EditJob from "./pages/recruiter/EditJob";
 import Applicants from "./pages/Applicants/Applicants";
 
 import "react-toastify/dist/ReactToastify.css";
+import Interviews from "./pages/Interviews/Interviews";
 
 function App() {
   return (
@@ -71,6 +72,9 @@ function App() {
 
         <Route path="/recruiter/jobs/:id" element={<ViewJob />} />
 
+        {/* ================= Applicants ================= */}
+        <Route path="/recruiter/applicants" element={<Applicants />} />
+
         <Route
           path="/recruiter/jobs/new"
           element={
@@ -104,14 +108,7 @@ function App() {
 
         {/* ================= Recruiter Interviews ================= */}
 
-        <Route
-          path="/recruiter/interviews"
-          element={
-            <DashboardLayout>
-              <h2>Interviews</h2>
-            </DashboardLayout>
-          }
-        />
+        <Route path="/recruiter/interviews" element={<Interviews />} />
 
         {/* ================= Recruiter Company ================= */}
 
@@ -145,9 +142,6 @@ function App() {
             </DashboardLayout>
           }
         />
-
-        {/* ================= Applicants ================= */}
-        <Route path="/recruiter/applicants" element={<Applicants />} />
 
         {/* ================= 404 ================= */}
 
