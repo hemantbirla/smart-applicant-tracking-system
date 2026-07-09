@@ -2,6 +2,9 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 
 import AdminHeader from "../../components/admin/AdminHeader";
 import AdminStatistics from "../../components/admin/AdminStatistics";
+
+import AnalyticsSection from "../../components/analytics/AnalyticsSection";
+
 import UserSummary from "../../components/admin/UserSummary";
 import RecruiterSummary from "../../components/admin/RecruiterSummary";
 import JobSummary from "../../components/admin/JobSummary";
@@ -14,6 +17,7 @@ import QuickActions from "../../components/admin/QuickActions";
 import { recruiterSummary } from "../../constants/adminDashboardData";
 
 import "../../styles/adminDashboard.css";
+import "../../styles/analytics.css";
 
 const AdminDashboard = () => {
   return (
@@ -24,6 +28,9 @@ const AdminDashboard = () => {
 
         {/* Statistics */}
         <AdminStatistics />
+
+        {/* Analytics */}
+        <AnalyticsSection />
 
         {/* User & Recruiter Summary */}
         <div className="admin-two-column">
@@ -37,7 +44,7 @@ const AdminDashboard = () => {
           <ApplicationSummary />
         </div>
 
-        {/* Activities & Companies */}
+        {/* Recent Activities & Top Companies */}
         <div className="admin-two-column">
           <RecentActivities />
           <TopCompanies />

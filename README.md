@@ -568,6 +568,25 @@ AdminDashboard
 ├── SystemStatus
 └── QuickActions
 ```
+## Dashboard Analytics
+
+The Admin Dashboard includes reusable analytics components built with Recharts.
+
+### Features
+
+- Monthly Applications Trend
+- Jobs by Category
+- User Growth Analytics
+- Application Status Distribution
+- Responsive Charts
+- API-ready Architecture
+
+### Tech Stack
+
+- Recharts
+- React Components
+- ResponsiveContainer
+
 
 ## Current Progress
 
