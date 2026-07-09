@@ -1,15 +1,15 @@
 import "../../styles/interview.css";
 
 const InterviewSearch = ({
-  searchTerm,
-  onSearch,
+  search = "",
+  onSearch = () => {},
 }) => {
   return (
     <div className="interview-search">
       <input
         type="text"
         placeholder="Search candidate, job or interviewer..."
-        value={searchTerm}
+        value={search}
         onChange={(e) =>
           onSearch(e.target.value)
         }

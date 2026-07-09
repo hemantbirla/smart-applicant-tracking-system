@@ -9,11 +9,12 @@ import {
 import "../../styles/interview.css";
 
 const InterviewFilters = ({
-  filters,
-  onFilterChange,
+  filters = {},
+  onFilterChange = () => {},
 }) => {
   return (
     <div className="interview-filters">
+
       <select
         value={filters.status}
         onChange={(e) =>
@@ -82,6 +83,7 @@ const InterviewFilters = ({
           )
         }
       />
+
     </div>
   );
 };

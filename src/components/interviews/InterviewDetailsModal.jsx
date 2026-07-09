@@ -27,40 +27,28 @@ const InterviewDetailsModal = ({
         </div>
 
         <div className="modal-body">
-
           <div className="detail-row">
             <span>Candidate</span>
-            <strong>{interview.candidate}</strong>
+
+            <strong>
+              {interview.candidate}
+            </strong>
           </div>
 
           <div className="detail-row">
             <span>Job</span>
-            <strong>{interview.job}</strong>
+
+            <strong>
+              {interview.job}
+            </strong>
           </div>
 
           <div className="detail-row">
             <span>Interview Type</span>
-            <strong>{interview.type}</strong>
-          </div>
 
-          <div className="detail-row">
-            <span>Date</span>
-            <strong>{interview.date}</strong>
-          </div>
-
-          <div className="detail-row">
-            <span>Time</span>
-            <strong>{interview.time}</strong>
-          </div>
-
-          <div className="detail-row">
-            <span>Duration</span>
-            <strong>{interview.duration} mins</strong>
-          </div>
-
-          <div className="detail-row">
-            <span>Interviewer</span>
-            <strong>{interview.interviewer}</strong>
+            <strong>
+              {interview.type}
+            </strong>
           </div>
 
           <div className="detail-row">
@@ -72,34 +60,88 @@ const InterviewDetailsModal = ({
           </div>
 
           <div className="detail-row">
-            <span>Meeting Link</span>
+            <span>Date</span>
 
-            <a
-              href={interview.meetingLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Join Meeting
-            </a>
+            <strong>
+              {interview.date}
+            </strong>
           </div>
 
-          <div className="detail-row notes">
+          <div className="detail-row">
+            <span>Time</span>
+
+            <strong>
+              {interview.time}
+            </strong>
+          </div>
+
+          <div className="detail-row">
+            <span>Duration</span>
+
+            <strong>
+              {interview.duration} Minutes
+            </strong>
+          </div>
+
+          <div className="detail-row">
+            <span>Interviewer</span>
+
+            <strong>
+              {interview.interviewer}
+            </strong>
+          </div>
+
+          <div className="detail-row full-width">
+            <span>Meeting Link</span>
+
+            {interview.meetingLink ? (
+              <a
+                href={interview.meetingLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Join Meeting
+              </a>
+            ) : (
+              <strong>
+                Not Available
+              </strong>
+            )}
+          </div>
+
+          <div className="detail-row full-width notes">
             <span>Notes</span>
 
-            <p>{interview.notes}</p>
+            <p>
+              {interview.notes ||
+                "No notes added."}
+            </p>
           </div>
 
           <div className="detail-row">
             <span>Last Updated</span>
-            <strong>{interview.updatedAt}</strong>
+
+            <strong>
+              {interview.updatedAt ||
+                "Just Now"}
+            </strong>
           </div>
         </div>
 
-        <InterviewActions
-          interview={interview}
-          onEdit={onEdit}
-          onCancel={onCancel}
-        />
+        <div className="modal-footer">
+          <InterviewActions
+            interview={interview}
+            onEdit={onEdit}
+            onCancel={onCancel}
+          />
+
+          <button
+            className="btn-secondary"
+            onClick={onClose}
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
