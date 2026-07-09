@@ -587,6 +587,32 @@ The Admin Dashboard includes reusable analytics components built with Recharts.
 - React Components
 - ResponsiveContainer
 
+## Dark Mode
+
+The application supports light and dark themes using React Context and CSS variables.
+
+### Features
+
+- Light & Dark Mode
+- Theme persistence with localStorage
+- CSS Variable-based styling
+- Global ThemeContext
+- Responsive theme toggle
+
+### Flow
+
+```
+Theme Toggle
+      ↓
+ThemeContext
+      ↓
+localStorage
+      ↓
+CSS Variables
+      ↓
+Application UI
+```
+
 
 ## Current Progress
 
@@ -615,3 +641,4 @@ The Admin Dashboard includes reusable analytics components built with Recharts.
 - ✅ Add applicant management features
 - ✅ Develop admin dashboard
 - ✅ Add dashboard analytics
+- ✅ Implement dark mode
