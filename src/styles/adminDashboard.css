@@ -96,7 +96,12 @@
 =========================== */
 
 .admin-dashboard {
-    padding: 30px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #f4f6f9;
+  min-height: 100vh;
 }
 
 .admin-statistics {
