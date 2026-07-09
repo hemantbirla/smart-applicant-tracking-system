@@ -536,6 +536,38 @@ Applicants
 └── ResumeViewer
 ```
 
+## Admin Dashboard
+
+The Admin Dashboard provides a centralized overview of the entire Applicant Tracking System.
+
+### Features
+
+- System Statistics
+- User Management Summary
+- Recruiter Overview
+- Job Analytics
+- Application Analytics
+- Recent Activities
+- System Health Monitoring
+- Top Companies
+- Quick Actions
+
+### Architecture
+
+```
+AdminDashboard
+├── AdminHeader
+├── AdminStatistics
+│   └── AdminCard
+├── UserSummary
+├── RecruiterSummary
+├── JobSummary
+├── ApplicationSummary
+├── RecentActivities
+├── TopCompanies
+├── SystemStatus
+└── QuickActions
+```
 
 ## Current Progress
 
@@ -562,3 +594,4 @@ Applicants
 - ✅ Create recruiter dashboard
 - ✅ Implement recruiter job management
 - ✅ Add applicant management features
+- ✅ Develop admin dashboard
