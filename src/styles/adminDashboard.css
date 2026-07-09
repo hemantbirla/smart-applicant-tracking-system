@@ -153,3 +153,74 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===========================
+   Statistics Grid
+=========================== */
+
+.admin-statistics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 30px;
+}
+
+/* ===========================
+   Admin Card
+=========================== */
+
+.admin-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    transition: .25s;
+}
+
+.admin-card:hover {
+    transform: translateY(-4px);
+}
+
+.admin-card-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.admin-card-content h2 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.admin-card-content p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:1200px){
+
+.admin-statistics{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:768px){
+
+.admin-statistics{
+grid-template-columns:1fr;
+}
+
+}
