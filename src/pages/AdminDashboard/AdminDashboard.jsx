@@ -7,6 +7,7 @@ import "../../styles/adminDashboard.css";
 import UserSummary from "../../components/admin/UserSummary";
 import RecruiterSummary from "../../components/admin/RecruiterSummary";
 import { recruiterSummary } from "../../constants/adminDashboardData";
+import JobSummary from "../../components/admin/JobSummary";
 
 const AdminDashboard = () => {
   return (
@@ -16,6 +17,7 @@ const AdminDashboard = () => {
         <AdminStatistics />
         <UserSummary />
         <RecruiterSummary data={recruiterSummary} />
+        <JobSummary />
       </div>
     </DashboardLayout>
   );

@@ -103,12 +103,28 @@ export const recruiterSummary = {
    Job Summary
 ============================ */
 
-export const jobSummary = {
-  open: 276,
-  closed: 214,
-  expired: 68,
-  draft: 54,
-};
+export const jobSummary = [
+  {
+    id: 1,
+    title: "Open Jobs",
+    value: 186,
+  },
+  {
+    id: 2,
+    title: "Closed Jobs",
+    value: 54,
+  },
+  {
+    id: 3,
+    title: "Expired Jobs",
+    value: 12,
+  },
+  {
+    id: 4,
+    title: "Draft Jobs",
+    value: 21,
+  },
+];
 
 /* ============================
    Application Summary

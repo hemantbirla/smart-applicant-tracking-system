@@ -333,3 +333,50 @@ grid-template-columns:1fr;
     grid-template-columns: 1fr;
   }
 }
+
+/* ===========================
+   Job Summary
+=========================== */
+
+.admin-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.admin-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.summary-card {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.summary-card h3 {
+  font-size: 28px;
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.summary-card p {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+@media (max-width:768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
