@@ -7,12 +7,12 @@ import {
   FiAward,
   FiCheckCircle,
   FiClock,
-  FiPlus,
+  FiUserPlus,
   FiSettings,
   FiBarChart2,
   FiShield,
 } from "react-icons/fi";
-
+ 
 /* ============================
    Dashboard Statistics
 ============================ */
@@ -282,34 +282,44 @@ export const quickActions = [
   {
     id: 1,
     title: "Add Recruiter",
-    icon: FiPlus,
+    icon: FiUserPlus,
+    color: "#2563EB",
   },
   {
     id: 2,
     title: "Approve Recruiter",
     icon: FiCheckCircle,
+    color: "#10B981",
   },
   {
     id: 3,
     title: "Manage Jobs",
     icon: FiBriefcase,
+    color: "#F59E0B",
   },
   {
     id: 4,
     title: "Manage Users",
     icon: FiUsers,
+    color: "#8B5CF6",
   },
   {
     id: 5,
     title: "Reports",
     icon: FiBarChart2,
+    color: "#EC4899",
   },
   {
     id: 6,
     title: "Settings",
     icon: FiSettings,
+    color: "#6B7280",
   },
 ];
+
+/* ============================
+   System Status
+============================ */
 
 export const systemStatus = [
   {

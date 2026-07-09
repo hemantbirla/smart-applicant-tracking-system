@@ -12,6 +12,7 @@ import ApplicationSummary from "../../components/admin/ApplicationSummary";
 import RecentActivities from "../../components/admin/RecentActivities";
 import TopCompanies from "../../components/admin/TopCompanies";
 import SystemStatus from "../../components/admin/SystemStatus";
+import QuickActions from "../../components/admin/QuickActions";
 
 const AdminDashboard = () => {
   return (
@@ -28,6 +29,7 @@ const AdminDashboard = () => {
         <RecentActivities />
         <TopCompanies />
         <SystemStatus />
+        <QuickActions />
       </div>
     </DashboardLayout>
   );
