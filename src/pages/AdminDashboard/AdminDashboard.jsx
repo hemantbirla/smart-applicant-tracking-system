@@ -9,6 +9,7 @@ import RecruiterSummary from "../../components/admin/RecruiterSummary";
 import { recruiterSummary } from "../../constants/adminDashboardData";
 import JobSummary from "../../components/admin/JobSummary";
 import ApplicationSummary from "../../components/admin/ApplicationSummary";
+import RecentActivities from "../../components/admin/RecentActivities";
 
 const AdminDashboard = () => {
   return (
@@ -22,6 +23,7 @@ const AdminDashboard = () => {
           <JobSummary />
           <ApplicationSummary />
         </div>
+        <RecentActivities />
       </div>
     </DashboardLayout>
   );
