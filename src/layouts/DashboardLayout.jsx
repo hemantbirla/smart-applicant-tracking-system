@@ -1,43 +1,40 @@
 import { useLocation } from "react-router-dom";
 
 import Sidebar from "../components/sidebar/Sidebar";
-import RecruiterSidebar from "../components/sidebar/RecruiterSidebar";
-import AdminSidebar from "../components/sidebar/AdminSidebar";
+
+import {
+  candidateSidebar,
+  recruiterSidebar,
+  adminSidebar,
+} from "../constants/sidebarConfig";
 
 import Navbar from "../components/Navbar/Navbar";
 
-import "../styles/dashboard.css";
-
 const DashboardLayout = ({ children }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  const isRecruiter =
-    location.pathname.startsWith("/recruiter");
+  let sidebarConfig = candidateSidebar;
+  let title = "Candidate Dashboard";
 
-  const isAdmin =
-    location.pathname.startsWith("/admin");
-
-  const getTitle = () => {
-    if (isAdmin) return "Admin Dashboard";
-
-    if (isRecruiter)
-      return "Recruiter Dashboard";
-
-    return "Candidate Dashboard";
-  };
+  if (pathname.startsWith("/recruiter")) {
+    sidebarConfig = recruiterSidebar;
+    title = "Recruiter Dashboard";
+  } else if (pathname.startsWith("/admin")) {
+    sidebarConfig = adminSidebar;
+    title = "Admin Dashboard";
+  }
 
   return (
     <div className="dashboard-layout">
-      {isAdmin ? (
-        <AdminSidebar />
-      ) : isRecruiter ? (
-        <RecruiterSidebar />
-      ) : (
-        <Sidebar />
-      )}
+      <Sidebar
+        title={sidebarConfig.title}
+        subtitle={sidebarConfig.subtitle}
+        menu={sidebarConfig.menu}
+        logoutItem={sidebarConfig.logoutItem}
+      />
 
       <div className="dashboard-content">
-        <Navbar title={getTitle()} />
+        <Navbar title={title} />
 
         <main className="dashboard-main">
           {children}

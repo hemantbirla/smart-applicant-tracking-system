@@ -11,8 +11,19 @@ import {
   FiSettings,
   FiBarChart2,
   FiShield,
+  FiLogOut,
 } from "react-icons/fi";
- 
+import {
+  LayoutDashboard,
+  Users,
+  UserCheck,
+  Briefcase,
+  FileText,
+  BarChart3,
+  Building2,
+  Settings,
+  LogOut,
+} from "lucide-react";
 /* ============================
    Dashboard Statistics
 ============================ */
@@ -358,3 +369,59 @@ export const systemStatus = [
     icon: "🟡",
   },
 ];
+
+export const adminSidebarMenu = [
+  {
+    id: 1,
+    title: "Dashboard",
+    path: "/admin/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    id: 2,
+    title: "Users",
+    path: "/admin/users",
+    icon: Users,
+  },
+  {
+    id: 3,
+    title: "Recruiters",
+    path: "/admin/recruiters",
+    icon: UserCheck,
+  },
+  {
+    id: 4,
+    title: "Jobs",
+    path: "/admin/jobs",
+    icon: Briefcase,
+  },
+  {
+    id: 5,
+    title: "Applications",
+    path: "/admin/applications",
+    icon: FileText,
+  },
+  {
+    id: 6,
+    title: "Reports",
+    path: "/admin/reports",
+    icon: BarChart3,
+  },
+  {
+    id: 7,
+    title: "Companies",
+    path: "/admin/companies",
+    icon: Building2,
+  },
+  {
+    id: 8,
+    title: "Settings",
+    path: "/admin/settings",
+    icon: Settings,
+  },
+];
+
+export const adminLogoutItem = {
+  title: "Logout",
+  icon: LogOut,
+};

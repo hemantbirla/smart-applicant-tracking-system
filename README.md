@@ -89,7 +89,7 @@ src/
 
 The application uses two primary layouts:
 
-### MainLayout
+### DashboardLayout
 
 Used for authenticated pages.
 
