@@ -11,6 +11,7 @@ import JobSummary from "../../components/admin/JobSummary";
 import ApplicationSummary from "../../components/admin/ApplicationSummary";
 import RecentActivities from "../../components/admin/RecentActivities";
 import TopCompanies from "../../components/admin/TopCompanies";
+import SystemStatus from "../../components/admin/SystemStatus";
 
 const AdminDashboard = () => {
   return (
@@ -24,10 +25,9 @@ const AdminDashboard = () => {
           <JobSummary />
           <ApplicationSummary />
         </div>
-        <div className="admin-grid">
-          <RecentActivities />
-          <TopCompanies />
-        </div>
+        <RecentActivities />
+        <TopCompanies />
+        <SystemStatus />
       </div>
     </DashboardLayout>
   );

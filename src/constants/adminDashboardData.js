@@ -310,3 +310,41 @@ export const quickActions = [
     icon: FiSettings,
   },
 ];
+
+export const systemStatus = [
+  {
+    id: 1,
+    name: "API Server",
+    description: "REST API Services",
+    status: "Online",
+    icon: "🟢",
+  },
+  {
+    id: 2,
+    name: "Database",
+    description: "MySQL Database",
+    status: "Healthy",
+    icon: "🟢",
+  },
+  {
+    id: 3,
+    name: "Authentication",
+    description: "JWT Authentication",
+    status: "Online",
+    icon: "🟢",
+  },
+  {
+    id: 4,
+    name: "Storage",
+    description: "Resume Storage",
+    status: "Healthy",
+    icon: "🟢",
+  },
+  {
+    id: 5,
+    name: "Email Service",
+    description: "SMTP Service",
+    status: "Slow",
+    icon: "🟡",
+  },
+];
