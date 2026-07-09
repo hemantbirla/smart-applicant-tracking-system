@@ -1,0 +1,21 @@
+body {
+  background: var(--bg-color);
+
+  color: var(--text-color);
+
+  transition: 0.3s;
+}
+
+.card {
+  background: var(--card-bg);
+}
+
+button {
+  transition: 0.3s;
+}
+
+input {
+  background: var(--input-bg);
+
+  color: var(--text-color);
+}

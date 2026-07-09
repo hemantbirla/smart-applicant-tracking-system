@@ -614,3 +614,4 @@ The Admin Dashboard includes reusable analytics components built with Recharts.
 - ✅ Implement recruiter job management
 - ✅ Add applicant management features
 - ✅ Develop admin dashboard
+- ✅ Add dashboard analytics
