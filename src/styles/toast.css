@@ -1,0 +1,17 @@
+.Toastify__toast {
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.Toastify__toast-body {
+    font-family: inherit;
+}
+
+.Toastify__progress-bar {
+    height: 4px;
+}
+
+.Toastify__close-button {
+    color: white;
+}

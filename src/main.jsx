@@ -16,12 +16,14 @@ import "./styles/profile.css";
 import "./styles/resume.css";
 import "./styles/application.css";
 import "./styles/sidebar.css";
+import AppToastContainer from "./components/common/AppToastContainer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <AppProvider>
         <App />
+        <AppToastContainer />
       </AppProvider>
     </BrowserRouter>
   </React.StrictMode>,
