@@ -1,565 +1,485 @@
 /* ======================================================
-   THEME VARIABLES (Light Mode Default / Dark Mode Sync)
+   USE GLOBAL THEME VARIABLES
 ====================================================== */
+
 :root {
-    /* Light Mode Palette */
-    --bg-main: #f8fafc;          /* Slate 50 */
-    --bg-card: #ffffff;          /* Pure White */
-    --bg-card-hover: #f1f5f9;    /* Slate 100 */
-    --border-color: #e2e8f0;     /* Slate 200 */
-    --text-primary: #0f172a;     /* Slate 900 */
-    --text-secondary: #64748b;   /* Slate 500 */
-    
-    /* Status Badges (Light) */
-    --bg-open: #dcfce7;   --text-open: #16a34a;
-    --bg-closed: #fee2e2; --text-closed: #dc2626;
-    --bg-draft: #fef3c7;  --text-draft: #d97706;
+  --bg-main: var(--bg-color);
+  --bg-card: var(--card-bg);
+  --bg-card-hover: var(--surface-color);
+
+  --text-primary: var(--text-color);
+  --text-secondary: var(--text-secondary);
+
+  --primary: var(--primary);
+
+  /* Status Colors */
+  --bg-open: #dcfce7;
+  --text-open: #16a34a;
+
+  --bg-closed: #fee2e2;
+  --text-closed: #dc2626;
+
+  --bg-draft: #fef3c7;
+  --text-draft: #d97706;
 }
 
-/* Automatically switches when body has the .dark class */
-body.dark {
-    /* Dark Mode Palette */
-    --bg-main: #0f172a;          /* Slate 900 */
-    --bg-card: #1e293b;          /* Slate 800 */
-    --bg-card-hover: #243249;    
-    --border-color: #334155;     /* Slate 700 */
-    --text-primary: #ffffff;     
-    --text-secondary: #94a3b8;   /* Slate 400 */
+[data-theme="dark"] {
+  --bg-main: var(--bg-color);
+  --bg-card: var(--card-bg);
+  --bg-card-hover: var(--surface-color);
 
-    /* Status Badges (Dark) */
-    --bg-open: rgba(22, 163, 74, 0.15);   --text-open: #4ade80;
-    --bg-closed: rgba(220, 38, 38, 0.15); --text-closed: #f87171;
-    --bg-draft: rgba(217, 119, 6, 0.15);  --text-draft: #fbbf24;
+  --text-primary: var(--text-color);
+  --text-secondary: var(--text-secondary);
+
+  --primary: var(--primary);
+
+  /* Status Colors */
+  --bg-open: rgba(34, 197, 94, 0.15);
+  --text-open: #4ade80;
+
+  --bg-closed: rgba(239, 68, 68, 0.15);
+  --text-closed: #f87171;
+
+  --bg-draft: rgba(245, 158, 11, 0.15);
+  --text-draft: #fbbf24;
 }
-
 /* ======================================================
    GLOBAL & LAYOUT SHIFT
 ====================================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-main);
-    color: var(--text-primary);
-    transition: background 0.3s ease, color 0.3s ease;
-    -webkit-font-smoothing: antialiased;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
 .recruiter-layout {
-    display: flex;
-    min-height: 100vh;
-    background: var(--bg-main);
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
 }
 
 .recruiter-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 40px 32px;
-    overflow-y: auto;
-    background: var(--bg-main);
-}
-
-/* ======================================================
-   MODERN SIDEBAR
-====================================================== */
-
-.sidebar {
-    width: 280px;
-    min-width: 280px;
-    min-height: 100vh;
-    background: linear-gradient(180deg, #172033 0%, #0f172a 100%);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 20px;
-    border-right: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 4px 0 20px rgba(0,0,0,0.25);
-}
-
-/* Logo */
-
-.sidebar-logo {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.sidebar-logo h2 {
-    color: #fff;
-    font-size: 28px;
-    font-weight: 800;
-    margin: 0;
-    letter-spacing: 0.5px;
-}
-
-.sidebar-logo span {
-    display: block;
-    color: #60a5fa;
-    font-size: 15px;
-    margin-top: 4px;
-    font-weight: 500;
-}
-
-/* Navigation */
-
-.sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-}
-
-.sidebar-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-    width: 100%;
-
-    padding: 14px 18px;
-
-    color: #cbd5e1;
-    text-decoration: none;
-
-    font-size: 15px;
-    font-weight: 500;
-
-    border-radius: 12px;
-
-    transition: all 0.25s ease;
-
-    position: relative;
-}
-
-.sidebar-link:hover {
-    background: rgba(59,130,246,0.15);
-    color: #fff;
-    transform: translateX(5px);
-}
-
-.sidebar-link.active {
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    color: white;
-    box-shadow: 0 8px 18px rgba(37,99,235,0.35);
-}
-
-.sidebar-link.active::before {
-    content: "";
-    position: absolute;
-    left: -20px;
-    top: 10px;
-    width: 5px;
-    height: calc(100% - 20px);
-    border-radius: 20px;
-    background: #60a5fa;
-}
-
-.sidebar-icon {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-}
-
-/* Divider */
-
-.sidebar-divider {
-    margin: 25px 0;
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-/* Logout */
-
-.logout-btn {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-    width: 100%;
-
-    padding: 14px 18px;
-
-    background: rgba(255,255,255,0.03);
-
-    color: #cbd5e1;
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    border-radius: 12px;
-
-    font-size: 15px;
-    font-weight: 500;
-
-    cursor: pointer;
-
-    transition: all .25s ease;
-}
-
-.logout-btn:hover {
-    background: #dc2626;
-    border-color: #dc2626;
-    color: white;
-}
-
-/* Responsive */
-
-@media (max-width: 992px) {
-
-    .sidebar {
-        width: 240px;
-        min-width: 240px;
-    }
-
-    .sidebar-logo h2 {
-        font-size: 24px;
-    }
-
-    .sidebar-link {
-        padding: 12px 16px;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .sidebar {
-        width: 80px;
-        min-width: 80px;
-        padding: 20px 10px;
-    }
-
-    .sidebar-logo h2,
-    .sidebar-logo span,
-    .sidebar-link span,
-    .logout-btn span {
-        display: none;
-    }
-
-    .sidebar-link,
-    .logout-btn {
-        justify-content: center;
-        padding: 14px;
-    }
-
-    .sidebar-link.active::before {
-        display: none;
-    }
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px;
+  overflow-y: auto;
+  background: var(--bg-main);
 }
 
 /* ==========================================
    Dashboard Header
 ========================================== */
+/* ======================================================
+   DASHBOARD WELCOME
+====================================================== */
 
 .dashboard-welcome {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    padding:32px 40px;
+  padding: 35px 40px;
 
-    border-radius:22px;
+  border-radius: 24px;
 
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #1e3a8a
-    );
+  background: var(--surface-color);
 
-    color:white;
+  border: 1px solid var(--border-color);
 
-    box-shadow:
-    0 15px 35px rgba(37,99,235,.25);
+  box-shadow: var(--shadow);
 
-    margin-bottom:50px;
+  margin-bottom: 40px;
+
+  position: relative;
+
+  overflow: hidden;
 }
 
+/* Blue Accent */
+
+.dashboard-welcome::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 6px;
+  height: 100%;
+
+  background: var(--primary);
+}
+
+/* LEFT CONTENT */
 
 .welcome-left {
-    display:flex;
-    flex-direction:column;
-}
+  display: flex;
 
+  flex-direction: column;
+
+  gap: 8px;
+
+  position: relative;
+
+  z-index: 2;
+}
 
 .welcome-role {
+  width: max-content;
 
-    display:inline-flex;
+  padding: 6px 14px;
 
-    width:max-content;
+  border-radius: 50px;
 
-    padding:6px 14px;
+  background: rgba(37, 99, 235, 0.12);
 
-    border-radius:20px;
+  color: var(--primary);
 
-    background:rgba(255,255,255,.15);
+  font-size: 13px;
 
-    font-size:13px;
-
-    margin-bottom:14px;
+  font-weight: 700;
 }
-
 
 .welcome-left h1 {
+  font-size: 18px;
 
-    font-size:18px;
+  font-weight: 500;
 
-    font-weight:500;
-
-    margin:0;
-
-    opacity:.9;
+  color: var(--text-secondary);
 }
-
 
 .welcome-left h2 {
+  font-size: 38px;
 
-    font-size:34px;
+  font-weight: 800;
 
-    margin:5px 0;
+  color: var(--text-color);
 
-    font-weight:750;
+  line-height: 1.2;
 }
-
 
 .welcome-left h3 {
+  font-size: 18px;
 
-    font-size:18px;
+  font-weight: 600;
 
-    font-weight:500;
-
-    margin:0;
-
-    opacity:.9;
+  color: var(--primary);
 }
-
 
 .welcome-left p {
+  margin-top: 10px;
 
-    margin-top:12px;
+  max-width: 600px;
 
-    font-size:15px;
+  font-size: 15px;
 
-    opacity:.85;
+  line-height: 1.6;
+
+  color: var(--text-secondary);
 }
 
+/* COMPANY LOGO */
 
-.company-logo {
+.dashboard-welcome .company-logo {
+  width: 110px;
 
-    width:90px;
+  height: 110px;
 
-    height:90px;
+  border-radius: 50%;
 
-    border-radius:50%;
+  background: rgba(37, 99, 235, 0.12);
 
-    background:
-    rgba(255,255,255,.15);
+  border: 2px solid var(--primary);
 
+  color: var(--primary);
 
-    display:flex;
+  display: flex;
 
-    justify-content:center;
+  align-items: center;
 
-    align-items:center;
+  justify-content: center;
 
+  font-size: 40px;
 
-    font-size:36px;
+  font-weight: 800;
+}
 
-    font-weight:700;
+/* DARK MODE */
 
+[data-theme="dark"] .dashboard-welcome {
+  background: var(--surface-color);
+}
 
-    border:
-    2px solid rgba(255,255,255,.3);
+[data-theme="dark"] .welcome-role {
+  background: rgba(96, 165, 250, 0.15);
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .dashboard-welcome {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 25px;
+
+    padding: 25px;
+  }
+
+  .welcome-left h2 {
+    font-size: 30px;
+  }
+
+  .dashboard-welcome .company-logo {
+    width: 90px;
+
+    height: 90px;
+
+    font-size: 32px;
+  }
 }
 
 /* =======================================================
    DASHBOARD / MAIN CONTENT GRID
 ======================================================= */
 .recruiter-dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 25px;
 }
 
 .recruiter-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
 }
 
-.recruiter-left, .recruiter-right {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
+.recruiter-left,
+.recruiter-right {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 }
 
 /* =======================================================
    COMMON STRUCTURAL CARDS 
 ======================================================= */
 .recruiter-card {
-    background: var(--bg-card);
-    border-radius: 16px;
-    padding: 28px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-    transition: background 0.3s, border-color 0.3s;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition:
+    background 0.3s,
+    border-color 0.3s;
 }
 
 .recruiter-card h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
 }
 
 /* =======================================================
    STATISTICS SECTION
 ======================================================= */
 .recruiter-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
 }
 
 .recruiter-stats .recruiter-card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 24px;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.3s;
 }
 
 .recruiter-stats .recruiter-card:hover {
-    transform: translateY(-4px);
-    border-color: #3b82f6;
+  transform: translateY(-4px);
+  border-color: #3b82f6;
 }
 
 /* Fix text colors inside stat counters */
 .recruiter-stats .recruiter-card span,
 .recruiter-stats .recruiter-card div {
-    color: var(--text-primary);
+  color: var(--text-primary);
 }
 
 /* =======================================================
    JOBS & CANDIDATE LISTS
 ======================================================= */
-.jobs-list, .candidate-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.jobs-list,
+.candidate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.job-item, .candidate-item {
-    background: var(--bg-card);
-    border-radius: 14px;
-    padding: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid var(--border-color);
-    transition: all 0.2s ease;
+.job-item,
+.candidate-item {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
 }
 
-.job-item:hover, .candidate-item:hover {
-    transform: translateY(-2px);
-    border-color: #3b82f6;
-    background: var(--bg-card-hover);
+.job-item:hover,
+.candidate-item:hover {
+  transform: translateY(-2px);
+  border-color: #3b82f6;
+  background: var(--bg-card-hover);
 }
 
-.job-title, .candidate-name {
-    font-size: 18px;
-    color: var(--text-primary);
-    font-weight: 600;
+.job-title,
+.candidate-name {
+  font-size: 18px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
-.job-applications, .candidate-role {
-    margin-top: 6px;
-    color: var(--text-secondary);
-    font-size: 14px;
+.job-applications,
+.candidate-role {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 
 /* =======================================================
    STATUS BADGES
 ======================================================= */
-.job-status, .candidate-status {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 14px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
+.job-status,
+.candidate-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.status-open { background: var(--bg-open); color: var(--text-open); }
-.status-closed { background: var(--bg-closed); color: var(--text-closed); }
-.status-draft { background: var(--bg-draft); color: var(--text-draft); }
-.candidate-status { background: rgba(37, 99, 235, 0.15); color: #3b82f6; }
+.status-open {
+  background: var(--bg-open);
+  color: var(--text-open);
+}
+.status-closed {
+  background: var(--bg-closed);
+  color: var(--text-closed);
+}
+.status-draft {
+  background: var(--bg-draft);
+  color: var(--text-draft);
+}
+.candidate-status {
+  background: rgba(37, 99, 235, 0.15);
+  color: #3b82f6;
+}
 
 /* =======================================================
    QUICK ACTIONS GRID
 ======================================================= */
 .quick-actions-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .quick-action-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    min-height: 130px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .quick-action-card:hover {
-    transform: translateY(-4px);
-    border-color: #3b82f6;
-    background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  border-color: #3b82f6;
+  background: var(--bg-card-hover);
 }
 
 .quick-action-icon {
-    width: 24px;
-    height: 24px;
-    color: #3b82f6;
+  width: 24px;
+  height: 24px;
+  color: #3b82f6;
 }
 
 .quick-action-card span {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 /* =======================================================
    RESPONSIVE MEDIA QUERIES
 ======================================================= */
 @media (max-width: 1200px) {
-    .recruiter-content { grid-template-columns: 1fr; }
+  .recruiter-content {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 992px) {
-    .recruiter-stats { grid-template-columns: repeat(2, 1fr); }
-    .recruiter-main { padding: 30px; }
+  .recruiter-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .recruiter-main {
+    padding: 30px;
+  }
 }
 @media (max-width: 768px) {
-    .quick-actions-grid, .company-grid { grid-template-columns: 1fr; }
-    .job-item, .candidate-item { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .recruiter-header h1 { font-size: 28px; }
+  .quick-actions-grid,
+  .company-grid {
+    grid-template-columns: 1fr;
+  }
+  .job-item,
+  .candidate-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .recruiter-header h1 {
+    font-size: 28px;
+  }
 }
 @media (max-width: 576px) {
-    .recruiter-stats { grid-template-columns: 1fr; }
+  .recruiter-stats {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =======================================================

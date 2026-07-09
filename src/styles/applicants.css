@@ -1,5 +1,5 @@
 /* ==========================================
-   Theme Variables
+   Theme Variables & Global Settings
 ========================================== */
 :root {
   /* Colors - Light Theme (Default) */
@@ -43,8 +43,192 @@
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
+* {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+html,
+body,
+.app {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
 /* ==========================================
-   Applicant Status Badge
+   Typography & Base Element Rules
+========================================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p, span, small {
+  color: var(--text-secondary);
+}
+
+label {
+  color: var(--text-secondary);
+}
+
+/* Form Elements */
+input,
+textarea,
+select {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* ==========================================
+   Global Button Components
+========================================== */
+button {
+  transition: all 0.25s ease;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.primary-btn,
+.resume-btn,
+.auth-btn {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn:hover,
+.resume-btn:hover,
+.auth-btn:hover {
+  background: var(--primary-hover);
+}
+
+.secondary-btn {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: var(--bg-surface-header);
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  opacity: 0.9;
+}
+
+.icon-btn.danger {
+  background: #dc2626;
+}
+
+.view-btn, .status-btn {
+  border: none;
+  cursor: pointer;
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: .2s;
+  color: white;
+}
+
+.view-btn {
+  background: #10b981;
+}
+
+.status-btn {
+  background: #f59e0b;
+}
+
+.view-btn:hover, .status-btn:hover {
+  opacity: .9;
+}
+
+/* ==========================================
+   Navigation & Structural Layouts
+========================================== */
+.navbar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar h1,
+.navbar span {
+  color: var(--text-primary);
+}
+
+.sidebar {
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+  color: var(--text-primary);
+}
+
+.sidebar-item {
+  color: var(--text-secondary);
+}
+
+.sidebar-item:hover {
+  background: var(--bg-surface-hover);
+}
+
+.sidebar-item.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.card,
+.dashboard-card,
+.profile-card,
+.resume-card,
+.auth-card,
+.content-card,
+.table-card {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* ==========================================
+   Applicant Feature Elements
 ========================================== */
 .applicant-status-badge {
   display: inline-flex;
@@ -58,9 +242,6 @@
   white-space: nowrap;
 }
 
-/* ========================================
-   Applicant Search
-======================================== */
 .applicant-search {
   position: relative;
   width: 100%;
@@ -94,13 +275,6 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.applicant-search-input::placeholder {
-  color: var(--text-muted);
-}
-
-/* ===============================
-   Applicant Filters
-=============================== */
 .applicant-filters {
   display: flex;
   gap: 20px;
@@ -119,37 +293,18 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-secondary);
 }
 
 .filter-group select {
   padding: 12px 14px;
-  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: var(--bg-surface);
-  color: var(--text-primary);
   font-size: 15px;
-  outline: none;
   transition: border-color 0.3s ease;
 }
 
-.filter-group select:focus {
-  border-color: var(--primary-color);
-}
-
-@media (max-width: 768px) {
-  .applicant-filters {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .filter-group {
-    width: 100%;
-  }
-}
-
-/* ==========================
-   Applicant Table
-========================== */
+/* ==========================================
+   Tables & Lists
+========================================== */
 .applicant-table-wrapper {
   margin-top: 30px;
   background: var(--bg-surface);
@@ -159,12 +314,19 @@
   border: 1px solid var(--border-color);
 }
 
+table,
 .applicant-table {
   width: 100%;
-  min-width: 1200px;
   border-collapse: collapse;
+  background: var(--bg-surface);
+  color: var(--text-primary);
 }
 
+.applicant-table {
+  min-width: 1200px;
+}
+
+thead,
 .applicant-table thead {
   background: var(--bg-surface-header);
 }
@@ -183,20 +345,19 @@
   padding: 18px 20px;
   border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
-  color: var(--text-primary);
 }
 
+tbody tr,
 .applicant-table tbody tr {
   transition: .25s;
 }
 
+tbody tr:hover,
 .applicant-table tbody tr:hover {
   background: var(--bg-surface-hover);
 }
 
-/* ==========================
-   Candidate
-========================== */
+/* Candidate Metadata */
 .candidate-cell {
   display: flex;
   align-items: center;
@@ -219,7 +380,6 @@
 
 .candidate-info h4 {
   margin: 0;
-  color: var(--text-primary);
   font-size: 16px;
 }
 
@@ -229,13 +389,15 @@
   font-size: 14px;
 }
 
-/* ==========================
-   Skills
-========================== */
-.skills-cell {
+.skills-cell,
+.skills-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.skills-wrapper {
+  margin: 16px 0;
 }
 
 .skill-badge {
@@ -248,132 +410,23 @@
   white-space: nowrap;
 }
 
-/* ==========================
-   Experience
-========================== */
 .experience-cell {
   font-weight: 600;
-  color: var(--text-primary);
 }
-
-/* ==========================
-   Resume Button
-========================== */
-.resume-btn {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: .2s;
-}
-
-.resume-btn:hover {
-  background: var(--primary-hover);
-}
-
-/* ==========================
-   Action Buttons
-========================== */
-.action-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.view-btn, .status-btn {
-  border: none;
-  cursor: pointer;
-  padding: 9px 15px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: .2s;
-}
-
-.view-btn {
-  background: #10b981;
-  color: white;
-}
-
-.status-btn {
-  background: #f59e0b;
-  color: white;
-}
-
-.view-btn:hover, .status-btn:hover {
-  opacity: .9;
-}
-
-/* ==========================
-   Loading & Empty States
-========================== */
-.applicant-loading,
-.applicant-empty {
-  background: var(--bg-surface);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-  padding: 40px;
-  text-align: center;
-  border-radius: 14px;
-  margin-top: 30px;
-}
-
-/* ==========================
-   Responsive
-========================== */
-@media (max-width:992px){
-  .applicant-table{
-      min-width:1100px;
-  }
-}
-
-@media (max-width:768px){
-  .applicant-table{
-      min-width:950px;
-  }
-
-  .applicant-table th,
-  .applicant-table td{
-      padding:14px;
-      font-size:14px;
-  }
-
-  .candidate-avatar{
-      width:40px;
-      height:40px;
-      font-size:15px;
-  }
-}
-
-/* --|--|--|--|--| */
 
 .applicant-actions {
   display: flex;
   gap: 8px;
 }
 
-.icon-btn {
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: var(--primary-color);
-  color: #fff;
+.action-buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 10px;
 }
 
-.icon-btn:hover {
-  opacity: 0.9;
-}
-
-.icon-btn.danger {
-  background: #dc2626;
-}
-
+/* ==========================================
+   Modals & Popups
+========================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -384,13 +437,39 @@
   z-index: 1000;
 }
 
+.modal-card,
+.status-modal {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+}
+
 .modal-card {
   width: 700px;
   max-width: 95%;
-  background: var(--bg-surface);
   border-radius: 12px;
-  box-shadow: var(--shadow-lg);
   overflow: hidden;
+}
+
+.status-modal {
+  width: 420px;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.status-modal h2 {
+  margin-bottom: 10px;
+}
+
+.status-modal p {
+  margin-bottom: 20px;
+}
+
+.status-modal select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
 }
 
 .modal-header {
@@ -405,6 +484,17 @@
   padding: 24px;
 }
 
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+}
+
+.modal-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
 .close-btn {
   border: none;
   background: transparent;
@@ -413,13 +503,9 @@
   cursor: pointer;
 }
 
-.skills-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0;
-}
-
+/* ==========================================
+   Contextual Sub-Views (Resume, Loaders, Utilities)
+========================================== */
 .resume-viewer {
   margin-top: 24px;
   padding-top: 20px;
@@ -432,64 +518,100 @@
   margin-top: 16px;
 }
 
+.resume-upload-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+}
 
-/* Update Status Model */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.45);
+.resume-preview {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
 
+.resume-error {
+  color: #ef4444;
+}
+
+.applicant-loading,
+.applicant-empty {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 40px;
+  text-align: center;
+  border-radius: 14px;
+  margin-top: 30px;
+}
+
+.theme-toggle {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  z-index: 1000;
-}
-
-.status-modal {
-  width: 420px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.status-modal h2 {
-  margin-bottom: 10px;
-}
-
-.status-modal p {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.status-modal select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.modal-actions {
-  margin-top: 25px;
-
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
-.primary-btn,
-.secondary-btn {
+  gap: 8px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   padding: 10px 18px;
   border-radius: 8px;
-  border: none;
   cursor: pointer;
 }
 
-.primary-btn {
-  background: #2563eb;
-  color: white;
+.theme-toggle:hover {
+  background: var(--bg-surface-hover);
 }
 
-.secondary-btn {
-  background: #e5e7eb;
+/* ==========================================
+   Scrollbar Customization
+========================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ==========================================
+   Responsive Breakpoints
+========================================== */
+@media (max-width: 992px) {
+  .applicant-table {
+    min-width: 1100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .applicant-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .applicant-table {
+    min-width: 950px;
+  }
+
+  .applicant-table th,
+  .applicant-table td {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .candidate-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+  }
 }

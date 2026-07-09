@@ -1,0 +1,233 @@
+/* =====================================
+   Global Reset
+===================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =====================================
+   Root Setup
+===================================== */
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+}
+
+/* =====================================
+   Body Theme
+===================================== */
+
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+
+  background: var(--bg-color);
+
+  color: var(--text-color);
+
+  line-height: 1.5;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* =====================================
+   Links
+===================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =====================================
+   Buttons
+===================================== */
+
+button {
+  font-family: inherit;
+
+  cursor: pointer;
+
+  border: none;
+
+  outline: none;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+/* =====================================
+   Form Elements
+===================================== */
+
+input,
+textarea,
+select {
+  font-family: inherit;
+
+  background: var(--input-bg);
+
+  color: var(--text-color);
+
+  border: 1px solid var(--border-color);
+
+  outline: none;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* =====================================
+   Images
+===================================== */
+
+img {
+  display: block;
+
+  max-width: 100%;
+}
+
+/* =====================================
+   Lists
+===================================== */
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* =====================================
+   Headings
+===================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-color);
+
+  font-weight: 700;
+}
+
+/* =====================================
+   Paragraph Text
+===================================== */
+
+p {
+  color: var(--text-secondary);
+}
+
+/* =====================================
+   Cards
+===================================== */
+
+.card {
+  background: var(--card-bg);
+
+  color: var(--text-color);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 12px;
+
+  box-shadow: var(--shadow);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* =====================================
+   Scrollbar Theme
+===================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+
+  border-radius: 10px;
+
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* =====================================
+   Text Selection
+===================================== */
+
+::selection {
+  background: var(--primary);
+
+  color: #fff;
+}
+
+/* =====================================
+   Utility Classes
+===================================== */
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.bg-surface {
+  background: var(--surface-color);
+}
+
+.bg-card {
+  background: var(--card-bg);
+}
+
+.border {
+  border: 1px solid var(--border-color);
+}
