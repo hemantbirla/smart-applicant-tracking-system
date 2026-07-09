@@ -380,3 +380,63 @@ grid-template-columns:1fr;
   }
 }
 
+/* ==========================================
+   Application Summary Card
+========================================== */
+
+.admin-summary-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.admin-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item span {
+  color: #4b5563;
+  font-size: 15px;
+}
+
+.summary-item strong {
+  font-size: 18px;
+  color: #2563eb;
+}
+
+.admin-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 30px 0;
+}
+
+@media (max-width: 992px) {
+  .admin-two-column {
+    grid-template-columns: 1fr;
+  }
+}

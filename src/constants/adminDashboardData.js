@@ -130,12 +130,28 @@ export const jobSummary = [
    Application Summary
 ============================ */
 
-export const applicationSummary = {
-  today: 148,
-  thisWeek: 946,
-  thisMonth: 3848,
-  offersReleased: 87,
-};
+export const applicationSummary = [
+  {
+    id: 1,
+    title: "Applications Today",
+    value: 48,
+  },
+  {
+    id: 2,
+    title: "This Week",
+    value: 312,
+  },
+  {
+    id: 3,
+    title: "This Month",
+    value: 1245,
+  },
+  {
+    id: 4,
+    title: "Offers Released",
+    value: 36,
+  },
+];
 
 /* ============================
    Recent Activities
