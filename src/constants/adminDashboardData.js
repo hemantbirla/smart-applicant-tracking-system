@@ -1,0 +1,427 @@
+import {
+  FiUsers,
+  FiUserCheck,
+  FiBriefcase,
+  FiFileText,
+  FiCalendar,
+  FiAward,
+  FiCheckCircle,
+  FiClock,
+  FiUserPlus,
+  FiSettings,
+  FiBarChart2,
+  FiShield,
+  FiLogOut,
+} from "react-icons/fi";
+import {
+  LayoutDashboard,
+  Users,
+  UserCheck,
+  Briefcase,
+  FileText,
+  BarChart3,
+  Building2,
+  Settings,
+  LogOut,
+} from "lucide-react";
+/* ============================
+   Dashboard Statistics
+============================ */
+
+export const adminStatistics = [
+  {
+    id: 1,
+    title: "Total Users",
+    count: 2480,
+    icon: FiUsers,
+    color: "#2563EB",
+  },
+  {
+    id: 2,
+    title: "Recruiters",
+    count: 184,
+    icon: FiUserCheck,
+    color: "#10B981",
+  },
+  {
+    id: 3,
+    title: "Jobs",
+    count: 612,
+    icon: FiBriefcase,
+    color: "#F59E0B",
+  },
+  {
+    id: 4,
+    title: "Applications",
+    count: 12456,
+    icon: FiFileText,
+    color: "#EC4899",
+  },
+  {
+    id: 5,
+    title: "Interviews",
+    count: 428,
+    icon: FiCalendar,
+    color: "#8B5CF6",
+  },
+  {
+    id: 6,
+    title: "Offers",
+    count: 87,
+    icon: FiAward,
+    color: "#14B8A6",
+  },
+  {
+    id: 7,
+    title: "Active Jobs",
+    count: 276,
+    icon: FiCheckCircle,
+    color: "#22C55E",
+  },
+  {
+    id: 8,
+    title: "Pending Approvals",
+    count: 18,
+    icon: FiClock,
+    color: "#EF4444",
+  },
+];
+
+/* ============================
+   User Summary
+============================ */
+
+export const userSummary = {
+  candidates: 2100,
+  recruiters: 184,
+  admins: 6,
+  newUsersToday: 42,
+  inactiveUsers: 97,
+};
+
+/* ============================
+   Recruiter Summary
+============================ */
+
+export const recruiterSummary = {
+  verified: 160,
+  pending: 18,
+  blocked: 6,
+  topRecruiter: "Google",
+};
+
+/* ============================
+   Job Summary
+============================ */
+
+export const jobSummary = [
+  {
+    id: 1,
+    title: "Open Jobs",
+    value: 186,
+  },
+  {
+    id: 2,
+    title: "Closed Jobs",
+    value: 54,
+  },
+  {
+    id: 3,
+    title: "Expired Jobs",
+    value: 12,
+  },
+  {
+    id: 4,
+    title: "Draft Jobs",
+    value: 21,
+  },
+];
+
+/* ============================
+   Application Summary
+============================ */
+
+export const applicationSummary = [
+  {
+    id: 1,
+    title: "Applications Today",
+    value: 48,
+  },
+  {
+    id: 2,
+    title: "This Week",
+    value: 312,
+  },
+  {
+    id: 3,
+    title: "This Month",
+    value: 1245,
+  },
+  {
+    id: 4,
+    title: "Offers Released",
+    value: 36,
+  },
+];
+
+/* ============================
+   Recent Activities
+============================ */
+
+export const recentActivities = [
+  {
+    id: 1,
+    user: "John Smith",
+    action: "applied for",
+    target: "React Developer",
+    company: "Google",
+    time: "2 minutes ago",
+  },
+  {
+    id: 2,
+    user: "Amazon",
+    action: "posted",
+    target: "Backend Developer",
+    company: "",
+    time: "10 minutes ago",
+  },
+  {
+    id: 3,
+    user: "Google",
+    action: "approved",
+    target: "Recruiter Account",
+    company: "",
+    time: "30 minutes ago",
+  },
+  {
+    id: 4,
+    user: "Microsoft",
+    action: "closed",
+    target: "Frontend Developer",
+    company: "",
+    time: "1 hour ago",
+  },
+  {
+    id: 5,
+    user: "Admin",
+    action: "blocked",
+    target: "Recruiter Account",
+    company: "",
+    time: "Today",
+  },
+];
+
+/* ============================
+   System Health
+============================ */
+
+export const systemHealth = [
+  {
+    id: 1,
+    service: "API Server",
+    status: "Online",
+    color: "#22C55E",
+  },
+  {
+    id: 2,
+    service: "Database",
+    status: "Healthy",
+    color: "#22C55E",
+  },
+  {
+    id: 3,
+    service: "Authentication",
+    status: "Online",
+    color: "#22C55E",
+  },
+  {
+    id: 4,
+    service: "Storage",
+    status: "Healthy",
+    color: "#22C55E",
+  },
+  {
+    id: 5,
+    service: "Email Service",
+    status: "Slow",
+    color: "#F59E0B",
+  },
+];
+
+/* ============================
+   Top Companies
+============================ */
+
+export const topCompanies = [
+  {
+    id: 1,
+    company: "Google",
+    jobs: 48,
+    applications: 1240,
+  },
+  {
+    id: 2,
+    company: "Microsoft",
+    jobs: 42,
+    applications: 1088,
+  },
+  {
+    id: 3,
+    company: "Amazon",
+    jobs: 39,
+    applications: 965,
+  },
+  {
+    id: 4,
+    company: "Adobe",
+    jobs: 26,
+    applications: 742,
+  },
+  {
+    id: 5,
+    company: "Netflix",
+    jobs: 18,
+    applications: 486,
+  },
+];
+
+/* ============================
+   Quick Actions
+============================ */
+
+export const quickActions = [
+  {
+    id: 1,
+    title: "Add Recruiter",
+    icon: FiUserPlus,
+    color: "#2563EB",
+  },
+  {
+    id: 2,
+    title: "Approve Recruiter",
+    icon: FiCheckCircle,
+    color: "#10B981",
+  },
+  {
+    id: 3,
+    title: "Manage Jobs",
+    icon: FiBriefcase,
+    color: "#F59E0B",
+  },
+  {
+    id: 4,
+    title: "Manage Users",
+    icon: FiUsers,
+    color: "#8B5CF6",
+  },
+  {
+    id: 5,
+    title: "Reports",
+    icon: FiBarChart2,
+    color: "#EC4899",
+  },
+  {
+    id: 6,
+    title: "Settings",
+    icon: FiSettings,
+    color: "#6B7280",
+  },
+];
+
+/* ============================
+   System Status
+============================ */
+
+export const systemStatus = [
+  {
+    id: 1,
+    name: "API Server",
+    description: "REST API Services",
+    status: "Online",
+    icon: "🟢",
+  },
+  {
+    id: 2,
+    name: "Database",
+    description: "MySQL Database",
+    status: "Healthy",
+    icon: "🟢",
+  },
+  {
+    id: 3,
+    name: "Authentication",
+    description: "JWT Authentication",
+    status: "Online",
+    icon: "🟢",
+  },
+  {
+    id: 4,
+    name: "Storage",
+    description: "Resume Storage",
+    status: "Healthy",
+    icon: "🟢",
+  },
+  {
+    id: 5,
+    name: "Email Service",
+    description: "SMTP Service",
+    status: "Slow",
+    icon: "🟡",
+  },
+];
+
+export const adminSidebarMenu = [
+  {
+    id: 1,
+    title: "Dashboard",
+    path: "/admin/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    id: 2,
+    title: "Users",
+    path: "/admin/users",
+    icon: Users,
+  },
+  {
+    id: 3,
+    title: "Recruiters",
+    path: "/admin/recruiters",
+    icon: UserCheck,
+  },
+  {
+    id: 4,
+    title: "Jobs",
+    path: "/admin/jobs",
+    icon: Briefcase,
+  },
+  {
+    id: 5,
+    title: "Applications",
+    path: "/admin/applications",
+    icon: FileText,
+  },
+  {
+    id: 6,
+    title: "Reports",
+    path: "/admin/reports",
+    icon: BarChart3,
+  },
+  {
+    id: 7,
+    title: "Companies",
+    path: "/admin/companies",
+    icon: Building2,
+  },
+  {
+    id: 8,
+    title: "Settings",
+    path: "/admin/settings",
+    icon: Settings,
+  },
+];
+
+export const adminLogoutItem = {
+  title: "Logout",
+  icon: LogOut,
+};

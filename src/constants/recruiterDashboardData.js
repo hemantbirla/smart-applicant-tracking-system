@@ -1,9 +1,71 @@
 import {
+  FiHome,
   FiBriefcase,
   FiUsers,
-  FiCalendar,
+  FiFileText,
   FiCheckCircle,
+  FiCalendar,
+  FiBarChart2,
+  FiSettings,
+  FiLogOut,
 } from "react-icons/fi";
+import { FaBuilding } from "react-icons/fa";
+
+export const recruiterSidebarMenu = [
+  {
+    id: 1,
+    title: "Dashboard",
+    path: "/recruiter/dashboard",
+    icon: FiHome,
+  },
+  {
+    id: 2,
+    title: "Manage Jobs",
+    path: "/recruiter/jobs",
+    icon: FiBriefcase,
+  },
+  {
+    id: 3,
+    title: "Applicants",
+    path: "/recruiter/applicants",
+    icon: FiUsers,
+  },
+  {
+    id: 4,
+    title: "Applications",
+    path: "/recruiter/applications",
+    icon: FiFileText,
+  },
+  {
+    id: 5,
+    title: "Interviews",
+    path: "/recruiter/interviews",
+    icon: FiCalendar,
+  },
+  {
+    id: 6,
+    title: "Company",
+    path: "/recruiter/company",
+    icon: FaBuilding,
+  },
+  {
+    id: 7,
+    title: "Reports",
+    path: "/recruiter/reports",
+    icon: FiBarChart2,
+  },
+  {
+    id: 8,
+    title: "Settings",
+    path: "/recruiter/settings",
+    icon: FiSettings,
+  },
+];
+
+export const recruiterLogoutItem = {
+  title: "Logout",
+  icon: FiLogOut,
+};
 
 // ===============================
 // Recruiter Dashboard

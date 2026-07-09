@@ -7,14 +7,13 @@ const SidebarItem = ({ item }) => {
     <NavLink
       to={item.path}
       className={({ isActive }) =>
-        isActive ? "sidebar-link active" : "sidebar-link"
+        isActive
+          ? "sidebar-link active"
+          : "sidebar-link"
       }
     >
       <Icon className="sidebar-icon" />
-
-      <span className="sidebar-title">
-        {item.title}
-      </span>
+      <span>{item.title}</span>
     </NavLink>
   );
 };
