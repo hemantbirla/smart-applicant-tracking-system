@@ -27,6 +27,8 @@ import Applicants from "./pages/Applicants/Applicants";
 import "react-toastify/dist/ReactToastify.css";
 import Interviews from "./pages/Interviews/Interviews";
 
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+
 function App() {
   return (
     <>
@@ -75,14 +77,9 @@ function App() {
         {/* ================= Applicants ================= */}
         <Route path="/recruiter/applicants" element={<Applicants />} />
 
-        <Route
-          path="/recruiter/jobs/new"
-          element={
-            <DashboardLayout>
-              <h2>Post New Job</h2>
-            </DashboardLayout>
-          }
-        />
+        {/* ================= Admin ================= */}
+
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
         {/* ================= Recruiter Applications ================= */}
 
@@ -91,17 +88,6 @@ function App() {
           element={
             <DashboardLayout>
               <h2>Applications</h2>
-            </DashboardLayout>
-          }
-        />
-
-        {/* ================= Recruiter Candidates ================= */}
-
-        <Route
-          path="/recruiter/candidates"
-          element={
-            <DashboardLayout>
-              <h2>Candidates</h2>
             </DashboardLayout>
           }
         />

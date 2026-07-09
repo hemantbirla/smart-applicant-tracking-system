@@ -1,0 +1,92 @@
+/* ===========================
+   ADMIN HEADER
+=========================== */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+}
+
+.admin-header-left {
+    flex: 1;
+}
+
+.admin-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.admin-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.admin-header-right {
+    display: flex;
+    gap: 20px;
+}
+
+.admin-info-card {
+    min-width: 170px;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.admin-info-label {
+    display: block;
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.admin-info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+@media (max-width:992px) {
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-header-right {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .admin-info-card {
+        flex: 1;
+        min-width: 180px;
+    }
+
+}
+
+@media (max-width:576px) {
+
+    .admin-title {
+        font-size: 28px;
+    }
+
+    .admin-header-right {
+        flex-direction: column;
+    }
+
+    .admin-info-card {
+        width: 100%;
+    }
+
+}
