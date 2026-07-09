@@ -8,7 +8,6 @@ import {
   FiClipboard,
   FiCalendar,
   FiAward,
-  FiShield,
 } from "react-icons/fi";
 
 // Dashboard Statistics
@@ -40,12 +39,6 @@ export const dashboardData = [
     count: 2,
     icon: FiAward,
     color: "#10B981",
-  },
-  {
-    id: 6,
-    title: "Admin",
-    icon: FiShield,
-    path: "/admin/dashboard",
   },
 ];
 
@@ -80,12 +73,6 @@ export const sidebarMenu = [
     title: "Profile",
     icon: FiUser,
     path: "/profile",
-  },
-  {
-    id: 6,
-    title: "Admin",
-    icon: FiShield,
-    path: "/admin/dashboard",
   },
 ];
 

@@ -81,6 +81,20 @@ function App() {
 
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
+        {/* <Route path="/admin/users" element={<Users />} /> */}
+
+        {/* <Route path="/admin/recruiters" element={<Recruiters />} /> */}
+
+        {/* <Route path="/admin/jobs" element={<Jobs />} /> */}
+
+        {/* <Route path="/admin/applications" element={<Applications />} /> */}
+
+        {/* <Route path="/admin/reports" element={<Reports />} /> */}
+
+        {/* <Route path="/admin/companies" element={<Companies />} /> */}
+
+        {/* <Route path="/admin/settings" element={<Settings />} /> */}
+
         {/* ================= Recruiter Applications ================= */}
 
         <Route
