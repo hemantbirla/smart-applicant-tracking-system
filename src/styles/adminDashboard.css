@@ -494,3 +494,36 @@
     color: #6b7280;
     font-size: 13px;
 }
+
+/* ===============================
+   Top Companies
+=============================== */
+
+.company-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.company-card {
+    background: #1f2937;
+    border-radius: 12px;
+    padding: 20px;
+    transition: 0.3s;
+    border: 1px solid #374151;
+}
+
+.company-card:hover {
+    transform: translateY(-4px);
+}
+
+.company-card h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.company-info p {
+    color: #d1d5db;
+    margin: 8px 0;
+    font-size: 14px;
+}

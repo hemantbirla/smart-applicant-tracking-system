@@ -10,6 +10,7 @@ import { recruiterSummary } from "../../constants/adminDashboardData";
 import JobSummary from "../../components/admin/JobSummary";
 import ApplicationSummary from "../../components/admin/ApplicationSummary";
 import RecentActivities from "../../components/admin/RecentActivities";
+import TopCompanies from "../../components/admin/TopCompanies";
 
 const AdminDashboard = () => {
   return (
@@ -23,7 +24,10 @@ const AdminDashboard = () => {
           <JobSummary />
           <ApplicationSummary />
         </div>
-        <RecentActivities />
+        <div className="admin-grid">
+          <RecentActivities />
+          <TopCompanies />
+        </div>
       </div>
     </DashboardLayout>
   );
