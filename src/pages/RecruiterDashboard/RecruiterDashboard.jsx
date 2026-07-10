@@ -10,7 +10,19 @@ import CompanySummary from "../../components/dashboard/recruiter/CompanySummary"
 import "../../styles/recruiter-dashboard.css";
 import { recruiterHeader } from "../../constants/recruiterDashboardData";
 
+import SkeletonCard from "../../components/common/Skeleton/SkeletonCard";
+import useLoading from "../../hooks/useLoading";
+
 const RecruiterDashboard = () => {
+  const { loading } = useLoading();
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <SkeletonCard />
+      </DashboardLayout>
+    );
+  }
   return (
     <DashboardLayout>
       <div className="recruiter-dashboard">

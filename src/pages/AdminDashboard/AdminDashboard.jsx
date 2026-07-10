@@ -19,7 +19,19 @@ import { recruiterSummary } from "../../constants/adminDashboardData";
 import "../../styles/adminDashboard.css";
 import "../../styles/analytics.css";
 
+import SkeletonCard from "../../components/common/Skeleton/SkeletonCard";
+import useLoading from "../../hooks/useLoading";
+
 const AdminDashboard = () => {
+  const { loading } = useLoading();
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <SkeletonCard />
+      </DashboardLayout>
+    );
+  }
   return (
     <DashboardLayout>
       <div className="admin-dashboard">

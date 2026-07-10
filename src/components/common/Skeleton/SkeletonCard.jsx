@@ -1,16 +1,16 @@
-const SkeletonCard = ({ rows = 5 }) => {
+import "./Skeleton.css";
+
+const SkeletonCard = ({ count = 4 }) => {
   return (
-    <div className="skeleton-container">
-      {Array.from({ length: rows }).map((_, index) => (
-        <div
-          className="skeleton-card"
-          key={index}
-        >
-          <div className="skeleton skeleton-title"></div>
+    <div className="skeleton-card-grid">
+      {Array.from({ length: count }).map((_, index) => (
+        <div className="skeleton-card" key={index}>
+          <div className="skeleton skeleton-icon"></div>
 
-          <div className="skeleton skeleton-text"></div>
-
-          <div className="skeleton skeleton-text short"></div>
+          <div className="skeleton-content">
+            <div className="skeleton skeleton-title"></div>
+            <div className="skeleton skeleton-text"></div>
+          </div>
         </div>
       ))}
     </div>
