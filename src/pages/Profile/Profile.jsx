@@ -11,24 +11,50 @@ import EditProfileModal from "../../components/profile/EditProfileModal";
 import ResumeUpload from "../../components/resume/ResumeUpload";
 
 import SkeletonProfile from "../../components/common/Skeleton/SkeletonProfile";
+import ErrorFallback from "../../components/common/Error/ErrorFallback";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  // Simulate API loading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
+  const fetchProfile = () => {
+    setLoading(true);
+    setError(false);
 
-    return () => clearTimeout(timer);
+    // Simulate API Call
+    setTimeout(() => {
+      const success = true; // Change to false to test ErrorFallback
+
+      if (success) {
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setError(true);
+      }
+    }, 1500);
+  };
+
+  useEffect(() => {
+    fetchProfile();
   }, []);
 
   if (loading) {
     return (
       <DashboardLayout>
         <SkeletonProfile />
+      </DashboardLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <DashboardLayout>
+        <ErrorFallback
+          title="Unable to load profile"
+          message="Something went wrong while loading your profile. Please try again."
+          onRetry={fetchProfile}
+        />
       </DashboardLayout>
     );
   }
