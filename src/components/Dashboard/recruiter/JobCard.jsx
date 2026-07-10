@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const JobCard = ({ job }) => {
   return (
     <div className="job-card">
@@ -7,13 +9,11 @@ const JobCard = ({ job }) => {
         <p>{job.applications} Applications</p>
       </div>
 
-      <span
-        className={`job-status ${job.status.toLowerCase()}`}
-      >
+      <span className={`job-status ${job.status.toLowerCase()}`}>
         {job.status}
       </span>
     </div>
   );
 };
 
-export default JobCard;
+export default memo(JobCard);

@@ -6,18 +6,10 @@ const Loader = ({
   fullscreen = false,
 }) => {
   return (
-    <div
-      className={`loader-container ${
-        fullscreen ? "fullscreen" : ""
-      }`}
-    >
+    <div className={`loader-container ${fullscreen ? "fullscreen" : ""}`}>
       <div className={`spinner ${size}`}></div>
 
-      {message && (
-        <p className="loader-message">
-          {message}
-        </p>
-      )}
+      {message && <p className="loader-message">{message}</p>}
     </div>
   );
 };

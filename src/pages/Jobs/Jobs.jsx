@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -29,6 +29,9 @@ const Jobs = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
+  /**
+   * Fetch Jobs
+   */
   const fetchJobs = useCallback(async () => {
     try {
       setLoading(true);
@@ -39,9 +42,11 @@ const Jobs = () => {
         limit: PAGE_SIZE,
       });
 
-      setJobs(response.jobs || []);
+      const fetchedJobs = response.jobs || [];
 
-      setHasMore((response.jobs || []).length === PAGE_SIZE);
+      setJobs(fetchedJobs);
+
+      setHasMore(fetchedJobs.length === PAGE_SIZE);
     } catch (err) {
       console.error(err);
       setError("Unable to load jobs.");
@@ -54,6 +59,9 @@ const Jobs = () => {
     fetchJobs();
   }, [fetchJobs]);
 
+  /**
+   * Filter, Search & Sort
+   */
   const {
     filteredJobs,
     searchTerm,
@@ -65,21 +73,69 @@ const Jobs = () => {
     clearFilters,
   } = useJobFilters(jobs);
 
-  const { currentItems, currentPage, totalPages, goToPage } =
-    usePagination(filteredJobs);
+  /**
+   * Memoize filtered jobs
+   */
+  const memoizedJobs = useMemo(() => {
+    return filteredJobs;
+  }, [filteredJobs]);
 
+  /**
+   * Pagination
+   */
+  const { currentItems, currentPage, totalPages, goToPage } =
+    usePagination(memoizedJobs);
+
+  /**
+   * Memoize current page items
+   */
+  const memoizedCurrentItems = useMemo(() => {
+    return currentItems;
+  }, [currentItems]);
+
+  /**
+   * Infinite Scroll
+   */
   const loadMore = useCallback(() => {
     if (loading || !hasMore) return;
 
     setPage((prev) => prev + 1);
-
-    // Later:
-    // fetchJobs(page + 1);
   }, [loading, hasMore]);
 
   const { lastElementRef } = useInfiniteScroll(loading, hasMore, loadMore);
 
-  // Loading State
+  /**
+   * Memoize Filters
+   */
+  const memoizedFilters = useMemo(() => {
+    return filters;
+  }, [filters]);
+
+  /**
+   * Memoize JobList Props
+   */
+  const jobListProps = useMemo(
+    () => ({
+      jobs: memoizedCurrentItems,
+      currentPage,
+      totalPages,
+      onPageChange: goToPage,
+      loading,
+      lastElementRef,
+    }),
+    [
+      memoizedCurrentItems,
+      currentPage,
+      totalPages,
+      goToPage,
+      loading,
+      lastElementRef,
+    ],
+  );
+
+  /**
+   * Loading State
+   */
   if (loading) {
     return (
       <DashboardLayout>
@@ -88,7 +144,9 @@ const Jobs = () => {
     );
   }
 
-  // Error State
+  /**
+   * Error State
+   */
   if (error) {
     return (
       <DashboardLayout>
@@ -112,24 +170,17 @@ const Jobs = () => {
 
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
-        <FilterPanel filters={filters} onChange={updateFilter} />
+        <FilterPanel filters={memoizedFilters} onChange={updateFilter} />
 
         <SortDropdown value={sortBy} onChange={setSortBy} />
 
         <ActiveFilters
           searchTerm={searchTerm}
-          filters={filters}
+          filters={memoizedFilters}
           clearFilters={clearFilters}
         />
 
-        <JobList
-          jobs={currentItems}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={goToPage}
-          loading={loading}
-          lastElementRef={lastElementRef}
-        />
+        <JobList {...jobListProps} />
       </div>
     </DashboardLayout>
   );

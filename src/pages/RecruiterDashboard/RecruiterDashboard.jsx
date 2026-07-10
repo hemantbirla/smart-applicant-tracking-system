@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -19,30 +19,19 @@ import { recruiterHeader } from "../../constants/recruiterDashboardData";
 import "../../styles/recruiter-dashboard.css";
 
 const RecruiterDashboard = () => {
-  const {
-    loading,
-    startLoading,
-    stopLoading,
-  } = useLoading();
+  const { loading, startLoading, stopLoading } = useLoading();
 
   const [error, setError] = useState(false);
 
-  const fetchDashboard = async () => {
+  const fetchDashboard = useCallback(async () => {
     try {
       startLoading();
 
       setError(false);
 
-      // ===========================
-      // Simulate API Call
-      // Replace with actual API later
-      // ===========================
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1500)
-      );
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Uncomment to test Error UI
-      // throw new Error("Dashboard failed to load");
+      // const data = await getRecruiterDashboard();
     } catch (err) {
       console.error(err);
 
@@ -50,34 +39,14 @@ const RecruiterDashboard = () => {
     } finally {
       stopLoading();
     }
-  };
+  }, [startLoading, stopLoading]);
 
   useEffect(() => {
     fetchDashboard();
-  }, []);
+  }, [fetchDashboard]);
 
-  if (loading) {
+  const recruiterContent = useMemo(() => {
     return (
-      <DashboardLayout>
-        <SkeletonCard />
-      </DashboardLayout>
-    );
-  }
-
-  if (error) {
-    return (
-      <DashboardLayout>
-        <ErrorFallback
-          title="Unable to load Recruiter Dashboard"
-          message="Something went wrong while loading the dashboard. Please try again."
-          onRetry={fetchDashboard}
-        />
-      </DashboardLayout>
-    );
-  }
-
-  return (
-    <DashboardLayout>
       <div className="recruiter-dashboard">
         <DashboardHeader
           greeting={recruiterHeader.greeting}
@@ -101,8 +70,30 @@ const RecruiterDashboard = () => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
-  );
+    );
+  }, []);
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <SkeletonCard />
+      </DashboardLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <DashboardLayout>
+        <ErrorFallback
+          title="Unable to load Recruiter Dashboard"
+          message="Something went wrong while loading the dashboard. Please try again."
+          onRetry={fetchDashboard}
+        />
+      </DashboardLayout>
+    );
+  }
+
+  return <DashboardLayout>{recruiterContent}</DashboardLayout>;
 };
 
 export default RecruiterDashboard;

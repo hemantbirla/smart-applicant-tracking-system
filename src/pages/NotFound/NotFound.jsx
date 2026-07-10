@@ -4,20 +4,30 @@ const NotFound = () => {
   return (
     <div
       style={{
-        height: "100vh",
-        display: "grid",
-        placeItems: "center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        gap: "20px",
       }}
     >
-      <div style={{ textAlign: "center" }}>
-        <h1>404</h1>
+      <h1 style={{ fontSize: "70px" }}>404</h1>
 
-        <h2>Page Not Found</h2>
+      <h2>Page Not Found</h2>
 
-        <Link to="/login">
-          Back to Login
-        </Link>
-      </div>
+      <Link
+        to="/dashboard"
+        style={{
+          padding: "12px 24px",
+          background: "#2563eb",
+          color: "#fff",
+          borderRadius: "6px",
+          textDecoration: "none",
+        }}
+      >
+        Go to Dashboard
+      </Link>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -17,7 +17,25 @@ const Dashboard = () => {
 
   const [error, setError] = useState(false);
 
-  const fetchDashboard = async () => {
+  /**
+   * Memoized Dashboard Header Data
+   */
+  const headerData = useMemo(
+    () => ({
+      greeting: "Welcome Back 👋",
+      name: "John Smith",
+      role: "Candidate Portal",
+      description:
+        "Track applications, discover opportunities and grow your career.",
+      logo: "JS",
+    }),
+    [],
+  );
+
+  /**
+   * Memoized API Call
+   */
+  const fetchDashboard = useCallback(async () => {
     try {
       startLoading();
 
@@ -35,11 +53,11 @@ const Dashboard = () => {
     } finally {
       stopLoading();
     }
-  };
+  }, [startLoading, stopLoading]);
 
   useEffect(() => {
     fetchDashboard();
-  }, []);
+  }, [fetchDashboard]);
 
   if (loading) {
     return (
@@ -63,16 +81,7 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <DashboardHeader
-        headerData={{
-          greeting: "Welcome Back 👋",
-          name: "John Smith",
-          role: "Candidate Portal",
-          description:
-            "Track applications, discover opportunities and grow your career.",
-          logo: "JS",
-        }}
-      />
+      <DashboardHeader headerData={headerData} />
 
       <StatisticsSection />
 

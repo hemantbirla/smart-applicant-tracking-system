@@ -1,20 +1,22 @@
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import SidebarItem from "./SidebarItem";
 
-const Sidebar = ({
-  title,
-  subtitle,
-  menu,
-  logoutItem,
-}) => {
+import SidebarItem from "./SidebarItem";
+import { useAuth } from "../../context/AuthContext";
+
+const Sidebar = ({ title, subtitle, menu, logoutItem }) => {
   const navigate = useNavigate();
 
   const LogoutIcon = logoutItem.icon;
+  const { logout } = useAuth();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
+  const handleLogout = useCallback(() => {
+    const handleLogout = () => {
+      logout();
+
+      navigate("/login");
+    };
+  }, [navigate]);
 
   return (
     <aside className="sidebar">
@@ -25,17 +27,11 @@ const Sidebar = ({
 
       <nav className="sidebar-menu">
         {menu.map((item) => (
-          <SidebarItem
-            key={item.id || item.path}
-            item={item}
-          />
+          <SidebarItem key={item.id || item.path} item={item} />
         ))}
       </nav>
 
-      <button
-        className="logout-btn"
-        onClick={handleLogout}
-      >
+      <button className="logout-btn" onClick={handleLogout}>
         <LogoutIcon className="sidebar-icon" />
         <span>{logoutItem.title}</span>
       </button>
