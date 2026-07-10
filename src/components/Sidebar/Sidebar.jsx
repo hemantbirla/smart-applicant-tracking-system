@@ -1,41 +1,65 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { FiX } from "react-icons/fi";
 
 import SidebarItem from "./SidebarItem";
 import { useAuth } from "../../context/AuthContext";
 
-const Sidebar = ({ title, subtitle, menu, logoutItem }) => {
+const Sidebar = ({
+  sidebarOpen,
+  closeSidebar,
+  title,
+  subtitle,
+  menu,
+  logoutItem,
+}) => {
   const navigate = useNavigate();
 
-  const LogoutIcon = logoutItem.icon;
   const { logout } = useAuth();
 
-  const handleLogout = useCallback(() => {
-    const handleLogout = () => {
-      logout();
+  const LogoutIcon = logoutItem.icon;
 
-      navigate("/login");
-    };
-  }, [navigate]);
+  const handleLogout = useCallback(() => {
+    logout();
+    navigate("/login");
+  }, [logout, navigate]);
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-logo">
-        <h2>{title}</h2>
-        <span>{subtitle}</span>
-      </div>
+    <>
+      {/* Overlay */}
+      <div
+        className={`sidebar-overlay ${sidebarOpen ? "show" : ""}`}
+        onClick={closeSidebar}
+      />
 
-      <nav className="sidebar-menu">
-        {menu.map((item) => (
-          <SidebarItem key={item.id || item.path} item={item} />
-        ))}
-      </nav>
+      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
+          <div className="sidebar-logo">
+            <h2>{title}</h2>
+            <span>{subtitle}</span>
+          </div>
 
-      <button className="logout-btn" onClick={handleLogout}>
-        <LogoutIcon className="sidebar-icon" />
-        <span>{logoutItem.title}</span>
-      </button>
-    </aside>
+          <button className="sidebar-close" onClick={closeSidebar}>
+            <FiX size={22} />
+          </button>
+        </div>
+
+        <nav className="sidebar-menu">
+          {menu.map((item) => (
+            <SidebarItem
+              key={item.id || item.path}
+              item={item}
+              onClick={closeSidebar}
+            />
+          ))}
+        </nav>
+
+        <button className="logout-btn" onClick={handleLogout}>
+          <LogoutIcon className="sidebar-icon" />
+          <span>{logoutItem.title}</span>
+        </button>
+      </aside>
+    </>
   );
 };
 

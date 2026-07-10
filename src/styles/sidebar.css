@@ -262,6 +262,13 @@
   color: white;
 }
 
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 /* ======================================================
    MOBILE
 ====================================================== */
@@ -287,5 +294,8 @@
 
   .sidebar-link {
     padding: 14px;
+  }
+  .sidebar-close {
+    display: block;
   }
 }

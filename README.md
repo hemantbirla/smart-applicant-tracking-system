@@ -637,6 +637,40 @@ ErrorBoundary
 
 Skeleton loaders are displayed while asynchronous data is being fetched, improving perceived performance and user experience.
 
+## Testing
+
+The project includes unit tests for critical application features using Vitest and React Testing Library.
+
+### Technologies
+
+- Vitest
+- React Testing Library
+- Jest DOM
+- User Event
+
+### Covered Modules
+
+- Authentication Forms
+- Dashboard Components
+- Protected Routes
+- Context API
+- API Services
+- Utility Functions
+- Theme Management
+
+### Run Tests
+
+```bash
+npm run test
+```
+
+### Run Coverage
+
+```bash
+npm run test:coverage
+```
+
+
 ## Current Progress
 
 - ✅ Project initialized with Vite
@@ -666,3 +700,4 @@ Skeleton loaders are displayed while asynchronous data is being fetched, improvi
 - ✅ Add dashboard analytics
 - ✅ Implement dark mode
 - ✅ Improve loading states and error handling
+- ✅ Add unit tests for critical components

@@ -19,6 +19,9 @@ import "./styles/resume.css";
 import "./styles/application.css";
 import "./styles/sidebar.css";
 
+/* Always keep responsive.css last */
+import "./styles/responsive.css";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
