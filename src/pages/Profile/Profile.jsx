@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -8,21 +8,35 @@ import SkillsSection from "../../components/profile/SkillsSection";
 import ExperienceSection from "../../components/profile/ExperienceSection";
 import EducationSection from "../../components/profile/EducationSection";
 import EditProfileModal from "../../components/profile/EditProfileModal";
-
 import ResumeUpload from "../../components/resume/ResumeUpload";
 
+import SkeletonProfile from "../../components/common/Skeleton/SkeletonProfile";
+
 const Profile = () => {
-  const [isEditModalOpen, setIsEditModalOpen] =
-    useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  // Simulate API loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <SkeletonProfile />
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
       <div className="container py-4">
-        <ProfileHeader
-          onEdit={() =>
-            setIsEditModalOpen(true)
-          }
-        />
+        <ProfileHeader onEdit={() => setIsEditModalOpen(true)} />
 
         <div className="mt-4">
           <PersonalInfo />
@@ -46,9 +60,7 @@ const Profile = () => {
 
         <EditProfileModal
           isOpen={isEditModalOpen}
-          onClose={() =>
-            setIsEditModalOpen(false)
-          }
+          onClose={() => setIsEditModalOpen(false)}
         />
       </div>
     </DashboardLayout>

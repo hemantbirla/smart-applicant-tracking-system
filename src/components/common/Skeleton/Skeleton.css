@@ -116,3 +116,108 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ===============================
+   Profile Skeleton
+=============================== */
+
+.skeleton-profile {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  animation: fadeIn 0.3s ease;
+}
+
+.skeleton-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.skeleton-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.skeleton-profile-info {
+  flex: 1;
+}
+
+.skeleton-title {
+  width: 260px;
+  height: 28px;
+  margin-bottom: 15px;
+}
+
+.skeleton-subtitle {
+  width: 180px;
+  height: 18px;
+  margin-bottom: 10px;
+}
+
+.skeleton-subtitle.short {
+  width: 120px;
+}
+
+.skeleton-profile-section {
+  margin-top: 40px;
+}
+
+.skeleton-heading {
+  width: 180px;
+  height: 24px;
+  margin-bottom: 25px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.skeleton-input {
+  height: 48px;
+  border-radius: 8px;
+}
+
+.skeleton-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skeleton-chip {
+  width: 90px;
+  height: 36px;
+  border-radius: 18px;
+}
+
+.skeleton-resume {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .skeleton-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skeleton-title {
+    width: 180px;
+  }
+
+  .skeleton-subtitle {
+    width: 140px;
+  }
+}
+
