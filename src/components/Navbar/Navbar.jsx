@@ -1,13 +1,20 @@
 import { memo } from "react";
-import "../../styles/dashboard.css";
+import { FiMenu } from "react-icons/fi";
+
 import ThemeToggle from "../common/ThemeToggle";
+
+import "../../styles/dashboard.css";
 
 const Navbar = ({ title, onMenuClick }) => {
   return (
     <header className="navbar">
       <div className="navbar-left">
-        <button className="menu-btn" onClick={onMenuClick}>
-          ☰
+        <button
+          className="menu-btn"
+          onClick={onMenuClick}
+          aria-label="Open sidebar"
+        >
+          <FiMenu size={24} />
         </button>
 
         <h2>{title}</h2>

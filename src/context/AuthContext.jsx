@@ -29,7 +29,8 @@ export const AuthProvider = ({ children }) => {
         id: 1,
         name: "Hemant Birla",
         email: "hemant@example.com",
-        role: "candidate",
+        // role: "candidate",
+        role: "admin",
       });
 
       setIsAuthenticated(true);

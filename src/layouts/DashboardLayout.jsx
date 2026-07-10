@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import Sidebar from "../components/sidebar/Sidebar";
+import Navbar from "../components/Navbar/Navbar";
 
 import {
   candidateSidebar,
@@ -8,10 +10,10 @@ import {
   adminSidebar,
 } from "../constants/sidebarConfig";
 
-import Navbar from "../components/Navbar/Navbar";
-
 const DashboardLayout = ({ children }) => {
   const { pathname } = useLocation();
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let sidebarConfig = candidateSidebar;
   let title = "Candidate Dashboard";
@@ -27,6 +29,8 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="dashboard-layout">
       <Sidebar
+        sidebarOpen={sidebarOpen}
+        closeSidebar={() => setSidebarOpen(false)}
         title={sidebarConfig.title}
         subtitle={sidebarConfig.subtitle}
         menu={sidebarConfig.menu}
@@ -34,10 +38,15 @@ const DashboardLayout = ({ children }) => {
       />
 
       <div className="dashboard-content">
-        <Navbar title={title} />
+        <Navbar
+          title={title}
+          onMenuClick={() => setSidebarOpen(true)}
+        />
 
         <main className="dashboard-main">
-          {children}
+          <div className="container">
+            {children}
+          </div>
         </main>
       </div>
     </div>
