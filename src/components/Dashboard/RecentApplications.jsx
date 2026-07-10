@@ -1,3 +1,4 @@
+import { memo } from "react";
 import useApplications from "../../hooks/useApplications";
 
 import ApplicationCard from "../application/ApplicationCard";
@@ -28,4 +29,4 @@ const RecentApplications = () => {
   );
 };
 
-export default RecentApplications;
+export default memo(RecentApplications);

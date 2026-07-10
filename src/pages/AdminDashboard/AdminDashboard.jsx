@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -31,16 +31,14 @@ const AdminDashboard = () => {
 
   const [error, setError] = useState(false);
 
-  const loadDashboard = async () => {
+  const loadDashboard = useCallback(async () => {
     try {
       setError(false);
 
       startLoading();
 
-      // Simulate API
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Example:
       // const data = await getAdminDashboard();
     } catch (err) {
       console.error(err);
@@ -49,34 +47,14 @@ const AdminDashboard = () => {
     } finally {
       stopLoading();
     }
-  };
+  }, [startLoading, stopLoading]);
 
   useEffect(() => {
     loadDashboard();
-  }, []);
+  }, [loadDashboard]);
 
-  if (loading) {
+  const dashboardContent = useMemo(() => {
     return (
-      <DashboardLayout>
-        <SkeletonCard />
-      </DashboardLayout>
-    );
-  }
-
-  if (error) {
-    return (
-      <DashboardLayout>
-        <ErrorFallback
-          title="Unable to load Admin Dashboard"
-          message="Please try again in a few moments."
-          onRetry={loadDashboard}
-        />
-      </DashboardLayout>
-    );
-  }
-
-  return (
-    <DashboardLayout>
       <div className="admin-dashboard">
         <AdminHeader />
 
@@ -103,8 +81,30 @@ const AdminDashboard = () => {
 
         <QuickActions />
       </div>
-    </DashboardLayout>
-  );
+    );
+  }, []);
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <SkeletonCard />
+      </DashboardLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <DashboardLayout>
+        <ErrorFallback
+          title="Unable to load Admin Dashboard"
+          message="Please try again in a few moments."
+          onRetry={loadDashboard}
+        />
+      </DashboardLayout>
+    );
+  }
+
+  return <DashboardLayout>{dashboardContent}</DashboardLayout>;
 };
 
 export default AdminDashboard;

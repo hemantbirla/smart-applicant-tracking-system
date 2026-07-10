@@ -1,86 +1,84 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
-import {
-  decodeToken,
-  isTokenExpired,
-  getUserFromToken,
-} from "../utils/token";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // ==========================
+  // State
+  // ==========================
+
   const [user, setUser] = useState(null);
+
   const [accessToken, setAccessToken] = useState(null);
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
-  /**
-   * Initialize authentication
-   */
+  // ==========================
+  // Initialize Authentication
+  // ==========================
+
   const initializeAuth = () => {
     const token = localStorage.getItem("accessToken");
 
-    if (!token) {
-      setLoading(false);
-      return;
+    if (token) {
+      setAccessToken(token);
+
+      setUser({
+        id: 1,
+        name: "Hemant Birla",
+        email: "hemant@example.com",
+        role: "candidate",
+      });
+
+      setIsAuthenticated(true);
     }
 
-    if (isTokenExpired(token)) {
-      logout();
-      return;
-    }
+    setLoading(false);
+  };
+
+  // ==========================
+  // Login
+  // ==========================
+
+  const login = (token) => {
+    localStorage.setItem("accessToken", token);
 
     setAccessToken(token);
-    setUser(getUserFromToken(token));
+
+    setUser({
+      id: 1,
+      name: "Hemant Birla",
+      email: "hemant@example.com",
+      role: "candidate",
+    });
+
     setIsAuthenticated(true);
+
     setLoading(false);
   };
 
-  /**
-   * Login
-   */
-  const login = (accessToken) => {
-  if (!accessToken) return;
+  // ==========================
+  // Logout
+  // ==========================
 
-  // Store token
-  localStorage.setItem("accessToken", accessToken);
-
-  // Decode JWT
-  const decodedToken = decodeToken(accessToken);
-
-  // Extract user
-  const user = getUserFromToken(accessToken);
-
-  // Save state
-  setAccessToken(accessToken);
-  setUser(user);
-  setIsAuthenticated(true);
-
-  return decodedToken;
-};
-
-  /**
-   * Logout
-   */
   const logout = () => {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
 
     setAccessToken(null);
+
     setUser(null);
+
     setIsAuthenticated(false);
+
     setLoading(false);
   };
 
-  /**
-   * Refresh Token
-   * API integration will be added later.
-   */
+  // ==========================
+  // Refresh Token (Future API)
+  // ==========================
+
   const refreshToken = async () => {
     console.log("Refresh Token API will be added later.");
   };
@@ -99,12 +97,19 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         refreshToken,
-        initializeAuth,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
+};
+
+// ==========================
+// Custom Hook
+// ==========================
+
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
 
 export default AuthContext;

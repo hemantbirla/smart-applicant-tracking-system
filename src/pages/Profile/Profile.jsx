@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -15,16 +15,19 @@ import ErrorFallback from "../../components/common/Error/ErrorFallback";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(false);
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const fetchProfile = () => {
+  const fetchProfile = useCallback(() => {
     setLoading(true);
+
     setError(false);
 
-    // Simulate API Call
+    // Simulated API Call
     setTimeout(() => {
-      const success = true; // Change to false to test ErrorFallback
+      const success = true;
 
       if (success) {
         setLoading(false);
@@ -33,10 +36,18 @@ const Profile = () => {
         setError(true);
       }
     }, 1500);
-  };
+  }, []);
 
   useEffect(() => {
     fetchProfile();
+  }, [fetchProfile]);
+
+  const handleEditModalOpen = useCallback(() => {
+    setIsEditModalOpen(true);
+  }, []);
+
+  const handleEditModalClose = useCallback(() => {
+    setIsEditModalOpen(false);
   }, []);
 
   if (loading) {
@@ -52,7 +63,7 @@ const Profile = () => {
       <DashboardLayout>
         <ErrorFallback
           title="Unable to load profile"
-          message="Something went wrong while loading your profile. Please try again."
+          message="Something went wrong while loading your profile."
           onRetry={fetchProfile}
         />
       </DashboardLayout>
@@ -62,7 +73,7 @@ const Profile = () => {
   return (
     <DashboardLayout>
       <div className="container py-4">
-        <ProfileHeader onEdit={() => setIsEditModalOpen(true)} />
+        <ProfileHeader onEdit={handleEditModalOpen} />
 
         <div className="mt-4">
           <PersonalInfo />
@@ -86,7 +97,7 @@ const Profile = () => {
 
         <EditProfileModal
           isOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
+          onClose={handleEditModalClose}
         />
       </div>
     </DashboardLayout>

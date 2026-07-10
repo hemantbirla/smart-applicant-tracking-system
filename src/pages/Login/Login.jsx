@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInput from "../../components/auth/AuthInput";
@@ -10,10 +10,16 @@ import AuthButton from "../../components/auth/AuthButton";
 
 import { loginSchema } from "../../constants/validationSchemas";
 
+import useAuth from "../../hooks/useAuth";
+
 import "../../styles/auth.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -24,7 +30,17 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log("Login Data:", data);
-    // API integration will be added later
+
+    // Fake token (until backend integration)
+    const fakeToken = "fake-access-token";
+
+    login(fakeToken);
+
+    toast.success("Login Successful");
+
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 800);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import JobMeta from "./JobMeta";
 import JobTags from "./JobTags";
@@ -80,4 +80,4 @@ const JobCard = ({ job }) => {
   );
 };
 
-export default JobCard;
+export default memo(JobCard);
