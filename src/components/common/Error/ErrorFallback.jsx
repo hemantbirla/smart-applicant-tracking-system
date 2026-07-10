@@ -9,19 +9,12 @@ const ErrorFallback = ({
     <div className="error-container">
       <div className="error-icon">⚠️</div>
 
-      <h2 className="error-title">
-        {title}
-      </h2>
+      <h2 className="error-title">{title}</h2>
 
-      <p className="error-message">
-        {message}
-      </p>
+      <p className="error-message">{message}</p>
 
       {onRetry && (
-        <button
-          className="error-btn"
-          onClick={onRetry}
-        >
+        <button className="error-btn" onClick={onRetry}>
           Retry
         </button>
       )}
