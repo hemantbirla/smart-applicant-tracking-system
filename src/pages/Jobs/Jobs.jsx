@@ -15,6 +15,7 @@ import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import { getJobs } from "../../services/jobService";
 
 import "../../styles/jobs.css";
+import SkeletonTable from "../../components/common/Skeleton/SkeletonTable";
 
 const PAGE_SIZE = 10;
 
@@ -84,6 +85,10 @@ const Jobs = () => {
     hasMore,
     loadMore
   );
+
+  if (loading) {
+    return <SkeletonTable />;
+  }
 
   return (
     <DashboardLayout>
