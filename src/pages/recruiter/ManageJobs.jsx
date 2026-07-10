@@ -8,9 +8,9 @@ import JobTable from "../../components/jobs/JobTable";
 import DeleteJobModal from "../../components/jobs/DeleteJobModal";
 import Pagination from "../../components/jobs/Pagination";
 
-import SkeletonCard from "../../components/common/SkeletonCard";
+import SkeletonCard from "../../components/common/Skeleton/SkeletonCard";
 import EmptyState from "../../components/common/EmptyState";
-import ErrorState from "../../components/common/ErrorState";
+import ErrorState from "../../components/common/Error/ErrorFallback";
 
 import useJobs from "../../hooks/useJobs";
 import usePagination from "../../hooks/usePagination";

@@ -23,7 +23,7 @@ const ResetPassword = () => {
     console.log(data);
 
     // API integration will be added later
-    toast.success("Ready for Reset Password API Integration");
+    showSuccess("Ready for Reset Password API Integration");
   };
 
   return (

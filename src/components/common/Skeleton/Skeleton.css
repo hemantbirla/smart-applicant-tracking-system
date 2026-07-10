@@ -1,0 +1,223 @@
+/* ===========================
+   Base Skeleton Animation
+=========================== */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ===========================
+   Dashboard Cards
+=========================== */
+
+.skeleton-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.skeleton-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.skeleton-content {
+  flex: 1;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 20px;
+  margin-bottom: 12px;
+}
+
+.skeleton-text {
+  width: 40%;
+  height: 14px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+  .skeleton-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================
+   Skeleton Table
+========================== */
+
+.skeleton-table {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.skeleton-table-header,
+.skeleton-table-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.skeleton-header {
+  height: 18px;
+  border-radius: 6px;
+}
+
+.skeleton-cell {
+  height: 14px;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .skeleton-table-header,
+  .skeleton-table-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===============================
+   Profile Skeleton
+=============================== */
+
+.skeleton-profile {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  animation: fadeIn 0.3s ease;
+}
+
+.skeleton-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.skeleton-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.skeleton-profile-info {
+  flex: 1;
+}
+
+.skeleton-title {
+  width: 260px;
+  height: 28px;
+  margin-bottom: 15px;
+}
+
+.skeleton-subtitle {
+  width: 180px;
+  height: 18px;
+  margin-bottom: 10px;
+}
+
+.skeleton-subtitle.short {
+  width: 120px;
+}
+
+.skeleton-profile-section {
+  margin-top: 40px;
+}
+
+.skeleton-heading {
+  width: 180px;
+  height: 24px;
+  margin-bottom: 25px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.skeleton-input {
+  height: 48px;
+  border-radius: 8px;
+}
+
+.skeleton-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skeleton-chip {
+  width: 90px;
+  height: 36px;
+  border-radius: 18px;
+}
+
+.skeleton-resume {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .skeleton-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skeleton-title {
+    width: 180px;
+  }
+
+  .skeleton-subtitle {
+    width: 140px;
+  }
+}
+

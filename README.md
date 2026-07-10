@@ -612,7 +612,30 @@ CSS Variables
       ↓
 Application UI
 ```
+## Loading & Error Handling
 
+The application includes reusable loading and error handling components.
+
+### Features
+
+- Global Loader
+- Skeleton Loaders
+- Error Boundary
+- Reusable Error Component
+- Retry Mechanism
+
+### Components
+
+```
+Loader
+SkeletonCard
+SkeletonTable
+SkeletonProfile
+ErrorFallback
+ErrorBoundary
+```
+
+Skeleton loaders are displayed while asynchronous data is being fetched, improving perceived performance and user experience.
 
 ## Current Progress
 
@@ -642,3 +665,4 @@ Application UI
 - ✅ Develop admin dashboard
 - ✅ Add dashboard analytics
 - ✅ Implement dark mode
+- ✅ Improve loading states and error handling

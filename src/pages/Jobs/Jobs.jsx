@@ -8,6 +8,9 @@ import SortDropdown from "../../components/jobs/SortDropdown";
 import ActiveFilters from "../../components/jobs/ActiveFilters";
 import JobList from "../../components/jobs/JobList";
 
+import SkeletonTable from "../../components/common/Skeleton/SkeletonTable";
+import ErrorFallback from "../../components/common/Error/ErrorFallback";
+
 import useJobFilters from "../../hooks/useJobFilters";
 import usePagination from "../../hooks/usePagination";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
@@ -23,15 +26,10 @@ const Jobs = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // API Ready
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    fetchJobs();
-  }, []);
-
-  const fetchJobs = async () => {
+  const fetchJobs = useCallback(async () => {
     try {
       setLoading(true);
       setError("");
@@ -41,16 +39,20 @@ const Jobs = () => {
         limit: PAGE_SIZE,
       });
 
-      setJobs(response.jobs);
+      setJobs(response.jobs || []);
 
-      setHasMore(response.jobs.length === PAGE_SIZE);
+      setHasMore((response.jobs || []).length === PAGE_SIZE);
     } catch (err) {
       console.error(err);
       setError("Unable to load jobs.");
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
+
+  useEffect(() => {
+    fetchJobs();
+  }, [fetchJobs]);
 
   const {
     filteredJobs,
@@ -63,84 +65,71 @@ const Jobs = () => {
     clearFilters,
   } = useJobFilters(jobs);
 
-  const {
-    currentItems,
-    currentPage,
-    totalPages,
-    goToPage,
-  } = usePagination(filteredJobs);
+  const { currentItems, currentPage, totalPages, goToPage } =
+    usePagination(filteredJobs);
 
   const loadMore = useCallback(() => {
     if (loading || !hasMore) return;
 
     setPage((prev) => prev + 1);
 
-    // Future API
+    // Later:
     // fetchJobs(page + 1);
   }, [loading, hasMore]);
 
-  const { lastElementRef } = useInfiniteScroll(
-    loading,
-    hasMore,
-    loadMore
-  );
+  const { lastElementRef } = useInfiniteScroll(loading, hasMore, loadMore);
+
+  // Loading State
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <SkeletonTable />
+      </DashboardLayout>
+    );
+  }
+
+  // Error State
+  if (error) {
+    return (
+      <DashboardLayout>
+        <ErrorFallback
+          title="Unable to load jobs"
+          message={error}
+          onRetry={fetchJobs}
+        />
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
       <div className="jobs-page">
-        <h1 className="jobs-heading">
-          Find Your Dream Job
-        </h1>
+        <h1 className="jobs-heading">Find Your Dream Job</h1>
 
         <p className="jobs-subtitle">
           Browse the latest opportunities from top companies.
         </p>
 
-        {!loading && !error && (
-          <>
-            <SearchBar
-              value={searchTerm}
-              onChange={setSearchTerm}
-            />
+        <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
-            <FilterPanel
-              filters={filters}
-              onChange={updateFilter}
-            />
+        <FilterPanel filters={filters} onChange={updateFilter} />
 
-            <SortDropdown
-              value={sortBy}
-              onChange={setSortBy}
-            />
+        <SortDropdown value={sortBy} onChange={setSortBy} />
 
-            <ActiveFilters
-              searchTerm={searchTerm}
-              filters={filters}
-              clearFilters={clearFilters}
-            />
+        <ActiveFilters
+          searchTerm={searchTerm}
+          filters={filters}
+          clearFilters={clearFilters}
+        />
 
-            <JobList
-              jobs={currentItems}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={goToPage}
-              loading={loading}
-              lastElementRef={lastElementRef}
-            />
-          </>
-        )}
-
-        {loading && (
-          <div className="jobs-loading">
-            Loading jobs...
-          </div>
-        )}
-
-        {!loading && error && (
-          <div className="jobs-error">
-            {error}
-          </div>
-        )}
+        <JobList
+          jobs={currentItems}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={goToPage}
+          loading={loading}
+          lastElementRef={lastElementRef}
+        />
       </div>
     </DashboardLayout>
   );

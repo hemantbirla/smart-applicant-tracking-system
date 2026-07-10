@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
@@ -163,7 +163,7 @@ function App() {
         />
       </Routes>
 
-      <ToastContainer
+      {/* <ToastContainer
         position="top-right"
         autoClose={3000}
         newestOnTop
@@ -171,7 +171,7 @@ function App() {
         pauseOnHover
         draggable
         theme="colored"
-      />
+      /> */}
     </>
   );
 }

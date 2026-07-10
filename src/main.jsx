@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import AppProvider from "./context/AppProvider";
+import ErrorBoundary from "./components/common/ErrorBoundary/ErrorBoundary";
+import AppToastContainer from "./components/common/AppToastContainer";
 
 // Theme Styles
 import "./styles/variables.css";
@@ -20,9 +22,12 @@ import "./styles/sidebar.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppProvider>
-        <App />
-      </AppProvider>
+      <ErrorBoundary>
+        <AppProvider>
+          <App />
+          <AppToastContainer />
+        </AppProvider>
+      </ErrorBoundary>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
