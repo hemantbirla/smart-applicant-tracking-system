@@ -1,0 +1,188 @@
+/* ==========================================
+   Responsive.css
+   Smart Applicant Tracking System
+========================================== */
+
+/* ==========================
+   Global Reset
+========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ==========================
+   Responsive Container
+========================== */
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ==========================
+   Common Utility Classes
+========================== */
+
+.w-100 {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+/* ==========================
+   Prevent Overflow
+========================== */
+
+.dashboard-main,
+.profile-page,
+.dashboard-page,
+.auth-page,
+.resume-upload-card,
+.profile-section {
+  min-width: 0;
+}
+
+/* ==========================
+   Images
+========================== */
+
+.avatar,
+.profile-avatar,
+.company-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================
+   Tables
+========================== */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* ==========================
+   Forms
+========================== */
+
+input,
+textarea,
+select {
+  width: 100%;
+}
+
+/* ==========================================
+   BREAKPOINTS
+========================================== */
+
+/* ---------- Large Desktop ---------- */
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* ---------- Small Laptop ---------- */
+
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: 20px;
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 16px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 576px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding-inline: 14px;
+  }
+}
+
+/* ---------- Small Mobile ---------- */
+
+@media (max-width: 360px) {
+  html {
+    font-size: 14px;
+  }
+}
