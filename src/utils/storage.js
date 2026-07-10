@@ -3,51 +3,56 @@ const ACCESS_TOKEN_KEY = "accessToken";
 const REFRESH_TOKEN_KEY = "refreshToken";
 const SAVED_JOBS_KEY = "savedJobs";
 
-/**
- * Save Access Token
- */
-export const setAccessToken = (token) => {
-  localStorage.setItem(ACCESS_TOKEN_KEY, token);
+/* -------------------- */
+/* Generic Base Helpers */
+/* -------------------- */
+export const setStorage = (key, value) => {
+  const stringValue = typeof value === "string" ? value : JSON.stringify(value);
+  localStorage.setItem(key, stringValue);
 };
 
-export const getAccessToken = () => {
-  return localStorage.getItem(ACCESS_TOKEN_KEY);
+export const getStorage = (key) => {
+  const data = localStorage.getItem(key);
+  try {
+    return data ? JSON.parse(data) : null;
+  } catch {
+    return data; // Return raw string if it isn't JSON stringified
+  }
 };
 
-export const setRefreshToken = (token) => {
-  localStorage.setItem(REFRESH_TOKEN_KEY, token);
+export const removeStorage = (key) => {
+  localStorage.removeItem(key);
 };
 
-export const getRefreshToken = () => {
-  return localStorage.getItem(REFRESH_TOKEN_KEY);
+export const clearStorage = () => {
+  localStorage.clear();
 };
 
-export const removeAccessToken = () => {
-  localStorage.removeItem(ACCESS_TOKEN_KEY);
-};
+/* -------------------- */
+/* Token Specific       */
+/* -------------------- */
+export const setAccessToken = (token) => setStorage(ACCESS_TOKEN_KEY, token);
+export const getAccessToken = () => localStorage.getItem(ACCESS_TOKEN_KEY); // Keeps original behavior
+export const setRefreshToken = (token) => setStorage(REFRESH_TOKEN_KEY, token);
+export const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN_KEY);
 
-export const removeRefreshToken = () => {
-  localStorage.removeItem(REFRESH_TOKEN_KEY);
-};
+export const removeAccessToken = () => removeStorage(ACCESS_TOKEN_KEY);
+export const removeRefreshToken = () => removeStorage(REFRESH_TOKEN_KEY);
 
 /* -------------------- */
 /* Saved Jobs Storage   */
 /* -------------------- */
-
 export const getSavedJobs = () => {
   const jobs = localStorage.getItem(SAVED_JOBS_KEY);
   return jobs ? JSON.parse(jobs) : [];
 };
 
 export const setSavedJobs = (jobs) => {
-  localStorage.setItem(
-    SAVED_JOBS_KEY,
-    JSON.stringify(jobs)
-  );
+  setStorage(SAVED_JOBS_KEY, jobs);
 };
 
 export const removeSavedJobs = () => {
-  localStorage.removeItem(SAVED_JOBS_KEY);
+  removeStorage(SAVED_JOBS_KEY);
 };
 
 /**
