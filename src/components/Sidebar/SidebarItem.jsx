@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
 
 const SidebarItem = ({ item }) => {
@@ -18,4 +19,4 @@ const SidebarItem = ({ item }) => {
   );
 };
 
-export default SidebarItem;
+export default memo(SidebarItem);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "../../styles/dashboard.css";
 import ThemeToggle from "../common/ThemeToggle";
 
@@ -19,4 +20,4 @@ const Navbar = ({ title, onMenuClick }) => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

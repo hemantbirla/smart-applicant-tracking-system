@@ -2,6 +2,7 @@ import profileData from "../../constants/profileData";
 import { calculateProfileCompletion } from "../../utils/profileCompletion";
 
 import "../../styles/dashboard.css";
+import { memo } from "react";
 
 const ProfileSummary = ({ profile = profileData }) => {
   const completion = calculateProfileCompletion(profile);
@@ -102,4 +103,4 @@ const ProfileSummary = ({ profile = profileData }) => {
   );
 };
 
-export default ProfileSummary;
+export default memo(ProfileSummary);

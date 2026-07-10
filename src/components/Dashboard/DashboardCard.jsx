@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "../../styles/dashboard.css";
 
 const DashboardCard = ({
@@ -23,4 +24,4 @@ const DashboardCard = ({
   );
 };
 
-export default DashboardCard;
+export default memo(DashboardCard);
