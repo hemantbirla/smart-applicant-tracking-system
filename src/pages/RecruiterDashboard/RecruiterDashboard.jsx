@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import DashboardLayout from "../../layouts/DashboardLayout";
 
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
@@ -7,14 +9,52 @@ import RecentCandidates from "../../components/dashboard/recruiter/RecentCandida
 import QuickActions from "../../components/dashboard/recruiter/QuickActions";
 import CompanySummary from "../../components/dashboard/recruiter/CompanySummary";
 
-import "../../styles/recruiter-dashboard.css";
-import { recruiterHeader } from "../../constants/recruiterDashboardData";
-
 import SkeletonCard from "../../components/common/Skeleton/SkeletonCard";
+import ErrorFallback from "../../components/common/Error/ErrorFallback";
+
 import useLoading from "../../hooks/useLoading";
 
+import { recruiterHeader } from "../../constants/recruiterDashboardData";
+
+import "../../styles/recruiter-dashboard.css";
+
 const RecruiterDashboard = () => {
-  const { loading } = useLoading();
+  const {
+    loading,
+    startLoading,
+    stopLoading,
+  } = useLoading();
+
+  const [error, setError] = useState(false);
+
+  const fetchDashboard = async () => {
+    try {
+      startLoading();
+
+      setError(false);
+
+      // ===========================
+      // Simulate API Call
+      // Replace with actual API later
+      // ===========================
+      await new Promise((resolve) =>
+        setTimeout(resolve, 1500)
+      );
+
+      // Uncomment to test Error UI
+      // throw new Error("Dashboard failed to load");
+    } catch (err) {
+      console.error(err);
+
+      setError(true);
+    } finally {
+      stopLoading();
+    }
+  };
+
+  useEffect(() => {
+    fetchDashboard();
+  }, []);
 
   if (loading) {
     return (
@@ -23,6 +63,19 @@ const RecruiterDashboard = () => {
       </DashboardLayout>
     );
   }
+
+  if (error) {
+    return (
+      <DashboardLayout>
+        <ErrorFallback
+          title="Unable to load Recruiter Dashboard"
+          message="Something went wrong while loading the dashboard. Please try again."
+          onRetry={fetchDashboard}
+        />
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout>
       <div className="recruiter-dashboard">
@@ -30,8 +83,8 @@ const RecruiterDashboard = () => {
           greeting={recruiterHeader.greeting}
           name={recruiterHeader.name}
           role={recruiterHeader.role}
-          description = {recruiterHeader.description}
-          logo = {recruiterHeader.logo}
+          description={recruiterHeader.description}
+          logo={recruiterHeader.logo}
         />
 
         <RecruiterStats />

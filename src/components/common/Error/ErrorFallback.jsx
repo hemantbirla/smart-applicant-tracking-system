@@ -1,21 +1,25 @@
-import { FiAlertCircle } from "react-icons/fi";
+import "./Error.css";
 
-const ErrorState = ({
+const ErrorFallback = ({
   title = "Something went wrong",
-  message = "Please try again later.",
+  message = "An unexpected error occurred.",
   onRetry,
 }) => {
   return (
-    <div className="error-state">
-      <FiAlertCircle className="error-icon" />
+    <div className="error-container">
+      <div className="error-icon">⚠️</div>
 
-      <h2>{title}</h2>
+      <h2 className="error-title">
+        {title}
+      </h2>
 
-      <p>{message}</p>
+      <p className="error-message">
+        {message}
+      </p>
 
       {onRetry && (
         <button
-          className="primary-btn"
+          className="error-btn"
           onClick={onRetry}
         >
           Retry
@@ -25,4 +29,4 @@ const ErrorState = ({
   );
 };
 
-export default ErrorState;
+export default ErrorFallback;
